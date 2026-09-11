@@ -245,12 +245,17 @@
   }
   .btn-pkg:hover { transform: translateY(-3px) scale(1.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -3px 6px rgba(0,0,0,0.15), 0 16px 28px -6px rgba(138,108,44,0.7); }
   .btn-pkg:active { transform: translateY(-1px) scale(1.01); }
-  .pkg-or { font-size: 13px; color: #9fb0b5; margin: 22px 0 0; }
-  .btn-pair { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
-  .btn-pkg-light {
-    background: linear-gradient(155deg, #d4ac5c, var(--gold) 55%, var(--gold-deep));
-    color: #241f18; border: none; font-size: 13.5px; padding: 12px 22px;
+  .pkg-divider { display: flex; align-items: center; gap: 14px; margin: 34px 0 18px; }
+  .pkg-divider::before, .pkg-divider::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,0.16); }
+  .pkg-divider span { font-size: 12.5px; color: #9fb0b5; white-space: nowrap; }
+  .btn-pair { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .btn-pkg-outline {
+    display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--gold-tint);
+    font-family: "Manrope", sans-serif; font-weight: 700; font-size: 13.5px; padding: 12px 24px;
+    border-radius: 999px; text-decoration: none; border: 1.5px solid rgba(243,233,211,0.5);
+    transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), background 0.2s, border-color 0.2s;
   }
+  .btn-pkg-outline:hover { background: rgba(243,233,211,0.12); border-color: var(--gold); transform: translateY(-2px) scale(1.04); }
 
   .wa-float {
     position: fixed; right: 24px; bottom: 24px; z-index: 40;
@@ -267,6 +272,9 @@
     padding: 26px 0 52px; background: var(--bg);
     font-size: 12.5px; color: var(--text-faint); text-align: center;
   }
+  .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .footer-link { color: var(--text-faint); text-decoration: underline; }
+  .footer-link:hover { color: var(--navy-deep); }
 
   .build-flag {
     background: var(--navy-deep); color: #fbf7ee; font-size: 12.5px; text-align: center; padding: 9px 16px;
@@ -295,14 +303,14 @@
     <div class="wrap wrap-video">
       <div class="video-glow">
         <div class="video-frame">
-          <video src="VSL-Elizabet-2.mp4" controls preload="metadata" poster="portada-vsl.jpg"></video>
+          <video src="VSL-Elizabet-web.mp4" controls preload="metadata" poster="portada-vsl.jpg"></video>
         </div>
       </div>
     </div>
   </section>
 
   <div class="pkg-single">
-    <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">📅 Agenda tu paquete de 3 sesiones</a>
+    <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones</a>
   </div>
 
   <a class="wa-float" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20vi%20tu%20video%20y%20quiero%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
@@ -406,7 +414,7 @@
   </section>
 
   <div class="pkg-single pkg-single-dark">
-    <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">📅 Agenda tu sesión individual</a>
+    <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Agenda tu sesión individual</a>
   </div>
 
   <section class="band cream">
@@ -415,19 +423,23 @@
         <h2>¿Sientes que algo de esto te movió por dentro?</h2>
         <p>Escríbeme directo. Te voy a hacer un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión — sin compromiso, a tu ritmo.</p>
         <a class="btn-wa" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20vi%20tu%20video%20y%20quiero%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener">
-          💬 Agenda tu sesión por WhatsApp
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path fill="#241f18" d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.4A9.95 9.95 0 0 0 12.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2Zm5.4 14.1c-.23.65-1.15 1.2-1.9 1.36-.5.1-1.16.19-3.38-.72-2.84-1.18-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.72-2.07.98-2.35.23-.25.5-.32.67-.32h.48c.16 0 .37-.06.58.44.23.55.78 1.94.85 2.08.07.14.11.3.02.48-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.12.07.68-.16 1.33Z"/></svg>
+          Agenda tu sesión por WhatsApp
         </a>
-        <p class="pkg-or">o agenda directo tu consulta:</p>
+        <div class="pkg-divider"><span>o agenda directo tu consulta</span></div>
         <div class="btn-pair">
-          <a class="btn-pkg btn-pkg-light" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Sesión individual</a>
-          <a class="btn-pkg btn-pkg-light" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">Paquete x3 sesiones</a>
+          <a class="btn-pkg-outline" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Sesión individual</a>
+          <a class="btn-pkg-outline" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">Paquete x3 sesiones</a>
         </div>
       </div>
     </div>
   </section>
 
   <footer class="note">
-    <div class="wrap">Elizabet García Duque · Psicóloga Clínica</div>
+    <div class="wrap footer-inner">
+      <span>Elizabet García Duque · Psicóloga Clínica</span>
+      <a href="privacidad.html" class="footer-link">Política de Privacidad</a>
+    </div>
   </footer>
 
   <script>
