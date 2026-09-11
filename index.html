@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elizabet García Duque — Psicóloga Clínica</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --bg: #f7f8f6;
+    --surface: #ffffff;
+    --text: #1c2224;
+    --text-faint: #626c6e;
+    --border: #dfe6e6;
+    --navy: #3f6470;
+    --navy-deep: #1f3a42;
+    --navy-soft: #dfeef1;
+    --navy-tint: #eef6f7;
+    --gold: #b8964f;
+    --gold-deep: #8a6c2c;
+    --gold-tint: #f3e9d3;
+    --gold-title: #a3833d;
+    --cream: #fdfaf3;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Manrope", -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.65; -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+  /* Grano sutil sobre toda la página — la textura que pediste, sin depender de imágenes externas */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.05; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body > * { position: relative; z-index: 1; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+  h1, h2, h3 { font-family: "Poppins", -apple-system, sans-serif; text-wrap: balance; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+
+  /* HERO */
+  .hero {
+    background:
+      url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDE2MDAgNzAwIj48cGF0aCBkPSJNIDAuMCw2MC4wIEwgMjYuNyw2NC4yIEwgNTMuMyw2OC4yIEwgODAuMCw3Mi4xIEwgMTA2LjcsNzUuOCBMIDEzMy4zLDc5LjEgTCAxNjAuMCw4Mi4wIEwgMTg2LjcsODQuNSBMIDIxMy4zLDg2LjUgTCAyNDAuMCw4OC4xIEwgMjY2LjcsODkuMSBMIDI5My4zLDg5LjYgTCAzMjAuMCw4OS42IEwgMzQ2LjcsODkuMiBMIDM3My4zLDg4LjQgTCA0MDAuMCw4Ny4zIEwgNDI2LjcsODUuOSBMIDQ1My4zLDg0LjMgTCA0ODAuMCw4Mi42IEwgNTA2LjcsODAuOCBMIDUzMy4zLDc5LjEgTCA1NjAuMCw3Ny40IEwgNTg2LjcsNzUuOCBMIDYxMy4zLDc0LjQgTCA2NDAuMCw3My4yIEwgNjY2LjcsNzIuMiBMIDY5My4zLDcxLjQgTCA3MjAuMCw3MC45IEwgNzQ2LjcsNzAuNSBMIDc3My4zLDcwLjMgTCA4MDAuMCw3MC4zIEwgODI2LjcsNzAuMyBMIDg1My4zLDcwLjMgTCA4ODAuMCw3MC40IEwgOTA2LjcsNzAuMyBMIDkzMy4zLDcwLjAgTCA5NjAuMCw2OS42IEwgOTg2LjcsNjguOSBMIDEwMTMuMyw2Ny45IEwgMTA0MC4wLDY2LjUgTCAxMDY2LjcsNjQuOSBMIDEwOTMuMyw2Mi45IEwgMTEyMC4wLDYwLjUgTCAxMTQ2LjcsNTcuOSBMIDExNzMuMyw1NS4wIEwgMTIwMC4wLDUxLjggTCAxMjI2LjcsNDguNSBMIDEyNTMuMyw0NS4yIEwgMTI4MC4wLDQxLjggTCAxMzA2LjcsMzguNSBMIDEzMzMuMywzNS4zIEwgMTM2MC4wLDMyLjQgTCAxMzg2LjcsMjkuOCBMIDE0MTMuMywyNy42IEwgMTQ0MC4wLDI1LjggTCAxNDY2LjcsMjQuNiBMIDE0OTMuMywyMy44IEwgMTUyMC4wLDIzLjcgTCAxNTQ2LjcsMjQuMCBMIDE1NzMuMywyNS4wIEwgMTYwMC4wLDI2LjUiIHN0cm9rZT0icmdiKDYzLDEwMCwxMTIpIiBzdHJva2Utd2lkdGg9IjEuMyIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC4xIi8+PHBhdGggZD0iTSAwLjAsMTk5LjMgTCAyNi43LDIwMS4xIEwgNTMuMywyMDEuOSBMIDgwLjAsMjAxLjYgTCAxMDYuNywyMDAuNCBMIDEzMy4zLDE5OC4zIEwgMTYwLjAsMTk1LjUgTCAxODYuNywxOTIuMiBMIDIxMy4zLDE4OC41IEwgMjQwLjAsMTg0LjYgTCAyNjYuNywxODAuOCBMIDI5My4zLDE3Ny4yIEwgMzIwLjAsMTczLjggTCAzNDYuNywxNzAuOSBMIDM3My4zLDE2OC41IEwgNDAwLjAsMTY2LjYgTCA0MjYuNywxNjUuMSBMIDQ1My4zLDE2NC4yIEwgNDgwLjAsMTYzLjYgTCA1MDYuNywxNjMuMiBMIDUzMy4zLDE2My4wIEwgNTYwLjAsMTYyLjcgTCA1ODYuNywxNjIuMyBMIDYxMy4zLDE2MS41IEwgNjQwLjAsMTYwLjMgTCA2NjYuNywxNTguNiBMIDY5My4zLDE1Ni4zIEwgNzIwLjAsMTUzLjMgTCA3NDYuNywxNDkuOCBMIDc3My4zLDE0NS43IEwgODAwLjAsMTQxLjEgTCA4MjYuNywxMzYuMyBMIDg1My4zLDEzMS4yIEwgODgwLjAsMTI2LjIgTCA5MDYuNywxMjEuNSBMIDkzMy4zLDExNy4xIEwgOTYwLjAsMTEzLjQgTCA5ODYuNywxMTAuNCBMIDEwMTMuMywxMDguNCBMIDEwNDAuMCwxMDcuNSBMIDEwNjYuNywxMDcuNiBMIDEwOTMuMywxMDguOSBMIDExMjAuMCwxMTEuNCBMIDExNDYuNywxMTQuOSBMIDExNzMuMywxMTkuNCBMIDEyMDAuMCwxMjQuNiBMIDEyMjYuNywxMzAuNSBMIDEyNTMuMywxMzYuOCBMIDEyODAuMCwxNDMuMyBMIDEzMDYuNywxNDkuOCBMIDEzMzMuMywxNTYuMSBMIDEzNjAuMCwxNjIuMCBMIDEzODYuNywxNjcuMyBMIDE0MTMuMywxNzEuOSBMIDE0NDAuMCwxNzUuNyBMIDE0NjYuNywxNzguNyBMIDE0OTMuMywxODAuOCBMIDE1MjAuMCwxODIuMSBMIDE1NDYuNywxODIuOCBMIDE1NzMuMywxODIuOCBMIDE2MDAuMCwxODIuMyIgc3Ryb2tlPSJyZ2IoNjMsMTAwLDExMikiIHN0cm9rZS13aWR0aD0iMS4zIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjA3Ii8+PHBhdGggZD0iTSAwLjAsMjk5LjYgTCAyNi43LDI5My4wIEwgNTMuMywyODYuMCBMIDgwLjAsMjc5LjAgTCAxMDYuNywyNzIuNSBMIDEzMy4zLDI2Ni42IEwgMTYwLjAsMjYxLjYgTCAxODYuNywyNTcuNyBMIDIxMy4zLDI1NC44IEwgMjQwLjAsMjUyLjggTCAyNjYuNywyNTEuNiBMIDI5My4zLDI1MC45IEwgMzIwLjAsMjUwLjQgTCAzNDYuNywyNDkuOSBMIDM3My4zLDI0OS4wIEwgNDAwLjAsMjQ3LjUgTCA0MjYuNywyNDUuMSBMIDQ1My4zLDI0MS44IEwgNDgwLjAsMjM3LjYgTCA1MDYuNywyMzIuNCBMIDUzMy4zLDIyNi42IEwgNTYwLjAsMjIwLjMgTCA1ODYuNywyMTMuOCBMIDYxMy4zLDIwNy43IEwgNjQwLjAsMjAyLjIgTCA2NjYuNywxOTcuOCBMIDY5My4zLDE5NC44IEwgNzIwLjAsMTkzLjQgTCA3NDYuNywxOTQuMCBMIDc3My4zLDE5Ni41IEwgODAwLjAsMjAxLjAgTCA4MjYuNywyMDcuMyBMIDg1My4zLDIxNS4yIEwgODgwLjAsMjI0LjMgTCA5MDYuNywyMzQuMyBMIDkzMy4zLDI0NC42IEwgOTYwLjAsMjU0LjggTCA5ODYuNywyNjQuNSBMIDEwMTMuMywyNzMuMyBMIDEwNDAuMCwyODAuOCBMIDEwNjYuNywyODYuOCBMIDEwOTMuMywyOTEuMiBMIDExMjAuMCwyOTQuMCBMIDExNDYuNywyOTUuMiBMIDExNzMuMywyOTUuMCBMIDEyMDAuMCwyOTMuNyBMIDEyMjYuNywyOTEuNyBMIDEyNTMuMywyODkuMiBMIDEyODAuMCwyODYuNSBMIDEzMDYuNywyODQuMSBMIDEzMzMuMywyODIuMiBMIDEzNjAuMCwyODAuOCBMIDEzODYuNywyODAuMyBMIDE0MTMuMywyODAuNCBMIDE0NDAuMCwyODEuMiBMIDE0NjYuNywyODIuNCBMIDE0OTMuMywyODMuOCBMIDE1MjAuMCwyODUuMCBMIDE1NDYuNywyODUuOCBMIDE1NzMuMywyODUuOCBMIDE2MDAuMCwyODQuOCIgc3Ryb2tlPSJyZ2IoNjMsMTAwLDExMikiIHN0cm9rZS13aWR0aD0iMS4zIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjEiLz48cGF0aCBkPSJNIDAuMCwzNTAuOCBMIDI2LjcsMzQ3LjYgTCA1My4zLDM0NS4yIEwgODAuMCwzNDMuNyBMIDEwNi43LDM0Mi44IEwgMTMzLjMsMzQyLjUgTCAxNjAuMCwzNDIuNCBMIDE4Ni43LDM0Mi4yIEwgMjEzLjMsMzQxLjggTCAyNDAuMCwzNDAuOCBMIDI2Ni43LDMzOS4zIEwgMjkzLjMsMzM3LjEgTCAzMjAuMCwzMzQuMyBMIDM0Ni43LDMzMS4yIEwgMzczLjMsMzI3LjggTCA0MDAuMCwzMjQuNiBMIDQyNi43LDMyMS44IEwgNDUzLjMsMzE5LjggTCA0ODAuMCwzMTguOCBMIDUwNi43LDMxOS4xIEwgNTMzLjMsMzIwLjggTCA1NjAuMCwzMjMuOSBMIDU4Ni43LDMyOC40IEwgNjEzLjMsMzMzLjkgTCA2NDAuMCwzNDAuMiBMIDY2Ni43LDM0Ny4xIEwgNjkzLjMsMzUzLjkgTCA3MjAuMCwzNjAuNCBMIDc0Ni43LDM2Ni4yIEwgNzczLjMsMzcxLjAgTCA4MDAuMCwzNzQuNiBMIDgyNi43LDM3Ni45IEwgODUzLjMsMzc3LjggTCA4ODAuMCwzNzcuNiBMIDkwNi43LDM3Ni4zIEwgOTMzLjMsMzc0LjMgTCA5NjAuMCwzNzEuOSBMIDk4Ni43LDM2OS40IEwgMTAxMy4zLDM2Ny4wIEwgMTA0MC4wLDM2NS4wIEwgMTA2Ni43LDM2My42IEwgMTA5My4zLDM2Mi44IEwgMTEyMC4wLDM2Mi41IEwgMTE0Ni43LDM2Mi42IEwgMTE3My4zLDM2Mi45IEwgMTIwMC4wLDM2My4xIEwgMTIyNi43LDM2My4wIEwgMTI1My4zLDM2Mi4zIEwgMTI4MC4wLDM2MC43IEwgMTMwNi43LDM1OC4zIEwgMTMzMy4zLDM1NC44IEwgMTM2MC4wLDM1MC40IEwgMTM4Ni43LDM0NS4zIEwgMTQxMy4zLDMzOS42IEwgMTQ0MC4wLDMzMy43IEwgMTQ2Ni43LDMyOC4wIEwgMTQ5My4zLDMyMi44IEwgMTUyMC4wLDMxOC41IEwgMTU0Ni43LDMxNS41IEwgMTU3My4zLDMxMy45IEwgMTYwMC4wLDMxMy44IiBzdHJva2U9InJnYig2MywxMDAsMTEyKSIgc3Ryb2tlLXdpZHRoPSIxLjMiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuMDciLz48cGF0aCBkPSJNIDAuMCw0MjguNCBMIDI2LjcsNDI4LjUgTCA1My4zLDQyOC43IEwgODAuMCw0MjkuMCBMIDEwNi43LDQyOS4yIEwgMTMzLjMsNDI5LjMgTCAxNjAuMCw0MjkuMiBMIDE4Ni43LDQyOC45IEwgMjEzLjMsNDI4LjMgTCAyNDAuMCw0MjcuNCBMIDI2Ni43LDQyNi4xIEwgMjkzLjMsNDI0LjcgTCAzMjAuMCw0MjIuOSBMIDM0Ni43LDQyMS4wIEwgMzczLjMsNDE4LjkgTCA0MDAuMCw0MTYuOCBMIDQyNi43LDQxNC44IEwgNDUzLjMsNDEyLjggTCA0ODAuMCw0MTEuMSBMIDUwNi43LDQwOS43IEwgNTMzLjMsNDA4LjcgTCA1NjAuMCw0MDguMiBMIDU4Ni43LDQwOC4zIEwgNjEzLjMsNDA5LjAgTCA2NDAuMCw0MTAuMyBMIDY2Ni43LDQxMi4zIEwgNjkzLjMsNDE1LjAgTCA3MjAuMCw0MTguMyBMIDc0Ni43LDQyMi4yIEwgNzczLjMsNDI2LjcgTCA4MDAuMCw0MzEuNyBMIDgyNi43LDQzNy4wIEwgODUzLjMsNDQyLjYgTCA4ODAuMCw0NDguMyBMIDkwNi43LDQ1NC4xIEwgOTMzLjMsNDU5LjggTCA5NjAuMCw0NjUuMiBMIDk4Ni43LDQ3MC4zIEwgMTAxMy4zLDQ3NS4wIEwgMTA0MC4wLDQ3OS4xIEwgMTA2Ni43LDQ4Mi43IEwgMTA5My4zLDQ4NS41IEwgMTEyMC4wLDQ4Ny43IEwgMTE0Ni43LDQ4OS4yIEwgMTE3My4zLDQ4OS45IEwgMTIwMC4wLDQ5MC4wIEwgMTIyNi43LDQ4OS40IEwgMTI1My4zLDQ4OC4yIEwgMTI4MC4wLDQ4Ni41IEwgMTMwNi43LDQ4NC40IEwgMTMzMy4zLDQ4MS45IEwgMTM2MC4wLDQ3OS4zIEwgMTM4Ni43LDQ3Ni41IEwgMTQxMy4zLDQ3My42IEwgMTQ0MC4wLDQ3MC45IEwgMTQ2Ni43LDQ2OC4yIEwgMTQ5My4zLDQ2NS44IEwgMTUyMC4wLDQ2My43IEwgMTU0Ni43LDQ2MS45IEwgMTU3My4zLDQ2MC40IEwgMTYwMC4wLDQ1OS4yIiBzdHJva2U9InJnYig2MywxMDAsMTEyKSIgc3Ryb2tlLXdpZHRoPSIxLjMiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuMSIvPjxwYXRoIGQ9Ik0gMC4wLDUxNi40IEwgMjYuNyw1MTYuMCBMIDUzLjMsNTE1LjEgTCA4MC4wLDUxMy43IEwgMTA2LjcsNTExLjkgTCAxMzMuMyw1MDkuOCBMIDE2MC4wLDUwNy41IEwgMTg2LjcsNTA1LjQgTCAyMTMuMyw1MDMuNiBMIDI0MC4wLDUwMi4yIEwgMjY2LjcsNTAxLjYgTCAyOTMuMyw1MDEuOCBMIDMyMC4wLDUwMy4xIEwgMzQ2LjcsNTA1LjUgTCAzNzMuMyw1MDkuMCBMIDQwMC4wLDUxMy44IEwgNDI2LjcsNTE5LjYgTCA0NTMuMyw1MjYuNSBMIDQ4MC4wLDUzNC4xIEwgNTA2LjcsNTQyLjQgTCA1MzMuMyw1NTEuMSBMIDU2MC4wLDU1OS45IEwgNTg2LjcsNTY4LjQgTCA2MTMuMyw1NzYuNSBMIDY0MC4wLDU4My45IEwgNjY2LjcsNTkwLjMgTCA2OTMuMyw1OTUuNiBMIDcyMC4wLDU5OS42IEwgNzQ2LjcsNjAyLjEgTCA3NzMuMyw2MDMuMyBMIDgwMC4wLDYwMy4wIEwgODI2LjcsNjAxLjQgTCA4NTMuMyw1OTguNyBMIDg4MC4wLDU5NC45IEwgOTA2LjcsNTkwLjQgTCA5MzMuMyw1ODUuMyBMIDk2MC4wLDU3OS45IEwgOTg2LjcsNTc0LjQgTCAxMDEzLjMsNTY5LjEgTCAxMDQwLjAsNTY0LjIgTCAxMDY2LjcsNTU5LjcgTCAxMDkzLjMsNTU1LjkgTCAxMTIwLjAsNTUyLjggTCAxMTQ2LjcsNTUwLjQgTCAxMTczLjMsNTQ4LjYgTCAxMjAwLjAsNTQ3LjQgTCAxMjI2LjcsNTQ2LjYgTCAxMjUzLjMsNTQ2LjEgTCAxMjgwLjAsNTQ1LjggTCAxMzA2LjcsNTQ1LjMgTCAxMzMzLjMsNTQ0LjYgTCAxMzYwLjAsNTQzLjQgTCAxMzg2LjcsNTQxLjcgTCAxNDEzLjMsNTM5LjMgTCAxNDQwLjAsNTM2LjEgTCAxNDY2LjcsNTMyLjIgTCAxNDkzLjMsNTI3LjYgTCAxNTIwLjAsNTIyLjUgTCAxNTQ2LjcsNTE2LjggTCAxNTczLjMsNTEwLjkgTCAxNjAwLjAsNTA1LjAiIHN0cm9rZT0icmdiKDYzLDEwMCwxMTIpIiBzdHJva2Utd2lkdGg9IjEuMyIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC4wNyIvPjxwYXRoIGQ9Ik0gMC4wLDYyMi40IEwgMjYuNyw2MjEuNyBMIDUzLjMsNjIxLjMgTCA4MC4wLDYyMS4zIEwgMTA2LjcsNjIxLjkgTCAxMzMuMyw2MjMuMyBMIDE2MC4wLDYyNS42IEwgMTg2LjcsNjI4LjYgTCAyMTMuMyw2MzIuNSBMIDI0MC4wLDYzNy4xIEwgMjY2LjcsNjQyLjIgTCAyOTMuMyw2NDcuNiBMIDMyMC4wLDY1My4yIEwgMzQ2LjcsNjU4LjYgTCAzNzMuMyw2NjMuNiBMIDQwMC4wLDY2OC4wIEwgNDI2LjcsNjcxLjUgTCA0NTMuMyw2NzQuMCBMIDQ4MC4wLDY3NS4zIEwgNTA2LjcsNjc1LjYgTCA1MzMuMyw2NzQuNyBMIDU2MC4wLDY3Mi43IEwgNTg2LjcsNjY5LjkgTCA2MTMuMyw2NjYuMyBMIDY0MC4wLDY2Mi4zIEwgNjY2LjcsNjU4LjEgTCA2OTMuMyw2NTMuOCBMIDcyMC4wLDY0OS43IEwgNzQ2LjcsNjQ2LjAgTCA3NzMuMyw2NDIuOCBMIDgwMC4wLDY0MC4yIEwgODI2LjcsNjM4LjMgTCA4NTMuMyw2MzYuOSBMIDg4MC4wLDYzNi4xIEwgOTA2LjcsNjM1LjYgTCA5MzMuMyw2MzUuMyBMIDk2MC4wLDYzNS4xIEwgOTg2LjcsNjM0LjggTCAxMDEzLjMsNjM0LjIgTCAxMDQwLjAsNjMzLjIgTCAxMDY2LjcsNjMxLjggTCAxMDkzLjMsNjI5LjggTCAxMTIwLjAsNjI3LjMgTCAxMTQ2LjcsNjI0LjQgTCAxMTczLjMsNjIxLjIgTCAxMjAwLjAsNjE3LjkgTCAxMjI2LjcsNjE0LjggTCAxMjUzLjMsNjExLjkgTCAxMjgwLjAsNjA5LjYgTCAxMzA2LjcsNjA4LjAgTCAxMzMzLjMsNjA3LjQgTCAxMzYwLjAsNjA3LjcgTCAxMzg2LjcsNjA5LjIgTCAxNDEzLjMsNjExLjcgTCAxNDQwLjAsNjE1LjMgTCAxNDY2LjcsNjE5LjcgTCAxNDkzLjMsNjI0LjkgTCAxNTIwLjAsNjMwLjYgTCAxNTQ2LjcsNjM2LjUgTCAxNTczLjMsNjQyLjQgTCAxNjAwLjAsNjQ4LjAiIHN0cm9rZT0icmdiKDYzLDEwMCwxMTIpIiBzdHJva2Utd2lkdGg9IjEuMyIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC4xIi8+PC9zdmc+"),
+      linear-gradient(165deg, var(--bg), var(--gold-tint) 130%);
+    background-size: cover, auto; background-position: center, center; background-repeat: no-repeat, no-repeat;
+    padding: 80px 0 56px; position: relative; overflow: hidden;
+  }
+  @media (max-width: 640px) { .hero { padding: 48px 0 34px; } }
+  .hero::after {
+    content: ""; position: absolute; top: -120px; right: -100px; width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,150,79,0.22), transparent 70%); pointer-events: none;
+  }
+  .hero .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 22px;
+  }
+  .hero .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--gold); display: inline-block; }
+  .hero h1 { font-size: clamp(34px, 5.4vw, 58px); line-height: 1.22; max-width: 27ch; color: var(--navy-deep); }
+  .hero h1 em { font-style: normal; color: var(--gold-title); }
+  .hero p.dek { font-size: 18.5px; color: var(--text-faint); max-width: 56ch; margin-top: 22px; }
+  .hero-chips {
+    list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .hero-chips li {
+    font-size: 13px; font-weight: 600; color: var(--navy-deep); background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(63,100,112,0.18); padding: 8px 16px; border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(31,58,66,0.06);
+  }
+
+  /* VIDEO */
+  section.video { padding: 0; margin-top: -4px; }
+  .wrap-video { max-width: 880px; }
+  .video-glow { position: relative; padding: 48px 48px 18px; }
+  @media (max-width: 720px) { .video-glow { padding: 28px 20px 10px; } }
+  .video-glow::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; border-radius: 40px;
+    background:
+      radial-gradient(closest-side, rgba(184,150,79,0.75), transparent 72%) 50% 50% / 78% 78% no-repeat,
+      radial-gradient(closest-side, rgba(63,100,112,0.22), transparent 70%) 86% 80% / 46% 46% no-repeat;
+    filter: blur(30px);
+  }
+  .video-frame {
+    position: relative; z-index: 1;
+    aspect-ratio: 16/9; background: #000; border-radius: 20px;
+    box-shadow: 0 0 1px rgba(31,58,66,0.1), 0 18px 40px rgba(31,58,66,0.22);
+    overflow: hidden; border: 5px solid var(--gold);
+  }
+  .video-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Banda genérica de sección con color completo — con degradado y relieve, no plano */
+  .band { padding: 64px 0; position: relative; overflow: hidden; }
+  @media (max-width: 640px) { .band { padding: 40px 0; } }
+  .band.tint-navy { background: linear-gradient(170deg, var(--navy-soft), var(--navy-tint) 130%); }
+  .band.tint-gold { background: linear-gradient(155deg, var(--gold), var(--gold-deep) 130%); color: #fff5e4; }
+  .band.tint-green { background: linear-gradient(170deg, var(--navy-tint), var(--navy-soft) 130%); }
+  .band.cream { background: linear-gradient(170deg, var(--bg), var(--navy-tint) 160%); }
+  .band.tint-gold h2.tit, .band.tint-gold .eyebrow-sm { color: #fff; }
+  .band::after {
+    content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
+    bottom: -220px; right: -140px;
+  }
+  .band.dark::after { background: radial-gradient(circle, rgba(184,150,79,0.14), transparent 70%); }
+  .band.tint-gold::after { background: radial-gradient(circle, rgba(0,0,0,0.1), transparent 70%); }
+
+  .eyebrow-sm {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 11.5px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 10px;
+  }
+  .eyebrow-sm.c-gold { color: var(--gold-deep); }
+  .eyebrow-sm.c-navy { color: var(--navy); }
+  .eyebrow-sm.c-green { color: var(--navy); }
+  .eyebrow-sm .dash { width: 18px; height: 2px; display: inline-block; }
+  h2.tit { font-size: 30px; margin-bottom: 22px; color: var(--navy-deep); }
+
+  /* PARA QUIEN ES — sobre banda navy */
+  .para-lista { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .para-lista li {
+    display: flex; gap: 14px; align-items: flex-start; padding: 18px 22px; font-size: 15.5px;
+    background: var(--cream); border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(31,58,66,0.08), 0 18px 30px rgba(31,58,66,0.18);
+  }
+  .para-lista .check {
+    flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; margin-top: 1px;
+  }
+
+  /* SOBRE ELLA — sobre banda gold-tint */
+  .bio-layout { display: flex; gap: 40px; align-items: flex-start; }
+  .bio-photo { flex: 0 0 200px; }
+  .bio-photo img {
+    width: 200px; height: 200px; border-radius: 50%; object-fit: cover; display: block;
+    border: 6px solid rgba(255,245,228,0.55); box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+  }
+  .bio-card {
+    flex: 1; min-width: 0;
+    background: var(--cream); border-radius: 18px; padding: 34px; color: var(--text);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(0,0,0,0.12), 0 24px 44px rgba(0,0,0,0.28);
+  }
+  .bio-card p { font-size: 15.5px; margin: 0 0 14px; color: var(--text); }
+  .bio-card p:last-child { margin-bottom: 0; }
+  .bio-card b { color: var(--gold-deep); }
+  @media (max-width: 720px) {
+    .bio-layout { flex-direction: column; align-items: center; text-align: center; }
+    .bio-card { text-align: left; }
+  }
+  .creds { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; }
+  .creds span {
+    font-size: 12.5px; background: var(--navy-deep); color: #fff; padding: 7px 14px; border-radius: 999px; font-weight: 600;
+  }
+
+  /* VIDEOS DE AUTORIDAD (YouTube) — carrusel automático, mismo patrón que testimonios */
+  .video-track { margin-top: 4px; animation-duration: 30s; }
+  .video-mini {
+    position: relative; flex: 0 0 360px; width: 360px; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; background: #000 center/cover no-repeat;
+    box-shadow: 0 2px 4px rgba(31,58,66,0.1), 0 18px 32px rgba(31,58,66,0.2); border: 4px solid var(--cream);
+    cursor: pointer;
+  }
+  .video-mini iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-mini .yt-play {
+    position: absolute; inset: 0; margin: auto; width: 58px; height: 58px; border-radius: 50%; border: none;
+    background: linear-gradient(155deg, var(--gold), var(--gold-deep)); cursor: pointer;
+    box-shadow: 0 10px 22px -4px rgba(0,0,0,0.5);
+  }
+  .video-mini .yt-play::before {
+    content: ""; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%);
+    border-style: solid; border-width: 10px 0 10px 16px; border-color: transparent transparent transparent #1f2a2d;
+  }
+
+  /* SERVICIOS — sobre banda petróleo clara (antes era verde, ya quitado) */
+  .servicios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 4px; }
+  @media (max-width: 720px) { .servicios { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .servicios { grid-template-columns: 1fr; } }
+  .servicios li {
+    list-style: none; background: var(--cream); border-radius: 14px; padding: 16px 18px; font-size: 14.5px;
+    font-weight: 600; color: var(--navy-deep); cursor: default;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(31,58,66,0.08), 0 14px 26px rgba(31,58,66,0.16);
+    transition: background 0.18s, color 0.18s, transform 0.18s;
+  }
+  .servicios li:hover {
+    background: linear-gradient(155deg, var(--gold), var(--gold-deep)); color: #fff; transform: translateY(-2px);
+  }
+
+  /* TESTIMONIOS — banda oscura de contraste fuerte, carrusel automático */
+  .band.dark { background: var(--navy-deep); color: #fbf7ee; padding-bottom: 44px; }
+  .band.dark .eyebrow-sm { color: var(--gold); }
+  .band.dark h2.tit { color: #fbf7ee; }
+
+  .marquee {
+    margin-top: 12px; overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .marquee-track { display: flex; gap: 18px; width: max-content; animation: marquee-right 46s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+
+  .testi {
+    display: flex; gap: 16px; align-items: flex-start; flex: 0 0 340px; width: 340px;
+    background: rgba(255,255,255,0.08); color: #fbf7ee; border-radius: 16px;
+    padding: 24px 22px; border: 1px solid rgba(255,255,255,0.14);
+  }
+  .testi-photo {
+    flex: none; width: 46px; height: 46px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(184,150,79,0.6);
+  }
+  .testi-initials {
+    flex: none; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(155deg, var(--gold), var(--gold-deep)); color: #fff; font-weight: 700; font-size: 14px;
+  }
+  .testi p.txt { font-size: 14.5px; font-style: italic; font-family: "Poppins", sans-serif; margin: 0 0 10px; line-height: 1.5; }
+  .testi p.who { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0; color: var(--gold); }
+
+  /* CTA — degradado verde/dorado, boton alto contraste */
+  .cta-block {
+    padding: 60px 32px; text-align: center;
+    background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+    border-radius: 26px; color: #fbf7ee;
+  }
+  .cta-block h2 { font-size: 28px; margin-bottom: 12px; color: #fff; }
+  .cta-block p { color: #d8dfd0; font-size: 15.5px; max-width: 46ch; margin: 0 auto 30px; }
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #241f18;
+    font-family: "Manrope", sans-serif; font-weight: 800; letter-spacing: 0.02em;
+    font-size: 15.5px; padding: 17px 34px; border-radius: 999px; text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 12px 24px -8px rgba(184,150,79,0.6);
+  }
+  .btn-wa:hover { transform: translateY(-2px); background: #cba85d; }
+
+  /* Botones de agendamiento a paquetes (Maria Elena Badillo tienda) */
+  .pkg-single { padding: 30px 0 6px; text-align: center; background: var(--bg); }
+  .pkg-single-dark { background: var(--navy-deep); padding: 34px 0; }
+  .btn-pkg {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(155deg, #d4ac5c, var(--gold) 55%, var(--gold-deep));
+    color: #241f18; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 14.5px; padding: 14px 28px;
+    border-radius: 999px; text-decoration: none;
+    transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -3px 6px rgba(0,0,0,0.15), 0 10px 22px -6px rgba(138,108,44,0.6);
+  }
+  .btn-pkg:hover { transform: translateY(-3px) scale(1.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -3px 6px rgba(0,0,0,0.15), 0 16px 28px -6px rgba(138,108,44,0.7); }
+  .btn-pkg:active { transform: translateY(-1px) scale(1.01); }
+  .pkg-or { font-size: 13px; color: #9fb0b5; margin: 22px 0 0; }
+  .btn-pair { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+  .btn-pkg-light {
+    background: linear-gradient(155deg, #d4ac5c, var(--gold) 55%, var(--gold-deep));
+    color: #241f18; border: none; font-size: 13.5px; padding: 12px 22px;
+  }
+
+  .wa-float {
+    position: fixed; right: 24px; bottom: 24px; z-index: 40;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(155deg, var(--gold), var(--gold-deep));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 14px 28px -6px rgba(31,58,66,0.45), 0 0 0 6px rgba(184,150,79,0.16);
+    transition: transform 0.15s;
+  }
+  .wa-float:hover { transform: translateY(-3px) scale(1.04); }
+  @media (max-width: 560px) { .wa-float { right: 16px; bottom: 16px; width: 54px; height: 54px; } }
+
+  footer.note {
+    padding: 26px 0 52px; background: var(--bg);
+    font-size: 12.5px; color: var(--text-faint); text-align: center;
+  }
+
+  .build-flag {
+    background: var(--navy-deep); color: #fbf7ee; font-size: 12.5px; text-align: center; padding: 9px 16px;
+    font-family: "Manrope", sans-serif; font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+  <div class="build-flag">🔧 Borrador de trabajo — falta: hosting definitivo</div>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Psicóloga clínica · Neurolingüística y coaching</p>
+      <h1>Deja de cargar heridas disfrazadas de <em>personalidad</em>.</h1>
+      <p class="dek">Terapia clínica y humana para entender qué patrón de tu historia se repite hoy en tu vida, tu familia o tu forma de liderar — y por fin soltarlo, desde la consciencia, no desde la culpa.</p>
+      <ul class="hero-chips">
+        <li>Heridas de infancia y familia</li>
+        <li>Ansiedad y propósito de vida</li>
+        <li>Altos corporativos</li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="video">
+    <div class="wrap wrap-video">
+      <div class="video-glow">
+        <div class="video-frame">
+          <video src="VSL-Elizabet-2.mp4" controls preload="metadata" poster="portada-vsl.jpg"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pkg-single">
+    <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">📅 Agenda tu paquete de 3 sesiones</a>
+  </div>
+
+  <a class="wa-float" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20vi%20tu%20video%20y%20quiero%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none"><path fill="#fff" d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.4A9.95 9.95 0 0 0 12.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2Zm5.4 14.1c-.23.65-1.15 1.2-1.9 1.36-.5.1-1.16.19-3.38-.72-2.84-1.18-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.72-2.07.98-2.35.23-.25.5-.32.67-.32h.48c.16 0 .37-.06.58.44.23.55.78 1.94.85 2.08.07.14.11.3.02.48-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.12.07.68-.16 1.33Z"/></svg>
+  </a>
+
+  <section class="band tint-navy" style="margin-top: 4px;">
+    <div class="wrap">
+      <p class="eyebrow-sm c-navy"><span class="dash" style="background:var(--navy);"></span>¿Es esto para ti?</p>
+      <h2 class="tit">Esto es para ti si...</h2>
+      <ul class="para-lista">
+        <li><span class="check">✓</span>Sientes que repites los mismos patrones una y otra vez, sin entender bien por qué.</li>
+        <li><span class="check">✓</span>Cargas algo de tu familia que nunca terminaste de resolver.</li>
+        <li><span class="check">✓</span>Hacia afuera pareces tenerlo todo bajo control — incluso si diriges un equipo o una empresa — pero por dentro sabes que algo no está resuelto.</li>
+        <li><span class="check">✓</span>Ya intentaste terapia antes y sentiste que no avanzabas.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band tint-gold">
+    <div class="wrap">
+      <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Quién te acompaña</p>
+      <h2 class="tit">Elizabet García Duque</h2>
+      <div class="bio-layout">
+        <div class="bio-photo"><img src="elizabet-foto.jpg" alt="Elizabet García Duque, psicóloga clínica"></div>
+        <div class="bio-card">
+          <p><b>Elizabet es Psicóloga Clínica y su pasión es acompañar a cultivar el amor propio, la seguridad y la paz.</b> Busca generar en sus pacientes experiencias mediadas por el amor y la tranquilidad para el equilibrio de la mente y el alma.</p>
+          <p>Eligió la Psicología porque está convencida de que el poder del amor puede transformar y sanar. En su desempeño como terapeuta, trabaja bajo una comprensión del ser integral, lo cual la ayuda a llevar de manera profunda los casos de sus consultantes y le facilita acompañarlos a crear procesos confrontadores de responsabilidad y toma de consciencia.</p>
+          <p>Se centra además en el acompañamiento familiar, teniendo en mente que la familia es el eje sobre el cual se forjan las bases que nos permiten relacionarnos en las demás áreas de nuestra vida. Orienta también a padres en pautas de crianza y acompaña a jóvenes en momentos de conflicto, siempre desde el amor y la comprensión — nunca desde el juicio.</p>
+          <div class="creds">
+            <span>Psicóloga Clínica</span>
+            <span>Diplomada en Neurolingüística y Coaching</span>
+            <span>Certificada en Crianza Respetuosa</span>
+            <span>Educación Emocional Niños y Adolescentes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band tint-navy">
+    <div class="wrap">
+      <p class="eyebrow-sm c-navy"><span class="dash" style="background:var(--navy);"></span>Conócela en video</p>
+      <h2 class="tit">Elizabet, más allá de esta página</h2>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track video-track">
+        <div class="video-mini" data-yt="8-KlJAqw0OQ" style="background-image:url('yt-cover-1.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
+        <div class="video-mini" data-yt="2359SH-SNv0" style="background-image:url('yt-cover-2.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
+        <div class="video-mini" data-yt="wz9Zu6fRtME" style="background-image:url('yt-cover-3.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
+        <div class="video-mini" data-yt="GchsX5OqSOc" style="background-image:url('yt-cover-4.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
+        <div class="video-mini" aria-hidden="true" data-yt="8-KlJAqw0OQ" style="background-image:url('yt-cover-1.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
+        <div class="video-mini" aria-hidden="true" data-yt="2359SH-SNv0" style="background-image:url('yt-cover-2.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
+        <div class="video-mini" aria-hidden="true" data-yt="wz9Zu6fRtME" style="background-image:url('yt-cover-3.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
+        <div class="video-mini" aria-hidden="true" data-yt="GchsX5OqSOc" style="background-image:url('yt-cover-4.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band tint-green">
+    <div class="wrap">
+      <p class="eyebrow-sm c-green"><span class="dash" style="background:var(--navy);"></span>Cómo te puede acompañar</p>
+      <h2 class="tit">Áreas de trabajo</h2>
+      <ul class="servicios">
+        <li>Gestión de depresión y ansiedad</li>
+        <li>Manejo consciente de las emociones</li>
+        <li>Heridas de la infancia</li>
+        <li>Propósito y proyecto de vida</li>
+        <li>Conflictos familiares</li>
+        <li>Adolescencia</li>
+        <li>Abundancia y dirección de vida</li>
+        <li>Acompañamiento a altos corporativos</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band dark">
+    <div class="wrap">
+      <p class="eyebrow-sm"><span class="dash" style="background:var(--gold);"></span>Lo que dicen quienes ya vivieron el proceso</p>
+      <h2 class="tit">Testimonios reales</h2>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <div class="testi"><img class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz"><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
+        <div class="testi"><img class="testi-photo" src="testi-isabela-villa.jpg" alt="Isabela Villa"><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
+        <div class="testi"><img class="testi-photo" src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga"><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
+        <div class="testi"><img class="testi-photo" src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios"><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
+        <div class="testi"><span class="testi-initials">AU</span><div><p class="txt">"¡De verdad cambian vidas! He logrado entender aspectos de mi vida que por años me había cuestionado. ¡Es una gran profesional!"</p><p class="who">Adriana Urrego · Colombia</p></div></div>
+        <div class="testi"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
+        <div class="testi"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
+        <!-- duplicado para el loop infinito -->
+        <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt=""><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
+        <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-isabela-villa.jpg" alt=""><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
+        <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-maricela-arteaga.jpg" alt=""><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
+        <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-alexandra-barrios.jpg" alt=""><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
+        <div class="testi" aria-hidden="true"><span class="testi-initials">AU</span><div><p class="txt">"¡De verdad cambian vidas! He logrado entender aspectos de mi vida que por años me había cuestionado. ¡Es una gran profesional!"</p><p class="who">Adriana Urrego · Colombia</p></div></div>
+        <div class="testi" aria-hidden="true"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
+        <div class="testi" aria-hidden="true"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pkg-single pkg-single-dark">
+    <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">📅 Agenda tu sesión individual</a>
+  </div>
+
+  <section class="band cream">
+    <div class="wrap">
+      <div class="cta-block">
+        <h2>¿Sientes que algo de esto te movió por dentro?</h2>
+        <p>Escríbeme directo. Te voy a hacer un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión — sin compromiso, a tu ritmo.</p>
+        <a class="btn-wa" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20vi%20tu%20video%20y%20quiero%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener">
+          💬 Agenda tu sesión por WhatsApp
+        </a>
+        <p class="pkg-or">o agenda directo tu consulta:</p>
+        <div class="btn-pair">
+          <a class="btn-pkg btn-pkg-light" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Sesión individual</a>
+          <a class="btn-pkg btn-pkg-light" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">Paquete x3 sesiones</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="note">
+    <div class="wrap">Elizabet García Duque · Psicóloga Clínica</div>
+  </footer>
+
+  <script>
+    function reproducirYT(box) {
+      var id = box.getAttribute('data-yt');
+      box.style.backgroundImage = 'none';
+      box.removeAttribute('onclick');
+      box.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1" title="Video de Elizabet" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    }
+  </script>
+
+</body>
+</html>
