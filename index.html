@@ -286,6 +286,19 @@
   }
   .btn-pkg-outline:hover { background: rgba(243,233,211,0.12); border-color: var(--gold); transform: translateY(-2px) scale(1.04); }
 
+  .btn-hero {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(155deg, var(--navy), var(--navy-deep) 65%);
+    color: #fdfaf3; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 15.5px;
+    padding: 17px 34px; border-radius: 999px; text-decoration: none;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.35), 0 16px 30px -8px rgba(31,58,66,0.6);
+    transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
+  }
+  .btn-hero:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.35), 0 22px 36px -8px rgba(31,58,66,0.7);
+  }
+
   .wa-float {
     position: fixed; right: 24px; bottom: 24px; z-index: 40;
     width: 60px; height: 60px; border-radius: 50%;
@@ -314,7 +327,7 @@
       <h1>Entenderte es solo el comienzo. <em>Transformar</em> la forma en que vives y te relacionas contigo y con los demás es el verdadero proceso.</h1>
       <p class="dek">Te acompaño a comprender por qué actúas como actúas, por qué repites aquello que sabes que te hace daño y qué necesitas transformar para comenzar a relacionarte contigo y con los demás de una manera diferente.</p>
       <p class="dek" style="margin-top: 14px; font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
-      <a class="btn-pkg" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso 😊</a>
+      <a class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
     </div>
   </header>
 
