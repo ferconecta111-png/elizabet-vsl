@@ -54,6 +54,17 @@
     content: ""; position: absolute; top: -120px; right: -100px; width: 340px; height: 340px; border-radius: 50%;
     background: radial-gradient(circle, rgba(184,150,79,0.22), transparent 70%); pointer-events: none;
   }
+  .hero-layout { display: flex; align-items: center; gap: 48px; }
+  .hero-text { flex: 1.2; }
+  .hero-photo { flex: 1; display: flex; justify-content: center; }
+  .hero-photo img {
+    width: 100%; max-width: 340px; aspect-ratio: 4/5; object-fit: cover; border-radius: 28px;
+    border: 6px solid rgba(255,245,228,0.6); box-shadow: 0 22px 44px rgba(31,58,66,0.28);
+  }
+  @media (max-width: 860px) {
+    .hero-layout { flex-direction: column-reverse; gap: 28px; text-align: center; }
+    .hero-photo img { max-width: 260px; }
+  }
   .hero .eyebrow {
     display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 22px;
@@ -216,6 +227,12 @@
   .punch-line { font-weight: 700; font-size: 17px; margin: 18px 0 0; color: var(--navy-deep); }
   .band.tint-navy .punch-line { color: var(--navy-deep); }
   @media (max-width: 720px) { .mirada-flex { flex-direction: column; align-items: flex-start; } }
+  .mirada-photo { flex: 0 0 auto; display: flex; justify-content: center; }
+  .mirada-photo img {
+    width: 220px; height: 220px; object-fit: cover; border-radius: 50%;
+    border: 6px solid rgba(255,255,255,0.35); box-shadow: 0 18px 36px rgba(0,0,0,0.28);
+  }
+  @media (max-width: 720px) { .mirada-photo { align-self: center; } .mirada-photo img { width: 180px; height: 180px; } }
 
   /* METODOLOGÍA — 5 pasos, camino ondulado, interactivo */
   .metodo-camino { display: flex; gap: 0; margin-top: 34px; position: relative; }
@@ -400,12 +417,15 @@
 <body>
 
   <header class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Esto es para ti</p>
-      <h1>Entenderte es solo el comienzo. <em>Transformar</em> la forma en que vives y te relacionas contigo y con los demás es el verdadero proceso.</h1>
-      <p class="dek">Te acompaño a comprender por qué actúas como actúas, por qué repites aquello que sabes que te hace daño y qué necesitas transformar para comenzar a relacionarte contigo y con los demás de una manera diferente.</p>
-      <p class="dek" style="margin-top: 14px; font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
-      <a class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
+    <div class="wrap hero-layout">
+      <div class="hero-text">
+        <p class="eyebrow">Esto es para ti</p>
+        <h1>Entenderte es solo el comienzo. <em>Transformar</em> la forma en que vives y te relacionas contigo y con los demás es el verdadero proceso.</h1>
+        <p class="dek">Te acompaño a comprender por qué actúas como actúas, por qué repites aquello que sabes que te hace daño y qué necesitas transformar para comenzar a relacionarte contigo y con los demás de una manera diferente.</p>
+        <p class="dek" style="margin-top: 14px; font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
+        <a class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
+      </div>
+      <div class="hero-photo"><img src="eli-retrato.jpg" alt="Elizabet García Duque"></div>
     </div>
   </header>
 
@@ -413,7 +433,7 @@
     <div class="wrap wrap-video" style="text-align: center; padding-bottom: 6px;">
       <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Antes de contarte cómo trabajo</p>
       <h2 class="tit">Quiero que me conozcas</h2>
-      <p style="color: var(--text-faint); font-size: 15.5px; max-width: 56ch; margin: 0 auto 8px;">Elegir a tu terapeuta no debería depender únicamente de sus títulos o de lo que dice una página web. También importa cómo te sientes cuando la escuchas, cómo entiende al ser humano y si su manera de acompañar resuena contigo.</p>
+      <p style="color: var(--text-faint); font-size: 15.5px; max-width: 56ch; margin: 0 auto 8px;">Porque elegir a tu terapeuta es algo que va mucho más allá de los títulos. Importa también cómo te sientes cuando la escuchas, cómo observa al ser humano, cómo ve la vida y si su metodología y forma de acompañar resuenan contigo.</p>
     </div>
     <div class="wrap wrap-video">
       <div class="video-glow">
@@ -497,8 +517,13 @@
 
   <section class="band tint-gold">
     <div class="wrap">
-      <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Mi metodología</p>
-      <h2 class="tit">Un proceso para comprenderte y comenzar a elegir diferente</h2>
+      <div class="mirada-flex" style="align-items: center;">
+        <div class="txt">
+          <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Mi metodología</p>
+          <h2 class="tit" style="margin-bottom: 0;">Un proceso para comprenderte y comenzar a elegir diferente</h2>
+        </div>
+        <div class="mirada-photo"><img src="eli-cuenco.jpg" alt="Elizabet García Duque con cuenco tibetano"></div>
+      </div>
       <div class="metodo-camino">
         <div class="metodo-paso"><span class="metodo-num">1</span><h3>Reconocer</h3><p>Identificar lo que ocurre dentro de ti y comenzar a ponerle nombre.</p></div>
         <div class="metodo-paso"><span class="metodo-num">2</span><h3>Comprender</h3><p>Entender de dónde vienen tus patrones, qué los activa y qué función han cumplido en tu historia.</p></div>
@@ -518,12 +543,7 @@
           <p>Puedes preguntarle a una IA, leer libros o hacer tests de Instagram — y aun así seguir actuando igual. Aquí no solo descubrimos qué sabes de ti: observamos cómo aparece en tu vida real.</p>
           <p class="punch-line">Ahí empieza la transformación.</p>
         </div>
-        <div class="keyword-cloud">
-          <span>Tus vínculos</span>
-          <span>Tus decisiones</span>
-          <span>Tu cuerpo</span>
-          <span>Tus miedos</span>
-        </div>
+        <div class="mirada-photo"><img src="eli-namaste.jpg" alt="Elizabet García Duque en calma"></div>
       </div>
     </div>
   </section>
@@ -594,6 +614,7 @@
   <section class="band cream">
     <div class="wrap">
       <div class="cta-block">
+        <img src="eli-dienteleon.jpg" alt="Soltar para transformar" style="width: 130px; height: 130px; object-fit: cover; border-radius: 50%; border: 5px solid rgba(255,255,255,0.25); box-shadow: 0 14px 28px rgba(0,0,0,0.3); margin-bottom: 22px;">
         <h2>¿Qué vas a hacer diferente con todo lo que ya sabes?</h2>
         <p>No tienes que hacerlo sola/o. Podemos empezar a trabajar en ello — escríbeme directo, te hago un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión, a tu ritmo.</p>
         <a class="btn-wa" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20vi%20tu%20video%20y%20quiero%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener">
