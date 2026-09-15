@@ -179,6 +179,24 @@
     border-style: solid; border-width: 10px 0 10px 16px; border-color: transparent transparent transparent #1f2a2d;
   }
 
+  /* MIRADA TERAPÉUTICA / POR QUÉ ES DIFERENTE — layout ligero, texto corto + nube de palabras clave */
+  .mirada-flex { display: flex; gap: 40px; align-items: center; margin-top: 8px; }
+  .mirada-flex .txt { flex: 1.2; }
+  .mirada-flex .txt p { font-size: 16.5px; margin: 0; }
+  .keyword-cloud { flex: 1; display: flex; flex-wrap: wrap; gap: 10px; align-content: center; }
+  .keyword-cloud span {
+    font-size: 13.5px; font-weight: 700; padding: 10px 18px; border-radius: 999px;
+    background: rgba(255,255,255,0.6); border: 1px solid rgba(63,100,112,0.18); color: var(--navy-deep);
+  }
+  .band.tint-navy .keyword-cloud span { background: rgba(255,255,255,0.55); }
+  .quote-pull {
+    font-style: italic; font-family: "Poppins", sans-serif; font-size: 18px; color: var(--gold-deep);
+    margin: 26px 0 0; text-wrap: balance;
+  }
+  .punch-line { font-weight: 700; font-size: 17px; margin: 18px 0 0; color: var(--navy-deep); }
+  .band.tint-navy .punch-line { color: var(--navy-deep); }
+  @media (max-width: 720px) { .mirada-flex { flex-direction: column; align-items: flex-start; } }
+
   /* METODOLOGÍA — 5 pasos en círculos conectados */
   .metodo-camino { display: flex; gap: 0; margin-top: 30px; position: relative; }
   .metodo-paso { flex: 1; text-align: center; padding: 0 12px; position: relative; }
@@ -401,13 +419,19 @@
   <section class="band cream">
     <div class="wrap">
       <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Mi mirada terapéutica</p>
-      <h2 class="tit">Una terapia profunda no consiste únicamente en hablar de lo que te ocurre</h2>
-      <div class="bio-card" style="max-width: 760px;">
-        <p>Es aprender a observar lo que sucede dentro de ti mientras sucede: lo que evitas, lo que repites, lo que callas, lo que intentas controlar, aquello que racionalizas cuando en realidad duele, y las formas en que has aprendido a protegerte o heredado de tu historia.</p>
-        <p>Mi trabajo es acompañarte a mirar todo eso con profundidad, pero también con humanidad: sin juzgarte, sin reducirte a una etiqueta y, cuando sea necesario, confrontándote amorosamente con aquello que necesitas empezar a ver y hacer diferente.</p>
-        <p>No se trata solamente de entender tu historia. Se trata de descubrir cómo esa historia sigue apareciendo en tu vida actual y qué puedes comenzar a hacer diferente.</p>
-        <p style="font-style: italic; font-family: 'Poppins', sans-serif; color: var(--gold-deep); font-size: 17px; margin-top: 20px;">"¿Qué hago con lo que sé de mí, y quién puede acompañarme mientras realmente lo transformo?"</p>
-        <p>Hoy tenemos acceso a más información psicológica que nunca — podemos leer, escuchar, investigar y aprender muchísimo sobre nosotros mismos. Pero comprender un patrón no significa automáticamente dejar de repetirlo. Ahí comienza el verdadero trabajo terapéutico.</p>
+      <h2 class="tit">No es solo hablar. Es observar lo que sucede dentro de ti, mientras sucede.</h2>
+      <div class="mirada-flex">
+        <div class="txt">
+          <p>Te acompaño con profundidad y humanidad — sin juzgarte, sin etiquetas, confrontándote con amor cuando hace falta.</p>
+          <p class="quote-pull">"¿Qué hago con lo que sé de mí, y quién puede acompañarme mientras realmente lo transformo?"</p>
+        </div>
+        <div class="keyword-cloud">
+          <span>Lo que evitas</span>
+          <span>Lo que repites</span>
+          <span>Lo que callas</span>
+          <span>Cómo te proteges</span>
+          <span>Lo que racionalizas</span>
+        </div>
       </div>
     </div>
   </section>
@@ -416,11 +440,17 @@
     <div class="wrap">
       <p class="eyebrow-sm c-navy"><span class="dash" style="background:var(--navy);"></span>¿Por qué este proceso es diferente?</p>
       <h2 class="tit">Información no siempre significa transformación</h2>
-      <div class="bio-card" style="max-width: 760px;">
-        <p>Hoy puedes preguntarle a una IA qué significa tu apego, leer libros, escuchar podcasts y hacer todos los tests que encuentres en Instagram. Y todo ese conocimiento puede ser valioso.</p>
-        <p>Pero saber que tienes miedo al abandono no necesariamente cambia la manera en que eliges pareja. Entender que eres hiperexigente no hace que automáticamente puedas descansar. Saber que tienes dificultad para poner límites no significa que puedas tolerar la culpa cuando finalmente dices que no.</p>
-        <p>En terapia no vamos solamente a descubrir qué sabes sobre ti. Vamos a observar cómo ese conocimiento aparece <b>en tus vínculos, en tus decisiones, en tu cuerpo, en aquello que evitas, en lo que haces cuando tienes miedo.</b></p>
-        <p style="margin-bottom: 0;">Porque ahí es donde empieza la transformación.</p>
+      <div class="mirada-flex">
+        <div class="txt">
+          <p>Puedes preguntarle a una IA, leer libros o hacer tests de Instagram — y aun así seguir actuando igual. Aquí no solo descubrimos qué sabes de ti: observamos cómo aparece en tu vida real.</p>
+          <p class="punch-line">Ahí empieza la transformación.</p>
+        </div>
+        <div class="keyword-cloud">
+          <span>Tus vínculos</span>
+          <span>Tus decisiones</span>
+          <span>Tu cuerpo</span>
+          <span>Tus miedos</span>
+        </div>
       </div>
     </div>
   </section>
