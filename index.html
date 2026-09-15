@@ -197,23 +197,50 @@
   .band.tint-navy .punch-line { color: var(--navy-deep); }
   @media (max-width: 720px) { .mirada-flex { flex-direction: column; align-items: flex-start; } }
 
-  /* METODOLOGÍA — 5 pasos en círculos conectados */
-  .metodo-camino { display: flex; gap: 0; margin-top: 30px; position: relative; }
-  .metodo-paso { flex: 1; text-align: center; padding: 0 12px; position: relative; }
+  /* METODOLOGÍA — 5 pasos, camino ondulado, interactivo */
+  .metodo-camino { display: flex; gap: 0; margin-top: 34px; position: relative; }
+  .metodo-paso {
+    flex: 1; text-align: center; padding: 0 12px; position: relative; cursor: default;
+    animation: metodo-flotar 3.2s ease-in-out infinite;
+  }
+  .metodo-paso:nth-child(1) { animation-delay: 0s; }
+  .metodo-paso:nth-child(2) { animation-delay: 0.5s; }
+  .metodo-paso:nth-child(3) { animation-delay: 1s; }
+  .metodo-paso:nth-child(4) { animation-delay: 1.5s; }
+  .metodo-paso:nth-child(5) { animation-delay: 2s; }
+  @keyframes metodo-flotar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
   .metodo-num {
-    display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 50%;
     background: #fff; color: var(--gold-deep); font-weight: 800; font-size: 20px; margin: 0 auto 14px;
     box-shadow: 0 8px 18px rgba(0,0,0,0.18); position: relative; z-index: 1;
+    transition: background 0.28s, color 0.28s, transform 0.32s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s;
   }
-  .metodo-paso h3 { font-size: 15px; margin-bottom: 6px; }
+  .metodo-paso h3 { font-size: 15px; margin-bottom: 6px; transition: color 0.25s; }
   .metodo-paso p { font-size: 13px; opacity: 0.9; margin: 0; }
-  .metodo-paso:not(:last-child)::after {
-    content: ""; position: absolute; top: 26px; left: calc(50% + 30px); width: calc(100% - 60px); height: 2px;
-    background: rgba(255,255,255,0.45);
+  .metodo-paso:hover { animation-play-state: paused; }
+  .metodo-paso:hover .metodo-num {
+    background: linear-gradient(155deg, var(--navy), var(--navy-deep)); color: #fff;
+    transform: scale(1.16) translateY(-4px); box-shadow: 0 14px 26px -4px rgba(31,58,66,0.55);
   }
+  .metodo-paso:hover h3 { color: var(--navy-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .metodo-paso:not(:last-child)::after {
+    content: ""; position: absolute; top: 27px; left: calc(50% + 32px); width: calc(100% - 64px); height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16'%3E%3Cpath d='M0 8 Q 10 0 20 8 T 40 8' stroke='rgba(255,255,255,0.55)' stroke-width='2.2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: repeat-x; background-position: center; transform: translateY(-8px);
+  }
+  @media (prefers-reduced-motion: reduce) { .metodo-paso { animation: none; } }
   @media (max-width: 720px) {
-    .metodo-camino { flex-direction: column; gap: 28px; }
+    .metodo-camino { flex-direction: column; gap: 30px; }
+    .metodo-paso:nth-child(odd) { transform: translateX(-10px); }
+    .metodo-paso:nth-child(even) { transform: translateX(10px); }
+    .metodo-paso:nth-child(odd), .metodo-paso:nth-child(even) { animation: none; }
     .metodo-paso:not(:last-child)::after { display: none; }
+    .metodo-paso:active .metodo-num {
+      background: linear-gradient(155deg, var(--navy), var(--navy-deep)); color: #fff; transform: scale(1.1);
+    }
   }
 
   /* SERVICIOS — sobre banda petróleo clara (antes era verde, ya quitado) */
