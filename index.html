@@ -229,10 +229,10 @@
   @media (max-width: 720px) { .mirada-flex { flex-direction: column; align-items: flex-start; } }
   .mirada-photo { flex: 0 0 auto; display: flex; justify-content: center; }
   .mirada-photo img {
-    width: 220px; height: 220px; object-fit: cover; border-radius: 50%;
+    width: 230px; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 22%; border-radius: 22px;
     border: 6px solid rgba(255,255,255,0.35); box-shadow: 0 18px 36px rgba(0,0,0,0.28);
   }
-  @media (max-width: 720px) { .mirada-photo { align-self: center; } .mirada-photo img { width: 180px; height: 180px; } }
+  @media (max-width: 720px) { .mirada-photo { align-self: center; } .mirada-photo img { width: 200px; } }
 
   /* METODOLOGÍA — 5 pasos, camino ondulado, interactivo */
   .metodo-camino { display: flex; gap: 0; margin-top: 34px; position: relative; }
@@ -524,7 +524,7 @@
           <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Mi metodología</p>
           <h2 class="tit" style="margin-bottom: 0;">Un proceso para comprenderte y comenzar a elegir diferente</h2>
         </div>
-        <div class="mirada-photo"><img src="eli-cuenco.jpg" alt="Elizabet García Duque con cuenco tibetano"></div>
+        <div class="mirada-photo"><img src="eli-cuenco.jpg" alt="Elizabet García Duque con cuenco tibetano" style="width: 150px; object-position: 50% 65%;"></div>
       </div>
       <div class="metodo-camino">
         <div class="metodo-paso"><span class="metodo-num">1</span><h3>Reconocer</h3><p>Identificar lo que ocurre dentro de ti y comenzar a ponerle nombre.</p></div>
