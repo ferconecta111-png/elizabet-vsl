@@ -56,15 +56,16 @@
   }
   .hero-layout { width: 100%; }
   .hero-text { position: relative; z-index: 1; max-width: 600px; }
-  .hero-photo-bleed { position: absolute; right: 0; top: 0; bottom: 0; width: 40%; max-width: 540px; z-index: 0; }
+  /* Recorte sin fondo: se "para" al pie de la sección, sin marco ni recuadro. */
+  .hero-photo-bleed { position: absolute; right: 4%; bottom: 0; top: 30px; width: 38%; max-width: 460px; z-index: 0; }
   .hero-photo-bleed::before {
-    content: ""; position: absolute; left: -70px; top: 50%; width: 320px; height: 320px; transform: translateY(-50%);
-    border: 1px solid rgba(63,100,112,0.3); border-radius: 50%; pointer-events: none;
+    content: ""; position: absolute; left: 10%; bottom: 6%; width: 70%; height: 40%; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(63,100,112,0.16), transparent 75%); pointer-events: none;
   }
-  .hero-photo-bleed img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-  @media (max-width: 860px) { .hero-photo-bleed { width: 34%; } .hero-photo-bleed::before { display: none; } }
+  .hero-photo-bleed img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; display: block; }
+  @media (max-width: 860px) { .hero-photo-bleed { width: 34%; right: 2%; } }
   @media (max-width: 640px) {
-    .hero-photo-bleed { position: static; width: 100%; height: 280px; margin-top: 26px; }
+    .hero-photo-bleed { position: static; width: 68%; max-width: 260px; height: 320px; margin: 8px auto 0; top: auto; }
     .hero-text { max-width: none; text-align: center; }
   }
   .hero .eyebrow {
@@ -144,20 +145,25 @@
     display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; margin-top: 1px;
   }
 
-  /* SOBRE ELLA — foto a sangre completa a la izquierda, texto a la derecha */
-  .bio-section { padding: 0 !important; min-height: 640px; display: flex; align-items: center; }
-  .bio-photo-bleed { position: absolute; left: 0; top: 0; bottom: 0; width: 42%; max-width: 560px; z-index: 0; }
-  .bio-photo-bleed img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
-  .bio-layout { position: relative; z-index: 1; padding: 64px 0; margin-left: 42%; padding-left: 56px; }
-  .bio-card { max-width: 620px; color: #fff5e4; }
-  .bio-card p { font-size: 15.5px; margin: 0 0 14px; color: #fff5e4; }
+  /* SOBRE ELLA — sobre banda gold-tint */
+  .bio-layout { display: flex; gap: 40px; align-items: flex-start; }
+  .bio-photo { flex: 0 0 200px; }
+  .bio-photo img {
+    width: 200px; height: 200px; border-radius: 50%; object-fit: cover; display: block;
+    border: 6px solid rgba(255,245,228,0.55); box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+  }
+  .bio-card {
+    flex: 1; min-width: 0;
+    background: var(--cream); border-radius: 18px; padding: 34px; color: var(--text);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(0,0,0,0.12), 0 24px 44px rgba(0,0,0,0.28);
+  }
+  @media (max-width: 480px) { .bio-card { padding: 22px; } }
+  .bio-card p { font-size: 15.5px; margin: 0 0 14px; color: var(--text); }
   .bio-card p:last-child { margin-bottom: 0; }
-  .bio-card b { color: #fff; }
-  @media (max-width: 860px) { .bio-photo-bleed { width: 36%; } .bio-layout { margin-left: 36%; padding-left: 32px; } }
-  @media (max-width: 640px) {
-    .bio-section { min-height: auto; display: block; }
-    .bio-photo-bleed { position: static; width: 100%; height: 340px; margin-bottom: 0; }
-    .bio-layout { margin-left: 0; padding: 32px 0; }
+  .bio-card b { color: var(--gold-deep); }
+  @media (max-width: 720px) {
+    .bio-layout { flex-direction: column; align-items: center; text-align: center; }
+    .bio-card { text-align: left; }
   }
   .creds { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; }
   .creds span {
@@ -340,6 +346,18 @@
   .cta-block h2 { font-size: 28px; margin-bottom: 12px; color: #fff; }
   @media (max-width: 480px) { .cta-block h2 { font-size: 22px; } }
   .cta-block p { color: #d8dfd0; font-size: 15.5px; max-width: 46ch; margin: 0 auto 30px; }
+  .cta-flex { display: flex; align-items: center; gap: 40px; text-align: left; }
+  .cta-photo {
+    flex: 0 0 auto; width: 260px; height: 260px; object-fit: cover; border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.25); box-shadow: 0 18px 36px rgba(0,0,0,0.35);
+  }
+  .cta-content { flex: 1; min-width: 0; }
+  .cta-content p { margin: 0 0 24px; max-width: none; }
+  @media (max-width: 760px) {
+    .cta-flex { flex-direction: column; text-align: center; gap: 24px; }
+    .cta-photo { width: 190px; height: 190px; }
+    .cta-content p { margin: 0 auto 24px; max-width: 46ch; }
+  }
   .btn-wa {
     display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #241f18;
     font-family: "Manrope", sans-serif; font-weight: 800; letter-spacing: 0.02em;
@@ -419,11 +437,11 @@
 <body>
 
   <header class="hero">
-    <div class="hero-photo-bleed"><img src="eli-retrato.jpg" alt="Elizabet García Duque"></div>
+    <div class="hero-photo-bleed"><img src="eli-retrato-sinfondo.png" alt="Elizabet García Duque"></div>
     <div class="wrap hero-layout">
       <div class="hero-text">
         <p class="eyebrow">Esto es para ti</p>
-        <h1>Entenderte es solo el comienzo. <em>Transformar</em> la forma en que vives y te relacionas contigo y con los demás es el verdadero proceso.</h1>
+        <h1>Entenderte es solo el comienzo. <em>Transformar</em> la forma en que te relacionas contigo, con los demás y con la vida.</h1>
         <p class="dek">Te acompaño a comprender por qué actúas como actúas, por qué repites aquello que sabes que te hace daño y qué necesitas transformar para comenzar a relacionarte contigo y con los demás de una manera diferente.</p>
         <p class="dek" style="margin-top: 14px; font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
         <a class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
@@ -472,12 +490,12 @@
     </div>
   </section>
 
-  <section class="band tint-gold bio-section">
-    <div class="bio-photo-bleed"><img src="elizabet-foto.jpg" alt="Elizabet García Duque, psicóloga clínica"></div>
+  <section class="band tint-gold">
     <div class="wrap">
+      <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Quién te acompaña</p>
+      <h2 class="tit">Soy Elizabet García Duque</h2>
       <div class="bio-layout">
-        <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Quién te acompaña</p>
-        <h2 class="tit">Soy Elizabet García Duque</h2>
+        <div class="bio-photo"><img src="elizabet-foto.jpg" alt="Elizabet García Duque, psicóloga clínica"></div>
         <div class="bio-card">
           <p><b>Psicóloga · Magíster en Psicología Clínica.</b></p>
           <p>Formación complementaria en coaching, programación neurolingüística, arteterapia, crianza respetuosa, entre otras áreas.</p>
@@ -618,19 +636,23 @@
   <section class="band cream">
     <div class="wrap">
       <div class="cta-block">
-        <img src="eli-dienteleon.jpg" alt="Soltar para transformar" style="width: 130px; height: 130px; object-fit: cover; border-radius: 50%; border: 5px solid rgba(255,255,255,0.25); box-shadow: 0 14px 28px rgba(0,0,0,0.3); margin-bottom: 22px;">
-        <h2>¿Qué vas a hacer diferente con todo lo que ya sabes?</h2>
-        <p>No tienes que hacerlo sola/o. Podemos empezar a trabajar en ello — escríbeme directo, te hago un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión, a tu ritmo.</p>
-        <a class="btn-wa" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20vi%20tu%20video%20y%20quiero%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path fill="#241f18" d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.4A9.95 9.95 0 0 0 12.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2Zm5.4 14.1c-.23.65-1.15 1.2-1.9 1.36-.5.1-1.16.19-3.38-.72-2.84-1.18-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.72-2.07.98-2.35.23-.25.5-.32.67-.32h.48c.16 0 .37-.06.58.44.23.55.78 1.94.85 2.08.07.14.11.3.02.48-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.12.07.68-.16 1.33Z"/></svg>
-          Agenda tu sesión por WhatsApp
-        </a>
-        <div class="pkg-divider"><span>o agenda directo tu consulta</span></div>
-        <div class="btn-pair">
-          <a class="btn-pkg-outline" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Sesión individual</a>
-          <a class="btn-pkg-outline" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">Paquete x3 sesiones</a>
+        <div class="cta-flex">
+          <img class="cta-photo" src="eli-dienteleon.jpg" alt="Soltar para transformar">
+          <div class="cta-content">
+            <h2>¿Qué vas a hacer diferente con todo lo que ya sabes?</h2>
+            <p>No tienes que hacerlo sola/o. Podemos empezar a trabajar en ello — escríbeme directo, te hago un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión, a tu ritmo.</p>
+            <a class="btn-wa" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20vi%20tu%20video%20y%20quiero%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path fill="#241f18" d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.4A9.95 9.95 0 0 0 12.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2Zm5.4 14.1c-.23.65-1.15 1.2-1.9 1.36-.5.1-1.16.19-3.38-.72-2.84-1.18-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.72-2.07.98-2.35.23-.25.5-.32.67-.32h.48c.16 0 .37-.06.58.44.23.55.78 1.94.85 2.08.07.14.11.3.02.48-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.12.07.68-.16 1.33Z"/></svg>
+              Agenda tu sesión por WhatsApp
+            </a>
+            <div class="pkg-divider"><span>o agenda directo tu consulta</span></div>
+            <div class="btn-pair">
+              <a class="btn-pkg-outline" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Sesión individual</a>
+              <a class="btn-pkg-outline" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">Paquete x3 sesiones</a>
+            </div>
+            <p style="margin: 22px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85;">Volver a ti no significa volver a quien eras. Significa comenzar a encontrarte con quién eres y elegir desde ahí.</p>
+          </div>
         </div>
-        <p style="margin: 22px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85;">Volver a ti no significa volver a quien eras. Significa comenzar a encontrarte con quién eres y elegir desde ahí.</p>
       </div>
     </div>
   </section>
