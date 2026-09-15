@@ -189,6 +189,21 @@
     background: rgba(255,255,255,0.6); border: 1px solid rgba(63,100,112,0.18); color: var(--navy-deep);
   }
   .band.tint-navy .keyword-cloud span { background: rgba(255,255,255,0.55); }
+
+  /* CONSTELACIÓN — versión gráfica del keyword-cloud principal */
+  .constelacion { flex: 1.1; min-width: 0; }
+  .constelacion svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .constelacion .linea { stroke: rgba(63,100,112,0.3); stroke-width: 1.5; fill: none; stroke-dasharray: 3 5; }
+  .constelacion .estrella { cursor: default; }
+  .constelacion .halo { fill: var(--gold); opacity: 0.2; animation: constelacion-titilar 3.2s ease-in-out infinite; transition: r 0.25s, opacity 0.25s; }
+  .constelacion .nucleo { fill: var(--gold-deep); transition: r 0.25s cubic-bezier(.34,1.56,.64,1), fill 0.25s; }
+  .constelacion .etiqueta { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 20px; fill: var(--navy-deep); transition: fill 0.25s; }
+  .constelacion .estrella:hover .halo { r: 27; opacity: 0.3; }
+  .constelacion .estrella:hover .nucleo { r: 9; fill: var(--navy); }
+  .constelacion .estrella:hover .etiqueta { fill: var(--navy); }
+  @keyframes constelacion-titilar { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.45; } }
+  @media (prefers-reduced-motion: reduce) { .constelacion .halo { animation: none; } }
+  @media (max-width: 720px) { .constelacion .etiqueta { font-size: 24px; } }
   .quote-pull {
     font-style: italic; font-family: "Poppins", sans-serif; font-size: 18px; color: var(--gold-deep);
     margin: 26px 0 0; text-wrap: balance;
@@ -461,12 +476,15 @@
           <p>Te acompaño con profundidad y humanidad — sin juzgarte, sin etiquetas, confrontándote con amor cuando hace falta.</p>
           <p class="quote-pull">"¿Qué hago con lo que sé de mí, y quién puede acompañarme mientras realmente lo transformo?"</p>
         </div>
-        <div class="keyword-cloud">
-          <span>Lo que evitas</span>
-          <span>Lo que repites</span>
-          <span>Lo que callas</span>
-          <span>Cómo te proteges</span>
-          <span>Lo que racionalizas</span>
+        <div class="constelacion">
+          <svg viewBox="-10 -20 480 300" role="img" aria-label="Lo que evitas, lo que repites, lo que callas, cómo te proteges, lo que racionalizas">
+            <path class="linea" d="M60,50 L280,30 L400,140 L240,220 L50,170 Z M60,50 L400,140 M280,30 L240,220"></path>
+            <g class="estrella"><circle class="halo" cx="60" cy="50" r="20" style="animation-delay:0s"></circle><circle class="nucleo" cx="60" cy="50" r="6"></circle><text class="etiqueta" x="78" y="55">Lo que evitas</text></g>
+            <g class="estrella"><circle class="halo" cx="280" cy="30" r="20" style="animation-delay:0.4s"></circle><circle class="nucleo" cx="280" cy="30" r="6"></circle><text class="etiqueta" x="280" y="10" text-anchor="middle">Lo que repites</text></g>
+            <g class="estrella"><circle class="halo" cx="400" cy="140" r="20" style="animation-delay:0.8s"></circle><circle class="nucleo" cx="400" cy="140" r="6"></circle><text class="etiqueta" x="384" y="165" text-anchor="end">Lo que callas</text></g>
+            <g class="estrella"><circle class="halo" cx="240" cy="220" r="20" style="animation-delay:1.2s"></circle><circle class="nucleo" cx="240" cy="220" r="6"></circle><text class="etiqueta" x="240" y="252" text-anchor="middle">Cómo te proteges</text></g>
+            <g class="estrella"><circle class="halo" cx="50" cy="170" r="20" style="animation-delay:1.6s"></circle><circle class="nucleo" cx="50" cy="170" r="6"></circle><text class="etiqueta" x="68" y="175">Lo que racionalizas</text></g>
+          </svg>
         </div>
       </div>
     </div>
@@ -505,9 +523,9 @@
     </div>
   </section>
 
-  <section class="band tint-navy">
+  <section class="band tint-gold">
     <div class="wrap">
-      <p class="eyebrow-sm c-navy"><span class="dash" style="background:var(--navy);"></span>Conócela en video</p>
+      <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Conócela en video</p>
       <h2 class="tit">Elizabet, más allá de esta página</h2>
     </div>
     <div class="marquee">
