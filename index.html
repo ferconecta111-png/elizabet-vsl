@@ -175,6 +175,25 @@
     border-style: solid; border-width: 10px 0 10px 16px; border-color: transparent transparent transparent #1f2a2d;
   }
 
+  /* METODOLOGÍA — 5 pasos en círculos conectados */
+  .metodo-camino { display: flex; gap: 0; margin-top: 30px; position: relative; }
+  .metodo-paso { flex: 1; text-align: center; padding: 0 12px; position: relative; }
+  .metodo-num {
+    display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 50%;
+    background: #fff; color: var(--gold-deep); font-weight: 800; font-size: 20px; margin: 0 auto 14px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18); position: relative; z-index: 1;
+  }
+  .metodo-paso h3 { font-size: 15px; margin-bottom: 6px; }
+  .metodo-paso p { font-size: 13px; opacity: 0.9; margin: 0; }
+  .metodo-paso:not(:last-child)::after {
+    content: ""; position: absolute; top: 26px; left: calc(50% + 30px); width: calc(100% - 60px); height: 2px;
+    background: rgba(255,255,255,0.45);
+  }
+  @media (max-width: 720px) {
+    .metodo-camino { flex-direction: column; gap: 28px; }
+    .metodo-paso:not(:last-child)::after { display: none; }
+  }
+
   /* SERVICIOS — sobre banda petróleo clara (antes era verde, ya quitado) */
   .servicios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 4px; }
   @media (max-width: 720px) { .servicios { grid-template-columns: repeat(2, 1fr); } }
@@ -188,6 +207,8 @@
   .servicios li:hover {
     background: linear-gradient(155deg, var(--gold), var(--gold-deep)); color: #fff; transform: translateY(-2px);
   }
+  .servicios li strong { display: block; font-size: 15.5px; margin-bottom: 6px; }
+  .servicios li span.topics { display: block; font-weight: 500; font-size: 13px; line-height: 1.5; opacity: 0.85; }
 
   /* TESTIMONIOS — banda oscura de contraste fuerte, carrusel automático */
   .band.dark { background: var(--navy-deep); color: #fbf7ee; padding-bottom: 44px; }
@@ -289,9 +310,11 @@
 
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow">Psicóloga clínica · Neurolingüística y coaching</p>
-      <h1>Deja de cargar heridas disfrazadas de <em>personalidad</em>.</h1>
-      <p class="dek">Terapia clínica y humana para entender qué patrón de tu historia se repite hoy en tu vida, tu familia o tu forma de liderar — y por fin soltarlo, desde la consciencia, no desde la culpa.</p>
+      <p class="eyebrow">Esto es para ti</p>
+      <h1>Entenderte es solo el comienzo. <em>Transformar</em> la forma en que vives y te relacionas contigo y con los demás es el verdadero proceso.</h1>
+      <p class="dek">Te acompaño a comprender por qué actúas como actúas, por qué repites aquello que sabes que te hace daño y qué necesitas transformar para comenzar a relacionarte contigo y con los demás de una manera diferente.</p>
+      <p class="dek" style="margin-top: 14px; font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
+      <a class="btn-pkg" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso 😊</a>
       <ul class="hero-chips">
         <li>Heridas de infancia y familia</li>
         <li>Ansiedad y propósito de vida</li>
@@ -300,7 +323,12 @@
     </div>
   </header>
 
-  <section class="video">
+  <section class="video" id="video">
+    <div class="wrap wrap-video" style="text-align: center; padding-bottom: 6px;">
+      <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Antes de contarte cómo trabajo</p>
+      <h2 class="tit">Quiero que me conozcas</h2>
+      <p style="color: var(--text-faint); font-size: 15.5px; max-width: 56ch; margin: 0 auto 8px;">Elegir a tu terapeuta no debería depender únicamente de sus títulos o de lo que dice una página web. También importa cómo te sientes cuando la escuchas, cómo entiende al ser humano y si su manera de acompañar resuena contigo.</p>
+    </div>
     <div class="wrap wrap-video">
       <div class="video-glow">
         <div class="video-frame">
@@ -320,34 +348,78 @@
 
   <section class="band tint-navy" style="margin-top: 4px;">
     <div class="wrap">
-      <p class="eyebrow-sm c-navy"><span class="dash" style="background:var(--navy);"></span>¿Es esto para ti?</p>
-      <h2 class="tit">Esto es para ti si...</h2>
+      <p class="eyebrow-sm c-navy"><span class="dash" style="background:var(--navy);"></span>¿Te ha pasado esto?</p>
+      <h2 class="tit">Quizás esto te está pasando</h2>
       <ul class="para-lista">
-        <li><span class="check">✓</span>Sientes que repites los mismos patrones una y otra vez, sin entender bien por qué.</li>
-        <li><span class="check">✓</span>Cargas algo de tu familia que nunca terminaste de resolver.</li>
-        <li><span class="check">✓</span>Hacia afuera pareces tenerlo todo bajo control — incluso si diriges un equipo o una empresa — pero por dentro sabes que algo no está resuelto.</li>
-        <li><span class="check">✓</span>Ya intentaste terapia antes y sentiste que no avanzabas.</li>
+        <li><span class="check">✓</span>Sabes lo que deberías hacer, pero aun así sigues repitiendo lo mismo.</li>
+        <li><span class="check">✓</span>Sabes que necesitas poner límites, pero te cuesta tolerar la culpa cuando dices que no.</li>
+        <li><span class="check">✓</span>Sabes que esa relación no te hace bien, pero algo dentro de ti te hace volver.</li>
+        <li><span class="check">✓</span>Sabes que eres demasiado exigente contigo, pero descansar te hace sentir culpable.</li>
+        <li><span class="check">✓</span>Sabes que quieres confiar, pero cuando alguien se acerca demasiado empiezas a protegerte.</li>
       </ul>
+      <p style="margin-top: 22px; font-size: 15.5px; color: var(--navy-deep);"><b>Saberlo no siempre es suficiente. Y no significa que te falte voluntad.</b><br>A veces significa que hay algo más profundo que necesita ser comprendido, regulado y transformado.</p>
     </div>
   </section>
 
   <section class="band tint-gold">
     <div class="wrap">
       <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Quién te acompaña</p>
-      <h2 class="tit">Elizabet García Duque</h2>
+      <h2 class="tit">Soy Elizabet García Duque</h2>
       <div class="bio-layout">
         <div class="bio-photo"><img src="elizabet-foto.jpg" alt="Elizabet García Duque, psicóloga clínica"></div>
         <div class="bio-card">
-          <p><b>Elizabet es Psicóloga Clínica y su pasión es acompañar a cultivar el amor propio, la seguridad y la paz.</b> Busca generar en sus pacientes experiencias mediadas por el amor y la tranquilidad para el equilibrio de la mente y el alma.</p>
-          <p>Eligió la Psicología porque está convencida de que el poder del amor puede transformar y sanar. En su desempeño como terapeuta, trabaja bajo una comprensión del ser integral, lo cual la ayuda a llevar de manera profunda los casos de sus consultantes y le facilita acompañarlos a crear procesos confrontadores de responsabilidad y toma de consciencia.</p>
-          <p>Se centra además en el acompañamiento familiar, teniendo en mente que la familia es el eje sobre el cual se forjan las bases que nos permiten relacionarnos en las demás áreas de nuestra vida. Orienta también a padres en pautas de crianza y acompaña a jóvenes en momentos de conflicto, siempre desde el amor y la comprensión — nunca desde el juicio.</p>
+          <p><b>Psicóloga · Magíster en Psicología Clínica</b>, con formación complementaria en coaching, programación neurolingüística, arteterapia, crianza respetuosa, entre otras áreas.</p>
+          <p>Pero más allá de mis títulos y formaciones, hay una idea que atraviesa mi manera de acompañar: creo profundamente en la capacidad del ser humano de reconocerse a sí mismo, quitarse las capas que durante años ha confundido con su personalidad y volver a conectar con su esencia.</p>
+          <p>No creo que el sufrimiento tenga que convertirse en una forma habitual de vivir. Creo que existen caminos más amorosos para estar en este mundo, incluso cuando las situaciones afuera pueden llegar a ser dolorosas. No idealizamos la vida — buscamos aprender a vivirla de una manera más ligera, consciente y en mayor conexión contigo.</p>
+          <p style="margin-bottom: 0;"><b>Porque la terapia no busca convertirte en otra persona. Busca ayudarte a volver a ti.</b></p>
           <div class="creds">
-            <span>Psicóloga Clínica</span>
+            <span>Magíster en Psicología Clínica</span>
             <span>Diplomada en Neurolingüística y Coaching</span>
             <span>Certificada en Crianza Respetuosa</span>
-            <span>Educación Emocional Niños y Adolescentes</span>
+            <span>Arteterapia</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band cream">
+    <div class="wrap">
+      <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Mi mirada terapéutica</p>
+      <h2 class="tit">Una terapia profunda no consiste únicamente en hablar de lo que te ocurre</h2>
+      <div class="bio-card" style="max-width: 760px;">
+        <p>Es aprender a observar lo que sucede dentro de ti mientras sucede: lo que evitas, lo que repites, lo que callas, lo que intentas controlar, aquello que racionalizas cuando en realidad duele, y las formas en que has aprendido a protegerte o heredado de tu historia.</p>
+        <p>Mi trabajo es acompañarte a mirar todo eso con profundidad, pero también con humanidad: sin juzgarte, sin reducirte a una etiqueta y, cuando sea necesario, confrontándote amorosamente con aquello que necesitas empezar a ver y hacer diferente.</p>
+        <p>No se trata solamente de entender tu historia. Se trata de descubrir cómo esa historia sigue apareciendo en tu vida actual y qué puedes comenzar a hacer diferente.</p>
+        <p style="font-style: italic; font-family: 'Poppins', sans-serif; color: var(--gold-deep); font-size: 17px; margin-top: 20px;">"¿Qué hago con lo que sé de mí, y quién puede acompañarme mientras realmente lo transformo?"</p>
+        <p>Hoy tenemos acceso a más información psicológica que nunca — podemos leer, escuchar, investigar y aprender muchísimo sobre nosotros mismos. Pero comprender un patrón no significa automáticamente dejar de repetirlo. Ahí comienza el verdadero trabajo terapéutico.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band tint-navy">
+    <div class="wrap">
+      <p class="eyebrow-sm c-navy"><span class="dash" style="background:var(--navy);"></span>¿Por qué este proceso es diferente?</p>
+      <h2 class="tit">Información no siempre significa transformación</h2>
+      <div class="bio-card" style="max-width: 760px;">
+        <p>Hoy puedes preguntarle a una IA qué significa tu apego, leer libros, escuchar podcasts y hacer todos los tests que encuentres en Instagram. Y todo ese conocimiento puede ser valioso.</p>
+        <p>Pero saber que tienes miedo al abandono no necesariamente cambia la manera en que eliges pareja. Entender que eres hiperexigente no hace que automáticamente puedas descansar. Saber que tienes dificultad para poner límites no significa que puedas tolerar la culpa cuando finalmente dices que no.</p>
+        <p>En terapia no vamos solamente a descubrir qué sabes sobre ti. Vamos a observar cómo ese conocimiento aparece <b>en tus vínculos, en tus decisiones, en tu cuerpo, en aquello que evitas, en lo que haces cuando tienes miedo.</b></p>
+        <p style="margin-bottom: 0;">Porque ahí es donde empieza la transformación.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band tint-gold">
+    <div class="wrap">
+      <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Mi metodología</p>
+      <h2 class="tit">Un proceso para comprenderte y comenzar a elegir diferente</h2>
+      <div class="metodo-camino">
+        <div class="metodo-paso"><span class="metodo-num">1</span><h3>Reconocer</h3><p>Identificar lo que ocurre dentro de ti y comenzar a ponerle nombre.</p></div>
+        <div class="metodo-paso"><span class="metodo-num">2</span><h3>Comprender</h3><p>Entender de dónde vienen tus patrones, qué los activa y qué función han cumplido en tu historia.</p></div>
+        <div class="metodo-paso"><span class="metodo-num">3</span><h3>Regular</h3><p>Aprender a acompañarte emocionalmente en lugar de actuar desde el miedo, la culpa o la ansiedad.</p></div>
+        <div class="metodo-paso"><span class="metodo-num">4</span><h3>Transformar</h3><p>Practicar nuevas formas de responder, relacionarte y cuidarte.</p></div>
+        <div class="metodo-paso"><span class="metodo-num">5</span><h3>Elegir</h3><p>Dejar de vivir únicamente desde patrones aprendidos y tomar decisiones más conscientes y coherentes contigo.</p></div>
       </div>
     </div>
   </section>
@@ -374,16 +446,14 @@
   <section class="band tint-green">
     <div class="wrap">
       <p class="eyebrow-sm c-green"><span class="dash" style="background:var(--navy);"></span>Cómo te puede acompañar</p>
-      <h2 class="tit">Áreas de trabajo</h2>
+      <h2 class="tit">¿Qué podemos trabajar juntos/as?</h2>
       <ul class="servicios">
-        <li>Gestión de depresión y ansiedad</li>
-        <li>Manejo consciente de las emociones</li>
-        <li>Heridas de la infancia</li>
-        <li>Propósito y proyecto de vida</li>
-        <li>Conflictos familiares</li>
-        <li>Adolescencia</li>
-        <li>Abundancia y dirección de vida</li>
-        <li>Acompañamiento a altos corporativos</li>
+        <li><strong>Relación contigo</strong><span class="topics">Autoestima · culpa · hiperexigencia · vergüenza · gestión emocional · dificultad para recibir · propósito y sentido.</span></li>
+        <li><strong>Relación con los demás</strong><span class="topics">Vínculos · dependencia emocional · límites · miedo al abandono o rechazo · vulnerabilidad · confianza · responsabilidad afectiva.</span></li>
+        <li><strong>Patrones que se repiten</strong><span class="topics">Heridas de infancia · patrones familiares · dinámicas repetitivas · formas aprendidas de protegerte · dificultad para confiar.</span></li>
+        <li><strong>Procesos vitales</strong><span class="topics">Duelo · ansiedad · depresión · cambios importantes · crisis personales.</span></li>
+        <li><strong>Bienestar, merecimiento y propósito</strong><span class="topics">Relación con la prosperidad y la abundancia · merecimiento · capacidad de recibir · propósito de vida.</span></li>
+        <li><strong>Procesos familiares</strong><span class="topics">Acompañamiento psicológico a niños y adolescentes · orientación a padres · dinámicas familiares.</span></li>
       </ul>
     </div>
   </section>
@@ -391,7 +461,7 @@
   <section class="band dark">
     <div class="wrap">
       <p class="eyebrow-sm"><span class="dash" style="background:var(--gold);"></span>Lo que dicen quienes ya vivieron el proceso</p>
-      <h2 class="tit">Testimonios reales</h2>
+      <h2 class="tit">Lo que ocurre cuando empiezas a mirarte diferente</h2>
     </div>
     <div class="marquee">
       <div class="marquee-track">
@@ -399,7 +469,6 @@
         <div class="testi"><img class="testi-photo" src="testi-isabela-villa.jpg" alt="Isabela Villa"><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
         <div class="testi"><img class="testi-photo" src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga"><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
         <div class="testi"><img class="testi-photo" src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios"><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
-        <div class="testi"><span class="testi-initials">AU</span><div><p class="txt">"¡De verdad cambian vidas! He logrado entender aspectos de mi vida que por años me había cuestionado. ¡Es una gran profesional!"</p><p class="who">Adriana Urrego · Colombia</p></div></div>
         <div class="testi"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
         <div class="testi"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
         <!-- duplicado para el loop infinito -->
@@ -407,7 +476,6 @@
         <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-isabela-villa.jpg" alt=""><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
         <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-maricela-arteaga.jpg" alt=""><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
         <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-alexandra-barrios.jpg" alt=""><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
-        <div class="testi" aria-hidden="true"><span class="testi-initials">AU</span><div><p class="txt">"¡De verdad cambian vidas! He logrado entender aspectos de mi vida que por años me había cuestionado. ¡Es una gran profesional!"</p><p class="who">Adriana Urrego · Colombia</p></div></div>
         <div class="testi" aria-hidden="true"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
         <div class="testi" aria-hidden="true"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
       </div>
@@ -415,14 +483,15 @@
   </section>
 
   <div class="pkg-single pkg-single-dark">
+    <p style="color: var(--gold-tint); font-size: 14px; margin: 0 0 16px;">¿Cómo puedo acompañarte? — Terapia individual: si quieres trabajar profundamente en tu historia, tus patrones, tus emociones y tus vínculos.</p>
     <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Agenda tu sesión individual</a>
   </div>
 
   <section class="band cream">
     <div class="wrap">
       <div class="cta-block">
-        <h2>¿Sientes que algo de esto te movió por dentro?</h2>
-        <p>Escríbeme directo. Te voy a hacer un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión — sin compromiso, a tu ritmo.</p>
+        <h2>¿Qué vas a hacer diferente con todo lo que ya sabes?</h2>
+        <p>No tienes que hacerlo sola/o. Podemos empezar a trabajar en ello — escríbeme directo, te hago un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión, a tu ritmo.</p>
         <a class="btn-wa" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20vi%20tu%20video%20y%20quiero%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path fill="#241f18" d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.9.53 3.68 1.44 5.2L2 22l4.94-1.4A9.95 9.95 0 0 0 12.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2Zm5.4 14.1c-.23.65-1.15 1.2-1.9 1.36-.5.1-1.16.19-3.38-.72-2.84-1.18-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.72-2.07.98-2.35.23-.25.5-.32.67-.32h.48c.16 0 .37-.06.58.44.23.55.78 1.94.85 2.08.07.14.11.3.02.48-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.12.07.68-.16 1.33Z"/></svg>
           Agenda tu sesión por WhatsApp
@@ -432,6 +501,7 @@
           <a class="btn-pkg-outline" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Sesión individual</a>
           <a class="btn-pkg-outline" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">Paquete x3 sesiones</a>
         </div>
+        <p style="margin: 22px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85;">Volver a ti no significa volver a quien eras. Significa comenzar a encontrarte con quién eres y elegir desde ahí.</p>
       </div>
     </div>
   </section>
