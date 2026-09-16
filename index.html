@@ -239,55 +239,35 @@
     .mirada-photo.foto-integrada img { width: 240px; }
   }
 
-  /* METODOLOGÍA — 5 pasos, camino ondulado, interactivo */
-  /* Camino ascendente, como una curva de progreso — cada paso más alto que el anterior */
-  .metodo-camino { position: relative; margin-top: 56px; height: 400px; }
-  .metodo-curva { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 0; }
-  .metodo-curva path { stroke: rgba(255,255,255,0.4); stroke-width: 3; fill: none; }
-  .metodo-paso {
-    position: absolute; width: 19%; text-align: center; cursor: default;
-    left: calc(var(--x) * 1%); bottom: calc(var(--y) * 1%); transform: translateX(-50%);
-  }
-  .metodo-paso:nth-child(1) { --x: 10; --y: 4; --m: var(--navy-deep); }
-  .metodo-paso:nth-child(2) { --x: 30; --y: 22; --m: var(--navy-deep); }
-  .metodo-paso:nth-child(3) { --x: 50; --y: 40; --m: var(--navy-deep); }
-  .metodo-paso:nth-child(4) { --x: 70; --y: 56; --m: var(--navy-deep); }
-  .metodo-paso:nth-child(5) { --x: 90; --y: 66; --m: var(--navy-deep); }
-  .metodo-inner { animation: metodo-flotar 3.2s ease-in-out infinite; }
-  .metodo-paso:nth-child(1) .metodo-inner { animation-delay: 0s; }
-  .metodo-paso:nth-child(2) .metodo-inner { animation-delay: 0.5s; }
-  .metodo-paso:nth-child(3) .metodo-inner { animation-delay: 1s; }
-  .metodo-paso:nth-child(4) .metodo-inner { animation-delay: 1.5s; }
-  .metodo-paso:nth-child(5) .metodo-inner { animation-delay: 2s; }
-  @keyframes metodo-flotar {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
+  /* METODOLOGÍA — 5 pasos en fila numerada, conectados por flechas */
+  .metodo-camino { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 4px; margin-top: 48px; }
+  .metodo-paso { flex: 0 1 158px; text-align: center; cursor: default; padding: 0 4px; }
+  .metodo-flecha { flex: 0 0 auto; display: flex; align-items: center; height: 60px; color: rgba(255,255,255,0.45); }
+  .metodo-flecha svg { width: 22px; height: 22px; }
   .metodo-num {
-    display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 50%;
-    background: #fff; color: var(--m); margin: 0 auto 12px;
-    border: 3px solid var(--m); box-shadow: 0 8px 18px rgba(0,0,0,0.18); position: relative; z-index: 1;
+    position: relative; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%;
+    background: #fff; color: var(--navy-deep); margin: 0 auto 14px;
+    border: 3px solid var(--navy-deep); box-shadow: 0 8px 18px rgba(0,0,0,0.18);
     transition: background 0.28s, color 0.28s, transform 0.32s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s;
   }
   .metodo-num svg { width: 24px; height: 24px; }
-  .metodo-paso h3 { font-size: 15px; margin-bottom: 6px; color: var(--m); transition: color 0.25s; }
-  .metodo-paso p { font-size: 12.5px; opacity: 0.9; margin: 0; line-height: 1.4; }
-  .metodo-paso:hover .metodo-inner { animation-play-state: paused; }
+  .metodo-badge {
+    position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--navy-deep); color: #fff5e4; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 11px;
+    display: flex; align-items: center; justify-content: center; border: 2px solid var(--gold-deep);
+  }
+  .metodo-paso h3 { font-size: 15px; margin-bottom: 6px; color: #fff; }
+  .metodo-paso p { font-size: 12.5px; opacity: 0.92; margin: 0; line-height: 1.4; }
   .metodo-paso:hover .metodo-num {
-    background: var(--m); color: #fff;
-    transform: scale(1.16) translateY(-4px); box-shadow: 0 14px 26px -4px rgba(0,0,0,0.4);
+    background: var(--navy-deep); color: #fff;
+    transform: translateY(-4px) scale(1.08); box-shadow: 0 14px 26px -4px rgba(0,0,0,0.4);
   }
   .metodo-paso:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
-  @media (prefers-reduced-motion: reduce) { .metodo-inner { animation: none; } }
-  @media (max-width: 720px) {
-    .metodo-camino { height: auto; display: flex; flex-direction: column; gap: 30px; margin-top: 34px; }
-    .metodo-curva { display: none; }
-    .metodo-paso { position: static; width: 100%; transform: none; }
-    .metodo-inner { animation: none; }
-    .metodo-paso:active .metodo-num {
-      background: var(--m); color: #fff; transform: scale(1.1);
-    }
+  @media (max-width: 900px) {
+    .metodo-flecha { display: none; }
+    .metodo-paso { flex: 1 1 40%; }
   }
+  @media (max-width: 480px) { .metodo-paso { flex: 1 1 100%; } }
 
   /* SERVICIOS — sobre banda petróleo clara (antes era verde, ya quitado) */
   .servicios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 4px; }
@@ -598,38 +578,44 @@
         </div>
       </div>
       <div class="metodo-camino">
-        <svg class="metodo-curva" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M10,96 Q20,87 30,78 Q40,69 50,60 Q60,52 70,44 Q80,39 90,34" />
-        </svg>
         <div class="metodo-paso">
-          <div class="metodo-inner">
-            <span class="metodo-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg></span>
-            <h3>Reconocer</h3><p>Identificar lo que ocurre dentro de ti y comenzar a ponerle nombre.</p>
-          </div>
+          <span class="metodo-num">
+            <span class="metodo-badge">01</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
+          </span>
+          <h3>Reconocer</h3><p>Identificar lo que ocurre dentro de ti y comenzar a ponerle nombre.</p>
         </div>
+        <div class="metodo-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
         <div class="metodo-paso">
-          <div class="metodo-inner">
-            <span class="metodo-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></svg></span>
-            <h3>Comprender</h3><p>Entender de dónde vienen tus patrones, qué los activa y qué función han cumplido en tu historia.</p>
-          </div>
+          <span class="metodo-num">
+            <span class="metodo-badge">02</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></svg>
+          </span>
+          <h3>Comprender</h3><p>Entender de dónde vienen tus patrones, qué los activa y qué función han cumplido en tu historia.</p>
         </div>
+        <div class="metodo-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
         <div class="metodo-paso">
-          <div class="metodo-inner">
-            <span class="metodo-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-9C1 7.5 2.5 4 6 4c2 0 3.5 1.2 4 2.5C10.5 5.2 12 4 14 4c3.5 0 5 3.5 3.5 7-2.5 4.65-9.5 9-9.5 9z"/></svg></span>
-            <h3>Regular</h3><p>Aprender a acompañarte emocionalmente en lugar de actuar desde el miedo, la culpa o la ansiedad.</p>
-          </div>
+          <span class="metodo-num">
+            <span class="metodo-badge">03</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-9C1 7.5 2.5 4 6 4c2 0 3.5 1.2 4 2.5C10.5 5.2 12 4 14 4c3.5 0 5 3.5 3.5 7-2.5 4.65-9.5 9-9.5 9z"/></svg>
+          </span>
+          <h3>Regular</h3><p>Aprender a acompañarte emocionalmente en lugar de actuar desde el miedo, la culpa o la ansiedad.</p>
         </div>
+        <div class="metodo-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
         <div class="metodo-paso">
-          <div class="metodo-inner">
-            <span class="metodo-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4"/><path d="M20 20v-5h-5"/></svg></span>
-            <h3>Transformar</h3><p>Practicar nuevas formas de responder, relacionarte y cuidarte.</p>
-          </div>
+          <span class="metodo-num">
+            <span class="metodo-badge">04</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4"/><path d="M20 20v-5h-5"/></svg>
+          </span>
+          <h3>Transformar</h3><p>Practicar nuevas formas de responder, relacionarte y cuidarte.</p>
         </div>
+        <div class="metodo-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
         <div class="metodo-paso">
-          <div class="metodo-inner">
-            <span class="metodo-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span>
-            <h3>Elegir</h3><p>Dejar de vivir únicamente desde patrones aprendidos y tomar decisiones más conscientes y coherentes contigo.</p>
-          </div>
+          <span class="metodo-num">
+            <span class="metodo-badge">05</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+          </span>
+          <h3>Elegir</h3><p>Dejar de vivir únicamente desde patrones aprendidos y tomar decisiones más conscientes y coherentes contigo.</p>
         </div>
       </div>
     </div>
