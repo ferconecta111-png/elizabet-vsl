@@ -263,11 +263,26 @@
     transform: translateY(-4px) scale(1.08); box-shadow: 0 14px 26px -4px rgba(0,0,0,0.4);
   }
   .metodo-paso:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
-  @media (max-width: 900px) {
+  @media (max-width: 900px) and (min-width: 721px) {
     .metodo-flecha { display: none; }
     .metodo-paso { flex: 1 1 40%; }
   }
-  @media (max-width: 480px) { .metodo-paso { flex: 1 1 100%; } }
+  /* Móvil: fila compacta (ícono a la izquierda, texto a la derecha) en vez
+     de ícono-arriba-texto-abajo — 5 pasos apilados así hacían un scroll
+     larguísimo. */
+  @media (max-width: 720px) {
+    .metodo-camino { flex-direction: column; gap: 14px; margin-top: 28px; }
+    .metodo-flecha { display: none; }
+    .metodo-paso {
+      flex: 1 1 100%; display: flex; align-items: center; gap: 14px;
+      text-align: left; padding: 0;
+    }
+    .metodo-num { margin: 0; width: 48px; height: 48px; flex-shrink: 0; }
+    .metodo-num svg { width: 20px; height: 20px; }
+    .metodo-badge { width: 19px; height: 19px; font-size: 10px; }
+    .metodo-paso h3 { margin-bottom: 2px; }
+    .metodo-paso p { font-size: 12px; }
+  }
 
   /* SERVICIOS — sobre banda petróleo clara (antes era verde, ya quitado) */
   .servicios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 4px; }
@@ -528,7 +543,7 @@
         <div class="mapa-mental">
           <svg viewBox="0 0 480 350" role="img" aria-label="Mapa mental: lo que evitas, lo que repites, lo que callas, cómo te proteges y lo que racionalizas, alrededor de lo que sucede dentro de ti">
             <g class="rama-nodo">
-              <path class="rama" d="M240,114 Q260,98 240,82"></path>
+              <path class="rama" d="M240,114 L240,82"></path>
               <g class="nodo">
                 <circle class="fondo" cx="240" cy="50" r="30"></circle>
                 <g class="icono" transform="translate(228,38)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.8-6 10-6 10 6 10 6-3.8 6-10 6-10-6-10-6z"></path><circle cx="12" cy="12" r="2.3"></circle><line x1="5" y1="5" x2="19" y2="19"></line></g>
