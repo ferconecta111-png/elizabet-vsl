@@ -191,24 +191,30 @@
   }
   .band.tint-navy .keyword-cloud span { background: rgba(255,255,255,0.55); }
 
-  /* MAPA MENTAL — mismo lenguaje visual que .metodo-num (círculo + icono con
-     currentColor), en vez de la constelación flotante anterior. */
-  .mapa-mental { flex: 1.1; min-width: 0; display: flex; align-items: center; }
+  /* MAPA MENTAL — rama sólida curva + nodo, cada par se resalta junto al
+     pasar el mouse (movimiento interactivo real, no solo color). */
+  .mapa-mental { flex: 1; min-width: 0; display: flex; align-items: center; }
   .mapa-mental svg { width: 100%; height: auto; display: block; overflow: visible; }
-  .mapa-mental .rama { stroke: rgba(31,58,66,0.22); stroke-width: 1.5; fill: none; stroke-dasharray: 3 5; }
-  .mapa-mental .hub circle { fill: var(--navy-deep); }
-  .mapa-mental .hub .icono { stroke: var(--cream); }
-  .mapa-mental .hub .etiqueta-hub { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 13.5px; fill: var(--cream); }
-  .mapa-mental .nodo { cursor: default; color: var(--gold-deep); }
-  .mapa-mental .nodo .fondo { fill: var(--cream); stroke: var(--gold-deep); stroke-width: 2; transition: fill 0.25s; }
+  .mapa-mental .rama { stroke: var(--gold); stroke-width: 2.5; fill: none; opacity: 0.55; transition: stroke 0.25s, opacity 0.25s, stroke-width 0.25s; }
+  .mapa-mental .hub rect { fill: var(--navy-deep); }
+  .mapa-mental .hub .etiqueta-hub { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 15px; fill: var(--cream); }
+  .mapa-mental .nodo {
+    cursor: default; color: var(--gold-deep);
+    transform-box: fill-box; transform-origin: center;
+    transition: transform 0.28s cubic-bezier(.34,1.56,.64,1);
+  }
+  .mapa-mental .nodo .fondo { fill: var(--cream); stroke: var(--gold-deep); stroke-width: 2; transition: fill 0.25s, stroke-width 0.25s; }
   .mapa-mental .nodo .icono { stroke: currentColor; transition: stroke 0.25s; }
   .mapa-mental .nodo .etiqueta { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 15.5px; fill: var(--navy-deep); transition: fill 0.25s; }
-  .mapa-mental .nodo:hover .fondo { fill: var(--gold-deep); }
-  .mapa-mental .nodo:hover { color: var(--cream); }
-  .mapa-mental .nodo:hover .etiqueta { fill: var(--gold-deep); }
+  .mapa-mental .rama-nodo:hover .rama { stroke: var(--gold-deep); opacity: 1; stroke-width: 3.5; }
+  .mapa-mental .rama-nodo:hover .nodo { transform: scale(1.1) translateY(-3px); }
+  .mapa-mental .rama-nodo:hover .nodo .fondo { fill: var(--gold-deep); stroke-width: 0; }
+  .mapa-mental .rama-nodo:hover .nodo { color: var(--cream); }
+  .mapa-mental .rama-nodo:hover .nodo .etiqueta { fill: var(--gold-deep); }
+  @media (prefers-reduced-motion: reduce) { .mapa-mental .nodo { transition: none; } }
   @media (max-width: 720px) {
     .mapa-mental .nodo .etiqueta { font-size: 18px; }
-    .mapa-mental .hub .etiqueta-hub { font-size: 16px; }
+    .mapa-mental .hub .etiqueta-hub { font-size: 17px; }
   }
   .quote-pull {
     font-style: italic; font-family: "Poppins", sans-serif; font-size: 18px; color: var(--gold-deep);
@@ -519,51 +525,63 @@
 
   <section class="band cream">
     <div class="wrap">
-      <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Mi mirada terapéutica</p>
-      <h2 class="tit">No es solo hablar. Es observar lo que sucede dentro de ti, mientras sucede.</h2>
       <div class="mirada-flex">
         <div class="txt">
+          <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Mi mirada terapéutica</p>
+          <h2 class="tit">No es solo hablar. Es observar lo que sucede dentro de ti, mientras sucede.</h2>
           <p>Te acompaño con profundidad y humanidad — sin juzgarte, sin etiquetas, confrontándote con amor cuando hace falta.</p>
           <p class="quote-pull">"¿Qué hago con lo que sé de mí, y quién puede acompañarme mientras realmente lo transformo?"</p>
         </div>
         <div class="mapa-mental">
           <svg viewBox="0 0 480 350" role="img" aria-label="Mapa mental: lo que evitas, lo que repites, lo que callas, cómo te proteges y lo que racionalizas, alrededor de lo que sucede dentro de ti">
-            <path class="rama" d="M240,160 L240,50 M240,160 L365,135 M240,160 L316,275 M240,160 L164,275 M240,160 L115,135"></path>
+            <g class="rama-nodo">
+              <path class="rama" d="M240,114 Q260,98 240,82"></path>
+              <g class="nodo">
+                <circle class="fondo" cx="240" cy="50" r="30"></circle>
+                <g class="icono" transform="translate(228,38)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.8-6 10-6 10 6 10 6-3.8 6-10 6-10-6-10-6z"></path><circle cx="12" cy="12" r="2.3"></circle><line x1="5" y1="5" x2="19" y2="19"></line></g>
+                <text class="etiqueta" x="240" y="16" text-anchor="middle">Lo que evitas</text>
+              </g>
+            </g>
+
+            <g class="rama-nodo">
+              <path class="rama" d="M285.1,150.98 Q305.4,126.5 333.6,141.27"></path>
+              <g class="nodo">
+                <circle class="fondo" cx="365" cy="135" r="30"></circle>
+                <g class="icono" transform="translate(353,123)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3 6.2"></path><path d="M4 12v5h5"></path></g>
+                <text class="etiqueta" x="365" y="101" text-anchor="middle">Lo que repites</text>
+              </g>
+            </g>
+
+            <g class="rama-nodo">
+              <path class="rama" d="M265.35,198.38 Q265.2,234.3 298.4,248.3"></path>
+              <g class="nodo">
+                <circle class="fondo" cx="316" cy="275" r="30"></circle>
+                <g class="icono" transform="translate(304,263)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v11H9l-5 4V4z"></path><line x1="6" y1="4" x2="20" y2="18"></line></g>
+                <text class="etiqueta" x="316" y="325" text-anchor="middle">Lo que callas</text>
+              </g>
+            </g>
+
+            <g class="rama-nodo">
+              <path class="rama" d="M214.65,198.38 Q214.8,234.3 181.6,248.3"></path>
+              <g class="nodo">
+                <circle class="fondo" cx="164" cy="275" r="30"></circle>
+                <g class="icono" transform="translate(152,263)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z"></path></g>
+                <text class="etiqueta" x="164" y="325" text-anchor="middle">Cómo te proteges</text>
+              </g>
+            </g>
+
+            <g class="rama-nodo">
+              <path class="rama" d="M194.9,150.98 Q174.6,126.5 146.4,141.27"></path>
+              <g class="nodo">
+                <circle class="fondo" cx="115" cy="135" r="30"></circle>
+                <g class="icono" transform="translate(103,123)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><line x1="12" y1="2" x2="12" y2="5.2"></line><line x1="12" y1="18.8" x2="12" y2="22"></line><line x1="2" y1="12" x2="5.2" y2="12"></line><line x1="18.8" y1="12" x2="22" y2="12"></line><line x1="4.9" y1="4.9" x2="7.2" y2="7.2"></line><line x1="16.8" y1="16.8" x2="19.1" y2="19.1"></line><line x1="4.9" y1="19.1" x2="7.2" y2="16.8"></line><line x1="16.8" y1="7.2" x2="19.1" y2="4.9"></line></g>
+                <text class="etiqueta" x="115" y="101" text-anchor="middle">Lo que racionalizas</text>
+              </g>
+            </g>
 
             <g class="hub">
-              <circle cx="240" cy="160" r="44"></circle>
-              <g class="icono" transform="translate(228,148)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7l2.3 5-2.3 5-2.3-5z"></path></g>
-              <text class="etiqueta-hub" x="240" y="197" text-anchor="middle">Dentro de ti</text>
-            </g>
-
-            <g class="nodo">
-              <circle class="fondo" cx="240" cy="50" r="30"></circle>
-              <g class="icono" transform="translate(228,38)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.8-6 10-6 10 6 10 6-3.8 6-10 6-10-6-10-6z"></path><circle cx="12" cy="12" r="2.3"></circle><line x1="5" y1="5" x2="19" y2="19"></line></g>
-              <text class="etiqueta" x="240" y="16" text-anchor="middle">Lo que evitas</text>
-            </g>
-
-            <g class="nodo">
-              <circle class="fondo" cx="365" cy="135" r="30"></circle>
-              <g class="icono" transform="translate(353,123)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3 6.2"></path><path d="M4 12v5h5"></path></g>
-              <text class="etiqueta" x="365" y="101" text-anchor="middle">Lo que repites</text>
-            </g>
-
-            <g class="nodo">
-              <circle class="fondo" cx="316" cy="275" r="30"></circle>
-              <g class="icono" transform="translate(304,263)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v11H9l-5 4V4z"></path><line x1="6" y1="4" x2="20" y2="18"></line></g>
-              <text class="etiqueta" x="316" y="325" text-anchor="middle">Lo que callas</text>
-            </g>
-
-            <g class="nodo">
-              <circle class="fondo" cx="164" cy="275" r="30"></circle>
-              <g class="icono" transform="translate(152,263)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z"></path></g>
-              <text class="etiqueta" x="164" y="325" text-anchor="middle">Cómo te proteges</text>
-            </g>
-
-            <g class="nodo">
-              <circle class="fondo" cx="115" cy="135" r="30"></circle>
-              <g class="icono" transform="translate(103,123)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><line x1="12" y1="2" x2="12" y2="5.2"></line><line x1="12" y1="18.8" x2="12" y2="22"></line><line x1="2" y1="12" x2="5.2" y2="12"></line><line x1="18.8" y1="12" x2="22" y2="12"></line><line x1="4.9" y1="4.9" x2="7.2" y2="7.2"></line><line x1="16.8" y1="16.8" x2="19.1" y2="19.1"></line><line x1="4.9" y1="19.1" x2="7.2" y2="16.8"></line><line x1="16.8" y1="7.2" x2="19.1" y2="4.9"></line></g>
-              <text class="etiqueta" x="115" y="101" text-anchor="middle">Lo que racionalizas</text>
+              <rect x="170" y="136" width="140" height="48" rx="24"></rect>
+              <text class="etiqueta-hub" x="240" y="165" text-anchor="middle">Dentro de ti</text>
             </g>
           </svg>
         </div>
