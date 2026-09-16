@@ -191,25 +191,25 @@
   }
   .band.tint-navy .keyword-cloud span { background: rgba(255,255,255,0.55); }
 
-  /* CONSTELACIÓN — versión gráfica del keyword-cloud principal */
-  .constelacion { flex: 1.1; min-width: 0; }
-  .constelacion svg { width: 100%; height: auto; display: block; overflow: visible; }
-  .constelacion .linea { stroke: rgba(63,100,112,0.3); stroke-width: 1.5; fill: none; stroke-dasharray: 3 5; }
-  .constelacion .estrella {
-    cursor: default; transform-box: fill-box; transform-origin: center;
-    animation: constelacion-flotar 3.8s ease-in-out infinite;
+  /* MAPA MENTAL — mismo lenguaje visual que .metodo-num (círculo + icono con
+     currentColor), en vez de la constelación flotante anterior. */
+  .mapa-mental { flex: 1.1; min-width: 0; display: flex; align-items: center; }
+  .mapa-mental svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .mapa-mental .rama { stroke: rgba(31,58,66,0.22); stroke-width: 1.5; fill: none; stroke-dasharray: 3 5; }
+  .mapa-mental .hub circle { fill: var(--navy-deep); }
+  .mapa-mental .hub .icono { stroke: var(--cream); }
+  .mapa-mental .hub .etiqueta-hub { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 13.5px; fill: var(--cream); }
+  .mapa-mental .nodo { cursor: default; color: var(--gold-deep); }
+  .mapa-mental .nodo .fondo { fill: var(--cream); stroke: var(--gold-deep); stroke-width: 2; transition: fill 0.25s; }
+  .mapa-mental .nodo .icono { stroke: currentColor; transition: stroke 0.25s; }
+  .mapa-mental .nodo .etiqueta { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 15.5px; fill: var(--navy-deep); transition: fill 0.25s; }
+  .mapa-mental .nodo:hover .fondo { fill: var(--gold-deep); }
+  .mapa-mental .nodo:hover { color: var(--cream); }
+  .mapa-mental .nodo:hover .etiqueta { fill: var(--gold-deep); }
+  @media (max-width: 720px) {
+    .mapa-mental .nodo .etiqueta { font-size: 18px; }
+    .mapa-mental .hub .etiqueta-hub { font-size: 16px; }
   }
-  .constelacion .halo { fill: var(--gold); opacity: 0.2; animation: constelacion-titilar 3.2s ease-in-out infinite; transition: r 0.25s, opacity 0.25s; }
-  .constelacion .nucleo { fill: var(--gold-deep); transition: r 0.25s cubic-bezier(.34,1.56,.64,1), fill 0.25s; }
-  .constelacion .etiqueta { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 20px; fill: var(--navy-deep); transition: fill 0.25s; }
-  .constelacion .estrella:hover { animation-play-state: paused; }
-  .constelacion .estrella:hover .halo { r: 27; opacity: 0.35; fill: #c0562e; animation-play-state: paused; }
-  .constelacion .estrella:hover .nucleo { r: 9; fill: #c0562e; }
-  .constelacion .estrella:hover .etiqueta { fill: #a34521; }
-  @keyframes constelacion-titilar { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.45; } }
-  @keyframes constelacion-flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-  @media (prefers-reduced-motion: reduce) { .constelacion .halo, .constelacion .estrella { animation: none; } }
-  @media (max-width: 720px) { .constelacion .etiqueta { font-size: 24px; } }
   .quote-pull {
     font-style: italic; font-family: "Poppins", sans-serif; font-size: 18px; color: var(--gold-deep);
     margin: 26px 0 0; text-wrap: balance;
@@ -242,11 +242,11 @@
     position: absolute; width: 19%; text-align: center; cursor: default;
     left: calc(var(--x) * 1%); bottom: calc(var(--y) * 1%); transform: translateX(-50%);
   }
-  .metodo-paso:nth-child(1) { --x: 10; --y: 4; --m: #7a3b2e; }
-  .metodo-paso:nth-child(2) { --x: 30; --y: 22; --m: #2f4a33; }
-  .metodo-paso:nth-child(3) { --x: 50; --y: 40; --m: #1f3a42; }
-  .metodo-paso:nth-child(4) { --x: 70; --y: 56; --m: #8a3e1f; }
-  .metodo-paso:nth-child(5) { --x: 90; --y: 66; --m: #5c2a4a; }
+  .metodo-paso:nth-child(1) { --x: 10; --y: 4; --m: var(--navy-deep); }
+  .metodo-paso:nth-child(2) { --x: 30; --y: 22; --m: var(--navy-deep); }
+  .metodo-paso:nth-child(3) { --x: 50; --y: 40; --m: var(--navy-deep); }
+  .metodo-paso:nth-child(4) { --x: 70; --y: 56; --m: var(--navy-deep); }
+  .metodo-paso:nth-child(5) { --x: 90; --y: 66; --m: var(--navy-deep); }
   .metodo-inner { animation: metodo-flotar 3.2s ease-in-out infinite; }
   .metodo-paso:nth-child(1) .metodo-inner { animation-delay: 0s; }
   .metodo-paso:nth-child(2) .metodo-inner { animation-delay: 0.5s; }
@@ -399,15 +399,24 @@
 
   .btn-hero {
     display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(155deg, var(--navy), var(--navy-deep) 65%);
-    color: #fdfaf3; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 15.5px;
+    background: linear-gradient(155deg, #d4ac5c, var(--gold) 55%, var(--gold-deep));
+    color: #241f18; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 15.5px;
     padding: 17px 34px; border-radius: 999px; text-decoration: none;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.35), 0 16px 30px -8px rgba(31,58,66,0.6);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -3px 6px rgba(0,0,0,0.15), 0 10px 22px -6px rgba(138,108,44,0.6);
     transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
+    animation: btn-hero-pulso 2.4s ease-in-out infinite;
   }
   .btn-hero:hover {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -4px 8px rgba(0,0,0,0.35), 0 22px 36px -8px rgba(31,58,66,0.7);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -3px 6px rgba(0,0,0,0.15), 0 16px 28px -6px rgba(138,108,44,0.7);
+    animation-play-state: paused;
+  }
+  @keyframes btn-hero-pulso {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.045); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-hero { animation: none; }
   }
 
   .wa-float {
@@ -436,7 +445,7 @@
     <div class="wrap hero-layout">
       <div class="hero-text">
         <p class="eyebrow">Esto es para ti</p>
-        <h1>Entenderte es solo el comienzo. <em>Transformar</em> la forma en que te relacionas contigo, con los demás y con la vida.</h1>
+        <h1>Entenderte es solo el comienzo. <em>Te acompaño</em> a transformar la forma en que te relacionas contigo, con los demás y con la vida.</h1>
         <p class="dek">Te acompaño a comprender por qué actúas como actúas, por qué repites aquello que sabes que te hace daño y qué necesitas transformar para comenzar a relacionarte contigo y con los demás de una manera diferente.</p>
         <p class="dek" style="margin-top: 14px; font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
         <a class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
@@ -462,7 +471,7 @@
   <div class="pkg-single">
     <div class="btn-pair">
       <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/paquete-x3-consultas-terapeuticas-con-elizabet-garcia/" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones</a>
-      <a class="btn-pkg-navy" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Agenda tu sesión individual</a>
+      <a class="btn-pkg" href="https://mariaelenabadillo.com/tienda/sesion-de-consulta-terapeutica-con-elizabet-garcia/" target="_blank" rel="noopener">Agenda tu sesión individual</a>
     </div>
   </div>
 
@@ -518,14 +527,45 @@
           <p>Te acompaño con profundidad y humanidad — sin juzgarte, sin etiquetas, confrontándote con amor cuando hace falta.</p>
           <p class="quote-pull">"¿Qué hago con lo que sé de mí, y quién puede acompañarme mientras realmente lo transformo?"</p>
         </div>
-        <div class="constelacion">
-          <svg viewBox="-10 -20 480 300" role="img" aria-label="Lo que evitas, lo que repites, lo que callas, cómo te proteges, lo que racionalizas">
-            <path class="linea" d="M60,50 L280,30 L400,140 L240,220 L50,170 Z M60,50 L400,140 M280,30 L240,220"></path>
-            <g class="estrella" style="animation-delay:0s"><circle class="halo" cx="60" cy="50" r="20" style="animation-delay:0s"></circle><circle class="nucleo" cx="60" cy="50" r="6"></circle><text class="etiqueta" x="78" y="55">Lo que evitas</text></g>
-            <g class="estrella" style="animation-delay:0.5s"><circle class="halo" cx="280" cy="30" r="20" style="animation-delay:0.4s"></circle><circle class="nucleo" cx="280" cy="30" r="6"></circle><text class="etiqueta" x="280" y="10" text-anchor="middle">Lo que repites</text></g>
-            <g class="estrella" style="animation-delay:1s"><circle class="halo" cx="400" cy="140" r="20" style="animation-delay:0.8s"></circle><circle class="nucleo" cx="400" cy="140" r="6"></circle><text class="etiqueta" x="384" y="165" text-anchor="end">Lo que callas</text></g>
-            <g class="estrella" style="animation-delay:1.5s"><circle class="halo" cx="240" cy="220" r="20" style="animation-delay:1.2s"></circle><circle class="nucleo" cx="240" cy="220" r="6"></circle><text class="etiqueta" x="240" y="252" text-anchor="middle">Cómo te proteges</text></g>
-            <g class="estrella" style="animation-delay:2s"><circle class="halo" cx="50" cy="170" r="20" style="animation-delay:1.6s"></circle><circle class="nucleo" cx="50" cy="170" r="6"></circle><text class="etiqueta" x="68" y="175">Lo que racionalizas</text></g>
+        <div class="mapa-mental">
+          <svg viewBox="0 0 480 350" role="img" aria-label="Mapa mental: lo que evitas, lo que repites, lo que callas, cómo te proteges y lo que racionalizas, alrededor de lo que sucede dentro de ti">
+            <path class="rama" d="M240,160 L240,50 M240,160 L365,135 M240,160 L316,275 M240,160 L164,275 M240,160 L115,135"></path>
+
+            <g class="hub">
+              <circle cx="240" cy="160" r="44"></circle>
+              <g class="icono" transform="translate(228,148)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7l2.3 5-2.3 5-2.3-5z"></path></g>
+              <text class="etiqueta-hub" x="240" y="197" text-anchor="middle">Dentro de ti</text>
+            </g>
+
+            <g class="nodo">
+              <circle class="fondo" cx="240" cy="50" r="30"></circle>
+              <g class="icono" transform="translate(228,38)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.8-6 10-6 10 6 10 6-3.8 6-10 6-10-6-10-6z"></path><circle cx="12" cy="12" r="2.3"></circle><line x1="5" y1="5" x2="19" y2="19"></line></g>
+              <text class="etiqueta" x="240" y="16" text-anchor="middle">Lo que evitas</text>
+            </g>
+
+            <g class="nodo">
+              <circle class="fondo" cx="365" cy="135" r="30"></circle>
+              <g class="icono" transform="translate(353,123)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3 6.2"></path><path d="M4 12v5h5"></path></g>
+              <text class="etiqueta" x="365" y="101" text-anchor="middle">Lo que repites</text>
+            </g>
+
+            <g class="nodo">
+              <circle class="fondo" cx="316" cy="275" r="30"></circle>
+              <g class="icono" transform="translate(304,263)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v11H9l-5 4V4z"></path><line x1="6" y1="4" x2="20" y2="18"></line></g>
+              <text class="etiqueta" x="316" y="325" text-anchor="middle">Lo que callas</text>
+            </g>
+
+            <g class="nodo">
+              <circle class="fondo" cx="164" cy="275" r="30"></circle>
+              <g class="icono" transform="translate(152,263)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z"></path></g>
+              <text class="etiqueta" x="164" y="325" text-anchor="middle">Cómo te proteges</text>
+            </g>
+
+            <g class="nodo">
+              <circle class="fondo" cx="115" cy="135" r="30"></circle>
+              <g class="icono" transform="translate(103,123)" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><line x1="12" y1="2" x2="12" y2="5.2"></line><line x1="12" y1="18.8" x2="12" y2="22"></line><line x1="2" y1="12" x2="5.2" y2="12"></line><line x1="18.8" y1="12" x2="22" y2="12"></line><line x1="4.9" y1="4.9" x2="7.2" y2="7.2"></line><line x1="16.8" y1="16.8" x2="19.1" y2="19.1"></line><line x1="4.9" y1="19.1" x2="7.2" y2="16.8"></line><line x1="16.8" y1="7.2" x2="19.1" y2="4.9"></line></g>
+              <text class="etiqueta" x="115" y="101" text-anchor="middle">Lo que racionalizas</text>
+            </g>
           </svg>
         </div>
       </div>
@@ -539,7 +579,6 @@
           <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Mi metodología</p>
           <h2 class="tit" style="margin-bottom: 0;">Un proceso para comprenderte y comenzar a elegir diferente</h2>
         </div>
-        <div class="mirada-photo"><img src="eli-cuenco.jpg" alt="Elizabet García Duque con cuenco tibetano" style="width: 150px; object-position: 50% 65%;"></div>
       </div>
       <div class="metodo-camino">
         <svg class="metodo-curva" viewBox="0 0 100 100" preserveAspectRatio="none">
