@@ -155,6 +155,19 @@
   .bio-card p { font-size: 15.5px; margin: 0 0 14px; color: var(--text); }
   .bio-card p:last-child { margin-bottom: 0; }
   .bio-card b { color: var(--gold-deep); }
+  .bio-detalle { margin: 4px 0 16px; }
+  .bio-detalle summary {
+    cursor: pointer; list-style: none; font-weight: 700; font-size: 14.5px;
+    color: var(--gold-deep); display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 0;
+  }
+  .bio-detalle summary::-webkit-details-marker { display: none; }
+  .bio-detalle summary::after {
+    content: "▾"; font-size: 12px; transition: transform 0.2s ease; display: inline-block;
+  }
+  .bio-detalle[open] summary::after { transform: rotate(180deg); }
+  .bio-detalle summary:hover { color: var(--gold); }
+  .bio-detalle p:first-of-type { margin-top: 14px; }
   @media (max-width: 720px) {
     .bio-layout { flex-direction: column; align-items: center; text-align: center; }
     .bio-card { text-align: left; }
@@ -519,11 +532,14 @@
         <div class="bio-photo"><img src="elizabet-foto.jpg" alt="Elizabet García Duque, psicóloga clínica"></div>
         <div class="bio-card">
           <p><b>Psicóloga · Magíster en Psicología Clínica.</b></p>
-          <p>Formación complementaria en coaching, programación neurolingüística, arteterapia, crianza respetuosa, entre otras áreas.</p>
-          <p>Creo profundamente en la capacidad del ser humano de quitarse las capas que durante años ha confundido con su personalidad y volver a conectar con su esencia.</p>
-          <p>No creo que el sufrimiento tenga que convertirse en una forma habitual de vivir; existen caminos más amorosos para transitar la vida aun con todo lo que esta trae.</p>
-          <p>No idealizamos la vida. Aprendemos a vivirla con mayor ligereza y conexión.</p>
-          <p style="margin-bottom: 0;"><b>¡La terapia no busca convertirte en otra persona. Busca ayudarte a volver a ti!</b></p>
+          <details class="bio-detalle">
+            <summary>Conoce más de mi historia</summary>
+            <p>Formación complementaria en coaching, programación neurolingüística, arteterapia, crianza respetuosa, entre otras áreas.</p>
+            <p>Creo profundamente en la capacidad del ser humano de quitarse las capas que durante años ha confundido con su personalidad y volver a conectar con su esencia.</p>
+            <p>No creo que el sufrimiento tenga que convertirse en una forma habitual de vivir; existen caminos más amorosos para transitar la vida aun con todo lo que esta trae.</p>
+            <p>No idealizamos la vida. Aprendemos a vivirla con mayor ligereza y conexión.</p>
+            <p style="margin-bottom: 0;"><b>¡La terapia no busca convertirte en otra persona. Busca ayudarte a volver a ti!</b></p>
+          </details>
           <div class="creds">
             <span>Magíster en Psicología Clínica</span>
             <span>Diplomada en Neurolingüística y Coaching</span>
