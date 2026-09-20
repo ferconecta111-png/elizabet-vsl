@@ -449,6 +449,12 @@
       color: #fff; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 14px;
       padding: 15px 22px; border-radius: 999px; text-decoration: none;
       box-shadow: 0 12px 24px -8px rgba(184,150,79,0.6);
+      transition: opacity 0.25s ease;
+    }
+    /* JS la oculta mientras el botón del hero está a la vista (mismo destino,
+       no hace falta duplicarlo ahí) — si el JS no corre, se queda visible
+       siempre, que es el comportamiento original y seguro. */
+    .btn-empezar-movil.oculto-por-hero { opacity: 0; pointer-events: none;
     }
   }
 
@@ -482,7 +488,7 @@
         <h1>Entenderte es solo el comienzo.<br><em>Te&nbsp;acompaño</em> a transformar la forma en que te relacionas contigo, con los demás y con la vida.</h1>
         <p class="dek">Comprenderemos juntos por qué actúas como actúas, por qué repites lo que te hace daño y qué necesitas transformar para relacionarte diferente contigo y con los demás.</p>
         <p class="dek" style="margin-top: 14px; font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
-        <a class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
+        <a id="btn-hero-cta" class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
       </div>
     </div>
   </header>
@@ -793,6 +799,21 @@
       box.removeAttribute('onclick');
       box.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1" title="Video de Elizabet" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     }
+
+    // Oculta el botón flotante "Quiero empezar" mientras el botón del hero
+    // (mismo destino) esté a la vista, para que no se encimen. Si algo falla
+    // aquí, el botón se queda visible siempre — comportamiento original.
+    (function () {
+      var flotante = document.querySelector('.btn-empezar-movil');
+      var heroBtn = document.getElementById('btn-hero-cta');
+      if (!flotante || !heroBtn || !('IntersectionObserver' in window)) return;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          flotante.classList.toggle('oculto-por-hero', entry.isIntersecting);
+        });
+      }, { rootMargin: "0px 0px -20% 0px" });
+      observer.observe(heroBtn);
+    })();
   </script>
 
 </body>
