@@ -504,8 +504,8 @@
 
   <div class="pkg-single" id="ofertas">
     <div class="btn-pair">
-      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones</a>
-      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" target="_blank" rel="noopener">Agenda tu sesión individual</a>
+      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones</a>
+      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" target="_blank" rel="noopener">Agenda tu sesión individual</a>
     </div>
     <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">El cobro se realiza en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
   </div>
@@ -744,8 +744,8 @@
   <div class="pkg-single pkg-single-dark">
     <p style="color: var(--gold-tint); font-size: 14px; margin: 0 0 16px;">¿Cómo puedo acompañarte? — Terapia individual: si quieres trabajar profundamente en tu historia, tus patrones, tus emociones y tus vínculos.</p>
     <div class="btn-pair">
-      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones</a>
-      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" target="_blank" rel="noopener">Agenda tu sesión individual</a>
+      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones</a>
+      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" target="_blank" rel="noopener">Agenda tu sesión individual</a>
     </div>
     <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">El cobro se realiza en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
   </div>
@@ -764,8 +764,8 @@
             </a>
             <div class="pkg-divider"><span>o agenda directo tu consulta</span></div>
             <div class="btn-pair">
-              <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_S262KTVW13" target="_blank" rel="noopener">Sesión individual</a>
-              <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" target="_blank" rel="noopener">Paquete x3 sesiones</a>
+              <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" target="_blank" rel="noopener">Sesión individual</a>
+              <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" target="_blank" rel="noopener">Paquete x3 sesiones</a>
             </div>
             <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">El cobro se realiza en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
             <p style="margin: 22px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85;">Volver a ti no significa volver a quien eras. Significa comenzar a encontrarte con quién eres y elegir desde ahí.</p>
@@ -789,6 +789,46 @@
       box.removeAttribute('onclick');
       box.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1" title="Video de Elizabet" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
     }
+  </script>
+
+  <script>
+    // Los links de pago de Bold son de un solo uso: se agotan apenas alguien
+    // paga. En vez de un link fijo en el botón, cada clic pide uno nuevo a
+    // panel-terapeutas (propio de Fernanda) y abre ese. Si por lo que sea la
+    // llamada falla, cae al link fijo del href (puede estar agotado, pero es
+    // mejor que no abrir nada) y avisa por si prefiere escribir por WhatsApp.
+    (function () {
+      var ENDPOINT = 'https://panel-terapeutas.vercel.app/api/public/bold-link';
+      document.querySelectorAll('[data-producto-bold]').forEach(function (btn) {
+        btn.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          if (btn.dataset.cargando === '1') return;
+          btn.dataset.cargando = '1';
+          var textoOriginal = btn.textContent;
+          btn.textContent = 'Preparando tu pago…';
+          fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ producto: btn.getAttribute('data-producto-bold') }),
+          })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data && data.url) {
+                window.open(data.url, '_blank', 'noopener');
+              } else {
+                throw new Error('sin url');
+              }
+            })
+            .catch(function () {
+              window.open(btn.getAttribute('href'), '_blank', 'noopener');
+            })
+            .finally(function () {
+              btn.textContent = textoOriginal;
+              btn.dataset.cargando = '0';
+            });
+        });
+      });
+    })();
   </script>
 
 </body>
