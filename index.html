@@ -56,9 +56,20 @@
     content: ""; position: absolute; top: -120px; right: -100px; width: 340px; height: 340px; border-radius: 50%;
     background: radial-gradient(circle, rgba(184,150,79,0.22), transparent 70%); pointer-events: none;
   }
-  .hero-layout { width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
-  @media (max-width: 860px) { .hero-layout { grid-template-columns: 1fr; gap: 32px; } }
-  .hero-photo-wrap { position: relative; display: flex; justify-content: center; padding-bottom: 22px; }
+  .hero-layout {
+    width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center;
+    grid-template-areas: "promesa foto" "detalle foto";
+  }
+  .hero-promesa { grid-area: promesa; }
+  .hero-detalle { grid-area: detalle; }
+  @media (max-width: 860px) {
+    .hero-layout {
+      grid-template-columns: 1fr; gap: 6px;
+      grid-template-areas: "promesa" "foto" "detalle";
+    }
+  }
+  .hero-photo-wrap { grid-area: foto; position: relative; display: flex; justify-content: center; padding-bottom: 22px; }
+  @media (max-width: 860px) { .hero-photo-wrap { padding-bottom: 4px; } }
   .hero-photo-wrap::before {
     content: ""; position: absolute; width: 340px; height: 340px; border-radius: 50%;
     background: radial-gradient(circle, rgba(184,150,79,0.28), rgba(63,100,112,0.16) 55%, transparent 72%);
@@ -513,15 +524,17 @@
 
   <header class="hero">
     <div class="wrap hero-layout">
-      <div class="hero-text">
+      <div class="hero-promesa">
         <h1>Entenderte es solo el comienzo.<br class="salto-desktop"> <em>Te&nbsp;acompaño</em> a mirarte con más calma y a relacionarte distinto contigo, con los demás y con la vida.</h1>
-        <p class="dek" style="font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
-        <a id="btn-hero-cta" class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
       </div>
       <div class="hero-photo-wrap">
         <div class="hero-photo-sombra"></div>
         <div class="hero-photo-asiento"></div>
         <img class="hero-photo" src="elizabeth-foto-hero.webp" alt="Elizabet García Duque">
+      </div>
+      <div class="hero-detalle">
+        <p class="dek" style="font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
+        <a id="btn-hero-cta" class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
       </div>
     </div>
   </header>
