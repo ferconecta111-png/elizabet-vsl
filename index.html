@@ -975,16 +975,19 @@
         btnContinuar.disabled = true;
         btnContinuar.textContent = 'Preparando tu pago…';
 
+        // Abrimos la pestaña YA (en el mismo clic) y la redirigimos cuando llegue
+        // el link. En móvil (Safari/Chrome), un window.open() después de esperar
+        // el fetch se bloquea por no ser "gesto directo del usuario" — por eso
+        // el botón no hacía nada en celular aunque en PC sí funcionaba.
+        var pestana = window.open('', '_blank', 'noopener');
+
         pedirLink(ENDPOINT_BOLD, { producto: productoActual, nombre: nombre, telefono: telefono })
           .then(function (data) {
-            if (data && data.url) {
-              window.open(data.url, '_blank', 'noopener');
-            } else {
-              window.open(hrefRespaldo, '_blank', 'noopener');
-            }
+            var url = (data && data.url) ? data.url : hrefRespaldo;
+            if (pestana) { pestana.location = url; } else { window.location.href = url; }
           })
           .catch(function () {
-            window.open(hrefRespaldo, '_blank', 'noopener');
+            if (pestana) { pestana.location = hrefRespaldo; } else { window.location.href = hrefRespaldo; }
           })
           .finally(function () {
             form.style.display = 'none';
