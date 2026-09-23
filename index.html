@@ -280,7 +280,7 @@
 
   /* MAPA MENTAL — rama sólida curva + nodo, cada par se resalta junto al
      pasar el mouse (movimiento interactivo real, no solo color). */
-  .mapa-mental { flex: 1; min-width: 0; display: flex; align-items: center; }
+  .mapa-mental { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .mapa-mental svg { width: 100%; height: auto; display: block; overflow: visible; }
   .mapa-mental .rama { stroke: var(--gold); stroke-width: 2.5; fill: none; opacity: 0.55; transition: stroke 0.25s, opacity 0.25s, stroke-width 0.25s; }
   .mapa-mental .hub rect { fill: var(--navy-deep); }
@@ -303,19 +303,10 @@
     .mapa-mental .nodo .etiqueta { font-size: 18px; }
     .mapa-mental .hub .etiqueta-hub { font-size: 17px; }
     .mapa-mental svg { transform: scale(1.15); margin: 14px 0; }
-    .mapa-mental .rama-nodo {
-      transform-box: view-box; transform-origin: 240px 160px;
-      animation: orbitar-suave 6s ease-in-out infinite;
-    }
-    .mapa-mental .nodo .icono, .mapa-mental .nodo .etiqueta {
-      transform-box: fill-box; transform-origin: center;
-      animation: contra-orbitar-suave 6s ease-in-out infinite;
-    }
   }
-  @keyframes orbitar-suave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } }
-  @keyframes contra-orbitar-suave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-10deg); } }
-  @media (prefers-reduced-motion: reduce) {
-    .mapa-mental .rama-nodo, .mapa-mental .nodo .icono, .mapa-mental .nodo .etiqueta { animation: none; }
+  .mapa-caption {
+    font-style: italic; font-family: "Fraunces", Georgia, serif; font-size: 13.5px; color: var(--gold-deep);
+    text-align: center; text-wrap: balance; margin: 10px auto 0; max-width: 32ch;
   }
   .quote-pull {
     font-style: italic; font-family: "Fraunces", Georgia, serif; font-size: 18px; color: var(--gold-deep);
@@ -649,7 +640,6 @@
           <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Mi mirada terapéutica</p>
           <h2 class="tit">En sesión no solo hablamos de lo que te pasa. Miramos qué sucede desde adentro.</h2>
           <p>Qué evitas, qué repites, qué callas, cómo te proteges y qué racionalizas para no sentir.</p>
-          <p class="quote-pull">"Saberlo todo de ti no es lo mismo que transformarlo. Por eso te acompaño mientras sucede, no después."</p>
         </div>
         <div class="mapa-mental">
           <svg viewBox="0 0 480 350" role="img" aria-label="Mapa mental: lo que evitas, lo que repites, lo que callas, cómo te proteges y lo que racionalizas, alrededor de lo que sucede dentro de ti">
@@ -703,6 +693,7 @@
               <text class="etiqueta-hub" x="240" y="165" text-anchor="middle">Dentro de ti</text>
             </g>
           </svg>
+          <p class="mapa-caption">"Saberlo todo de ti no es lo mismo que transformarlo. Por eso te acompaño mientras sucede, no después."</p>
         </div>
       </div>
     </div>
