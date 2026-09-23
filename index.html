@@ -791,42 +791,124 @@
     }
   </script>
 
+  <div id="modal-pago" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(45,33,41,.55); align-items:center; justify-content:center; padding:16px;">
+    <div style="background:#fffaf6; border-radius:16px; max-width:420px; width:100%; padding:28px 24px; position:relative; font-family:inherit;">
+      <button type="button" id="modal-pago-cerrar" aria-label="Cerrar" style="position:absolute; top:12px; right:14px; background:none; border:none; font-size:22px; line-height:1; cursor:pointer; color:#7a6a72;">&times;</button>
+      <h3 id="modal-pago-titulo" style="margin:0 0 6px 0; font-size:19px; color:#2d2129;">Antes de pagar</h3>
+      <p style="margin:0 0 16px 0; font-size:13.5px; color:#7a6a72;">Déjanos tu nombre y WhatsApp por si necesitamos contactarte sobre tu pago.</p>
+
+      <div id="modal-pago-form">
+        <label style="display:block; font-size:13px; color:#2d2129; margin-bottom:4px;">Nombre completo</label>
+        <input id="modal-pago-nombre" type="text" style="width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid #ecdfd8; border-radius:10px; margin-bottom:12px; font-size:15px;" />
+        <label style="display:block; font-size:13px; color:#2d2129; margin-bottom:4px;">WhatsApp (con código de país)</label>
+        <input id="modal-pago-telefono" type="tel" placeholder="+57 300 1234567" style="width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid #ecdfd8; border-radius:10px; margin-bottom:4px; font-size:15px;" />
+        <p id="modal-pago-error" style="display:none; color:#c1694a; font-size:12.5px; margin:4px 0 0 0;"></p>
+        <button type="button" id="modal-pago-continuar" style="width:100%; margin-top:16px; padding:12px; border:none; border-radius:10px; background:#c1694a; color:#fffaf6; font-weight:600; font-size:15px; cursor:pointer;">Continuar a pagar</button>
+      </div>
+
+      <div id="modal-pago-fallback" style="display:none;">
+        <p style="font-size:14px; color:#2d2129; margin:0 0 12px 0;">Se abrió una ventana nueva para pagar con tarjeta. Si tu banco la rechaza, no te preocupes:</p>
+        <button type="button" id="modal-pago-paypal" style="width:100%; padding:12px; border:1px solid #6b2f6e; border-radius:10px; background:#fff; color:#6b2f6e; font-weight:600; font-size:15px; cursor:pointer;">Pagar con PayPal en su lugar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Los links de pago de Bold son de un solo uso: se agotan apenas alguien
-    // paga. En vez de un link fijo en el botón, cada clic pide uno nuevo a
-    // panel-terapeutas (propio de Fernanda) y abre ese. Si por lo que sea la
-    // llamada falla, cae al link fijo del href (puede estar agotado, pero es
-    // mejor que no abrir nada) y avisa por si prefiere escribir por WhatsApp.
+    // paga. Cada clic pide uno nuevo a panel-terapeutas (propio de Fernanda).
+    // Antes de mandar a pagar, pedimos nombre+teléfono en un modal — así se
+    // tiene el contacto pase lo que pase con el pago (Bold no lo garantiza,
+    // PayPal tampoco siempre). Bold va primero siempre; si el banco lo
+    // rechaza, dejamos PayPal visible como respaldo sin que tengan que
+    // escribir sus datos otra vez (22-sep-2026).
     (function () {
-      var ENDPOINT = 'https://panel-terapeutas.vercel.app/api/public/bold-link';
+      var ENDPOINT_BOLD = 'https://panel-terapeutas.vercel.app/api/public/bold-link';
+      var ENDPOINT_PAYPAL = 'https://panel-terapeutas.vercel.app/api/public/paypal-link';
+
+      var modal = document.getElementById('modal-pago');
+      var form = document.getElementById('modal-pago-form');
+      var fallback = document.getElementById('modal-pago-fallback');
+      var inputNombre = document.getElementById('modal-pago-nombre');
+      var inputTelefono = document.getElementById('modal-pago-telefono');
+      var error = document.getElementById('modal-pago-error');
+      var btnContinuar = document.getElementById('modal-pago-continuar');
+      var btnPaypal = document.getElementById('modal-pago-paypal');
+      var btnCerrar = document.getElementById('modal-pago-cerrar');
+
+      var productoActual = null;
+      var hrefRespaldo = null;
+
+      function cerrarModal() {
+        modal.style.display = 'none';
+        form.style.display = 'block';
+        fallback.style.display = 'none';
+        error.style.display = 'none';
+        btnContinuar.disabled = false;
+        btnContinuar.textContent = 'Continuar a pagar';
+      }
+
+      function pedirLink(endpoint, datos) {
+        return fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datos),
+        }).then(function (res) { return res.json(); });
+      }
+
       document.querySelectorAll('[data-producto-bold]').forEach(function (btn) {
         btn.addEventListener('click', function (ev) {
           ev.preventDefault();
-          if (btn.dataset.cargando === '1') return;
-          btn.dataset.cargando = '1';
-          var textoOriginal = btn.textContent;
-          btn.textContent = 'Preparando tu pago…';
-          fetch(ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ producto: btn.getAttribute('data-producto-bold') }),
-          })
-            .then(function (res) { return res.json(); })
-            .then(function (data) {
-              if (data && data.url) {
-                window.open(data.url, '_blank', 'noopener');
-              } else {
-                throw new Error('sin url');
-              }
-            })
-            .catch(function () {
-              window.open(btn.getAttribute('href'), '_blank', 'noopener');
-            })
-            .finally(function () {
-              btn.textContent = textoOriginal;
-              btn.dataset.cargando = '0';
-            });
+          productoActual = btn.getAttribute('data-producto-bold');
+          hrefRespaldo = btn.getAttribute('href');
+          modal.style.display = 'flex';
         });
+      });
+
+      btnCerrar.addEventListener('click', cerrarModal);
+      modal.addEventListener('click', function (ev) { if (ev.target === modal) cerrarModal(); });
+
+      btnContinuar.addEventListener('click', function () {
+        var nombre = inputNombre.value.trim();
+        var telefono = inputTelefono.value.trim();
+        if (!nombre || !telefono) {
+          error.textContent = 'Por favor completa tu nombre y WhatsApp.';
+          error.style.display = 'block';
+          return;
+        }
+        error.style.display = 'none';
+        btnContinuar.disabled = true;
+        btnContinuar.textContent = 'Preparando tu pago…';
+
+        pedirLink(ENDPOINT_BOLD, { producto: productoActual, nombre: nombre, telefono: telefono })
+          .then(function (data) {
+            if (data && data.url) {
+              window.open(data.url, '_blank', 'noopener');
+            } else {
+              window.open(hrefRespaldo, '_blank', 'noopener');
+            }
+          })
+          .catch(function () {
+            window.open(hrefRespaldo, '_blank', 'noopener');
+          })
+          .finally(function () {
+            form.style.display = 'none';
+            fallback.style.display = 'block';
+          });
+      });
+
+      btnPaypal.addEventListener('click', function () {
+        var nombre = inputNombre.value.trim();
+        var telefono = inputTelefono.value.trim();
+        btnPaypal.disabled = true;
+        btnPaypal.textContent = 'Preparando PayPal…';
+        pedirLink(ENDPOINT_PAYPAL, { producto: productoActual, nombre: nombre, telefono: telefono })
+          .then(function (data) {
+            if (data && data.url) window.location.href = data.url;
+          })
+          .finally(function () {
+            btnPaypal.disabled = false;
+            btnPaypal.textContent = 'Pagar con PayPal en su lugar';
+          });
       });
     })();
   </script>
