@@ -30,9 +30,11 @@
     line-height: 1.65; -webkit-font-smoothing: antialiased;
     position: relative; overflow-x: hidden;
   }
-  /* Grano sutil sobre toda la página — la textura que pediste, sin depender de imágenes externas */
+  /* Grano sutil sobre toda la página — la textura que pediste, sin depender de imágenes externas.
+     OJO: position:absolute a propósito, NO fixed — fixed + mix-blend-mode obligaba a repintar
+     toda la pantalla en cada frame de scroll en móvil (hallazgo real, 23-sep-2026: "la web patina"). */
   body::before {
-    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.05; mix-blend-mode: multiply;
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.05; mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   body > * { position: relative; z-index: 1; }
@@ -530,7 +532,7 @@
       <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Quién te acompaña</p>
       <h2 class="tit">Soy Elizabet García Duque</h2>
       <div class="bio-layout">
-        <div class="bio-photo"><img src="elizabet-foto.jpg" alt="Elizabet García Duque, psicóloga clínica"></div>
+        <div class="bio-photo"><img loading="lazy" src="elizabet-foto.jpg" alt="Elizabet García Duque, psicóloga clínica"></div>
         <div class="bio-card">
           <p><b>Psicóloga · Magíster en Psicología Clínica.</b></p>
           <details class="bio-detalle">
@@ -683,7 +685,7 @@
           <p>Puedes preguntarle a una IA o leer libros — y aun así seguir actuando igual. Aquí no solo descubrimos información: observamos cómo funciona en tu vida real.</p>
           <p class="punch-line">Ahí empieza la verdadera transformación.</p>
         </div>
-        <div class="mirada-photo foto-integrada"><img src="eli-namaste.jpg" alt="Elizabet García Duque en calma"></div>
+        <div class="mirada-photo foto-integrada"><img loading="lazy" src="eli-namaste.jpg" alt="Elizabet García Duque en calma"></div>
       </div>
     </div>
   </section>
@@ -729,17 +731,17 @@
     </div>
     <div class="marquee">
       <div class="marquee-track">
-        <div class="testi"><img class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz"><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
-        <div class="testi"><img class="testi-photo" src="testi-isabela-villa.jpg" alt="Isabela Villa"><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
-        <div class="testi"><img class="testi-photo" src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga"><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
-        <div class="testi"><img class="testi-photo" src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios"><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
+        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz"><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
+        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-isabela-villa.jpg" alt="Isabela Villa"><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
+        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga"><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
+        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios"><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
         <div class="testi"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
         <div class="testi"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
         <!-- duplicado para el loop infinito -->
-        <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt=""><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
-        <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-isabela-villa.jpg" alt=""><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
-        <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-maricela-arteaga.jpg" alt=""><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
-        <div class="testi" aria-hidden="true"><img class="testi-photo" src="testi-alexandra-barrios.jpg" alt=""><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
+        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt=""><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
+        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-isabela-villa.jpg" alt=""><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
+        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-maricela-arteaga.jpg" alt=""><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
+        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-alexandra-barrios.jpg" alt=""><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
         <div class="testi" aria-hidden="true"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
         <div class="testi" aria-hidden="true"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
       </div>
@@ -759,7 +761,7 @@
     <div class="wrap">
       <div class="cta-block">
         <div class="cta-flex">
-          <img class="cta-photo" src="eli-dienteleon.jpg" alt="Soltar para transformar">
+          <img loading="lazy" class="cta-photo" src="eli-dienteleon.jpg" alt="Soltar para transformar">
           <div class="cta-content">
             <h2>¿Qué vas a hacer diferente con todo lo que ya sabes?</h2>
             <p>No tienes que hacerlo sola/o. Podemos empezar a trabajar en ello — escríbeme directo, te hago un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión, a tu ritmo.</p>
