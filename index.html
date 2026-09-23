@@ -332,64 +332,57 @@
   }
 
   /* METODOLOGÍA — 5 pasos en fila numerada, conectados por flechas */
-  .metodo-camino { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 4px; margin-top: 48px; }
-  .metodo-paso { flex: 0 1 158px; text-align: center; cursor: default; padding: 0 4px; }
-  .metodo-flecha { flex: 0 0 auto; display: flex; align-items: center; height: 60px; color: rgba(255,255,255,0.45); }
-  .metodo-flecha svg { width: 22px; height: 22px; }
-  .metodo-num {
-    position: relative; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%;
-    background: #fff; color: var(--navy-deep); margin: 0 auto 14px;
-    border: 3px solid var(--navy-deep); box-shadow: 0 8px 18px rgba(0,0,0,0.18);
-    transition: background 0.28s, color 0.28s, transform 0.32s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s;
+  .metodo-camino { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 32px; }
+  .metodo-paso:nth-child(5) { grid-column: 1 / -1; max-width: 260px; margin: 0 auto; width: 100%; }
+  .metodo-paso {
+    background: rgba(255,255,255,0.08); border-radius: 16px; padding: 4px 0; border: 1px solid rgba(255,255,255,0.14);
   }
-  .metodo-num svg { width: 24px; height: 24px; }
+  .metodo-summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; gap: 14px; padding: 12px 16px;
+  }
+  .metodo-summary::-webkit-details-marker { display: none; }
+  .metodo-num {
+    position: relative; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%;
+    background: #fff; color: var(--navy-deep); flex-shrink: 0;
+    border: 3px solid var(--navy-deep); box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+  }
+  .metodo-num svg { width: 20px; height: 20px; }
   .metodo-badge {
-    position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; border-radius: 50%;
-    background: var(--navy-deep); color: #fff5e4; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 11px;
+    position: absolute; top: -4px; right: -4px; width: 19px; height: 19px; border-radius: 50%;
+    background: var(--navy-deep); color: #fff5e4; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 10px;
     display: flex; align-items: center; justify-content: center; border: 2px solid var(--gold-deep);
   }
-  .metodo-paso h3 { font-size: 15px; margin-bottom: 6px; color: #fff; }
-  .metodo-paso p { font-size: 12.5px; opacity: 0.92; margin: 0; line-height: 1.4; }
-  .metodo-paso:hover .metodo-num {
-    background: var(--navy-deep); color: #fff;
-    transform: translateY(-4px) scale(1.08); box-shadow: 0 14px 26px -4px rgba(0,0,0,0.4);
+  .metodo-paso h3 { font-size: 15px; margin: 0; color: #fff; flex: 1; }
+  .metodo-summary::after {
+    content: "▾"; font-size: 12px; color: rgba(255,255,255,0.7); flex: none; transition: transform 0.2s ease;
   }
-  .metodo-paso:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
-  @media (max-width: 900px) and (min-width: 721px) {
-    .metodo-flecha { display: none; }
-    .metodo-paso { flex: 1 1 40%; }
-  }
-  /* Móvil: fila compacta (ícono a la izquierda, texto a la derecha) en vez
-     de ícono-arriba-texto-abajo — 5 pasos apilados así hacían un scroll
-     larguísimo. */
-  @media (max-width: 720px) {
-    .metodo-camino { flex-direction: column; gap: 14px; margin-top: 28px; }
-    .metodo-flecha { display: none; }
-    .metodo-paso {
-      flex: 1 1 100%; display: flex; align-items: center; gap: 14px;
-      text-align: left; padding: 0;
-    }
-    .metodo-num { margin: 0; width: 48px; height: 48px; flex-shrink: 0; }
-    .metodo-num svg { width: 20px; height: 20px; }
-    .metodo-badge { width: 19px; height: 19px; font-size: 10px; }
-    .metodo-paso h3 { margin-bottom: 2px; }
-    .metodo-paso p { font-size: 12px; }
+  .metodo-paso[open] .metodo-summary::after { transform: rotate(180deg); }
+  .metodo-paso p { font-size: 12.5px; opacity: 0.92; margin: 0; line-height: 1.4; padding: 0 16px 14px 78px; }
+  @media (max-width: 480px) {
+    .metodo-camino { grid-template-columns: 1fr; }
+    .metodo-paso:nth-child(5) { max-width: none; }
   }
 
   /* SERVICIOS — sobre banda petróleo clara (antes era verde, ya quitado) */
   .servicios { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 4px; }
   @media (max-width: 640px) { .servicios { grid-template-columns: 1fr; } }
   .servicios li {
-    list-style: none; background: var(--cream); border-radius: 14px; padding: 16px 18px; font-size: 14.5px;
-    font-weight: 600; color: var(--navy-deep); cursor: default;
+    list-style: none; background: var(--cream); border-radius: 14px; font-size: 14.5px;
+    font-weight: 600; color: var(--navy-deep);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(31,58,66,0.08), 0 14px 26px rgba(31,58,66,0.16);
-    transition: background 0.18s, color 0.18s, transform 0.18s;
   }
-  .servicios li:hover {
-    background: linear-gradient(155deg, var(--gold), var(--gold-deep)); color: #fff; transform: translateY(-2px);
+  .servicios summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px;
+    padding: 16px 18px; transition: color 0.18s;
   }
-  .servicios li strong { display: block; font-size: 15.5px; margin-bottom: 6px; }
-  .servicios li span.topics { display: block; font-weight: 500; font-size: 13px; line-height: 1.5; opacity: 0.85; }
+  .servicios summary::-webkit-details-marker { display: none; }
+  .servicios summary strong { display: block; font-size: 15.5px; flex: 1; }
+  .servicios summary::after {
+    content: "▾"; font-size: 12px; color: var(--gold-deep); flex: none; transition: transform 0.2s ease;
+  }
+  .servicios details[open] summary::after { transform: rotate(180deg); }
+  .servicios summary:hover strong { color: var(--gold-deep); }
+  .servicios li span.topics { display: block; font-weight: 500; font-size: 13px; line-height: 1.5; opacity: 0.85; padding: 0 18px 16px; }
 
   /* TESTIMONIOS — banda oscura de contraste fuerte, carrusel automático */
   .band.dark { background: var(--navy-deep); color: #fbf7ee; padding-bottom: 44px; }
@@ -704,49 +697,59 @@
       <div class="mirada-flex" style="align-items: center;">
         <div class="txt">
           <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Mi metodología</p>
-          <h2 class="tit" style="margin-bottom: 0;">Un proceso para comprenderte y comenzar a elegir diferente</h2>
         </div>
       </div>
       <div class="metodo-camino">
-        <div class="metodo-paso">
-          <span class="metodo-num">
-            <span class="metodo-badge">01</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
-          </span>
-          <h3>Reconocer</h3><p>Identificar lo que ocurre dentro de ti y comenzar a ponerle nombre.</p>
-        </div>
-        <div class="metodo-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
-        <div class="metodo-paso">
-          <span class="metodo-num">
-            <span class="metodo-badge">02</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></svg>
-          </span>
-          <h3>Comprender</h3><p>Entender de dónde vienen tus patrones, qué los activa y qué función han cumplido en tu historia.</p>
-        </div>
-        <div class="metodo-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
-        <div class="metodo-paso">
-          <span class="metodo-num">
-            <span class="metodo-badge">03</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-9C1 7.5 2.5 4 6 4c2 0 3.5 1.2 4 2.5C10.5 5.2 12 4 14 4c3.5 0 5 3.5 3.5 7-2.5 4.65-9.5 9-9.5 9z"/></svg>
-          </span>
-          <h3>Regular</h3><p>Aprender a acompañarte emocionalmente en lugar de actuar desde el miedo, la culpa o la ansiedad.</p>
-        </div>
-        <div class="metodo-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
-        <div class="metodo-paso">
-          <span class="metodo-num">
-            <span class="metodo-badge">04</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4"/><path d="M20 20v-5h-5"/></svg>
-          </span>
-          <h3>Transformar</h3><p>Practicar nuevas formas de responder, relacionarte y cuidarte.</p>
-        </div>
-        <div class="metodo-flecha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
-        <div class="metodo-paso">
-          <span class="metodo-num">
-            <span class="metodo-badge">05</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-          </span>
-          <h3>Elegir</h3><p>Dejar de vivir únicamente desde patrones aprendidos y tomar decisiones más conscientes y coherentes contigo.</p>
-        </div>
+        <details class="metodo-paso">
+          <summary class="metodo-summary">
+            <span class="metodo-num">
+              <span class="metodo-badge">01</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
+            </span>
+            <h3>Reconocer</h3>
+          </summary>
+          <p>Identificar lo que ocurre dentro de ti y comenzar a ponerle nombre.</p>
+        </details>
+        <details class="metodo-paso">
+          <summary class="metodo-summary">
+            <span class="metodo-num">
+              <span class="metodo-badge">02</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3z"/></svg>
+            </span>
+            <h3>Comprender</h3>
+          </summary>
+          <p>Entender de dónde vienen tus patrones, qué los activa y qué función han cumplido en tu historia.</p>
+        </details>
+        <details class="metodo-paso">
+          <summary class="metodo-summary">
+            <span class="metodo-num">
+              <span class="metodo-badge">03</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-9C1 7.5 2.5 4 6 4c2 0 3.5 1.2 4 2.5C10.5 5.2 12 4 14 4c3.5 0 5 3.5 3.5 7-2.5 4.65-9.5 9-9.5 9z"/></svg>
+            </span>
+            <h3>Regular</h3>
+          </summary>
+          <p>Aprender a acompañarte emocionalmente en lugar de actuar desde el miedo, la culpa o la ansiedad.</p>
+        </details>
+        <details class="metodo-paso">
+          <summary class="metodo-summary">
+            <span class="metodo-num">
+              <span class="metodo-badge">04</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4"/><path d="M20 20v-5h-5"/></svg>
+            </span>
+            <h3>Transformar</h3>
+          </summary>
+          <p>Practicar nuevas formas de responder, relacionarte y cuidarte.</p>
+        </details>
+        <details class="metodo-paso">
+          <summary class="metodo-summary">
+            <span class="metodo-num">
+              <span class="metodo-badge">05</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+            </span>
+            <h3>Elegir</h3>
+          </summary>
+          <p>Dejar de vivir únicamente desde patrones aprendidos y tomar decisiones más conscientes y coherentes contigo.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -773,12 +776,32 @@
   <section class="band tint-green">
     <div class="wrap">
       <p class="eyebrow-sm c-green"><span class="dash" style="background:var(--navy);"></span>Cómo te puede acompañar</p>
-      <h2 class="tit">¿Qué podemos trabajar juntos/as?</h2>
+      <h2 class="tit">Esto es lo que podemos empezar a mirar</h2>
       <ul class="servicios">
-        <li><strong>Tu relación contigo</strong><span class="topics">Autoestima · amor propio · culpa · vergüenza · hiperexigencia · autocrítica · dificultad para poner límites · dificultad para recibir · merecimiento · gestión emocional · regulación emocional · seguridad personal.</span></li>
-        <li><strong>Tus vínculos y relaciones</strong><span class="topics">Dependencia emocional · miedo al abandono · miedo al rechazo · apego · límites · confianza · vulnerabilidad · responsabilidad afectiva · comunicación · conflictos de pareja · patrones que se repiten en las relaciones.</span></li>
-        <li><strong>Los patrones que se repiten</strong><span class="topics">Heridas de infancia · experiencias de adolescencia · patrones familiares · formas aprendidas de protegerte · dificultad para confiar · necesidad de control · complacencia · evitación · autosabotaje · relaciones repetitivas · creencias aprendidas.</span></li>
-        <li><strong>Procesos que te están atravesando</strong><span class="topics">Ansiedad · depresión · duelo · crisis personales · cambios importantes · pérdida de sentido · propósito de vida · procesos de transición · dificultades para adaptarte a una nueva etapa.</span></li>
+        <li>
+          <details class="servicio-item">
+            <summary><strong>Tu relación contigo</strong></summary>
+            <span class="topics">Autoestima · amor propio · culpa · vergüenza · hiperexigencia · autocrítica · dificultad para poner límites · dificultad para recibir · merecimiento · gestión emocional · regulación emocional · seguridad personal.</span>
+          </details>
+        </li>
+        <li>
+          <details class="servicio-item">
+            <summary><strong>Tus vínculos y relaciones</strong></summary>
+            <span class="topics">Dependencia emocional · miedo al abandono · miedo al rechazo · apego · límites · confianza · vulnerabilidad · responsabilidad afectiva · comunicación · conflictos de pareja · patrones que se repiten en las relaciones.</span>
+          </details>
+        </li>
+        <li>
+          <details class="servicio-item">
+            <summary><strong>Los patrones que se repiten</strong></summary>
+            <span class="topics">Heridas de infancia · experiencias de adolescencia · patrones familiares · formas aprendidas de protegerte · dificultad para confiar · necesidad de control · complacencia · evitación · autosabotaje · relaciones repetitivas · creencias aprendidas.</span>
+          </details>
+        </li>
+        <li>
+          <details class="servicio-item">
+            <summary><strong>Procesos que te están atravesando</strong></summary>
+            <span class="topics">Ansiedad · depresión · duelo · crisis personales · cambios importantes · pérdida de sentido · propósito de vida · procesos de transición · dificultades para adaptarte a una nueva etapa.</span>
+          </details>
+        </li>
       </ul>
     </div>
   </section>
