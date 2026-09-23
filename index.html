@@ -476,6 +476,7 @@
     .eyebrow-sm { margin-bottom: 4px; }
   }
 </style>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAZpd92KU1g1-SpFxcsGqOQ3kZEXMa9KsrEHlYGjqNOT3bawLlhnJiY_4t2n0m-OFCfkVKBlKCev_QVTc&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 <body>
 
@@ -815,6 +816,7 @@
 
       <div id="modal-pago-fallback" style="display:none;">
         <p style="font-size:14px; color:#2d2129; margin:0 0 12px 0;">Se abrió una ventana nueva para pagar con tarjeta. Si tu banco la rechaza, no te preocupes:</p>
+        <div id="modal-pago-paypal-oficial" style="display:none;"></div>
         <button type="button" id="modal-pago-paypal" style="width:100%; padding:12px; border:1px solid #6b2f6e; border-radius:10px; background:#fff; color:#6b2f6e; font-weight:600; font-size:15px; cursor:pointer;">Pagar con PayPal en su lugar</button>
       </div>
     </div>
@@ -841,6 +843,16 @@
       var btnContinuar = document.getElementById('modal-pago-continuar');
       var btnPaypal = document.getElementById('modal-pago-paypal');
       var btnCerrar = document.getElementById('modal-pago-cerrar');
+      var contenedorOficial = document.getElementById('modal-pago-paypal-oficial');
+
+      // Botón oficial "Hosted Buttons" de PayPal (creado en su dashboard, un
+      // precio fijo por botón) — pedido de Fernanda, 23-sep-2026, para no
+      // depender de parámetros de la API que PayPal puede cambiar. Mientras
+      // no exista el de un producto, se usa el respaldo de siempre.
+      var HOSTED_BUTTONS = {
+        eli_paquete_x3: 'NDLWGPVH7HH98',
+      };
+      var botonOficialRenderizado = null;
 
       var productoActual = null;
       var hrefRespaldo = null;
@@ -852,6 +864,22 @@
         error.style.display = 'none';
         btnContinuar.disabled = false;
         btnContinuar.textContent = 'Continuar a pagar';
+      }
+
+      function mostrarOpcionPaypal() {
+        var hostedButtonId = HOSTED_BUTTONS[productoActual];
+        if (hostedButtonId && window.paypal && window.paypal.HostedButtons) {
+          btnPaypal.style.display = 'none';
+          contenedorOficial.style.display = 'block';
+          if (botonOficialRenderizado !== hostedButtonId) {
+            contenedorOficial.innerHTML = '';
+            window.paypal.HostedButtons({ hostedButtonId: hostedButtonId }).render('#modal-pago-paypal-oficial');
+            botonOficialRenderizado = hostedButtonId;
+          }
+        } else {
+          contenedorOficial.style.display = 'none';
+          btnPaypal.style.display = 'block';
+        }
       }
 
       function pedirLink(endpoint, datos) {
@@ -900,6 +928,7 @@
           .finally(function () {
             form.style.display = 'none';
             fallback.style.display = 'block';
+            mostrarOpcionPaypal();
           });
       });
 
