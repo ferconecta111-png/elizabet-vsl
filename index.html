@@ -76,11 +76,6 @@
   }
   .hero-photo-wrap { grid-area: foto; position: relative; display: flex; justify-content: center; padding-bottom: 22px; }
   @media (max-width: 860px) { .hero-photo-wrap { padding-bottom: 4px; } }
-  .hero-photo-wrap::before {
-    content: ""; position: absolute; width: 340px; height: 340px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(169,125,121,0.28), rgba(92,138,155,0.16) 55%, transparent 72%);
-    filter: blur(6px); z-index: 0;
-  }
   .hero-photo-asiento {
     position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
     width: 84%; height: 15%; min-height: 66px;
