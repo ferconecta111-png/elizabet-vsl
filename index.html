@@ -476,7 +476,6 @@
     .eyebrow-sm { margin-bottom: 4px; }
   }
 </style>
-<script src="https://www.paypal.com/sdk/js?client-id=BAAZpd92KU1g1-SpFxcsGqOQ3kZEXMa9KsrEHlYGjqNOT3bawLlhnJiY_4t2n0m-OFCfkVKBlKCev_QVTc&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 <body>
 
@@ -815,9 +814,8 @@
       </div>
 
       <div id="modal-pago-fallback" style="display:none;">
-        <p style="font-size:14px; color:#2d2129; margin:0 0 12px 0;">Se abrió una ventana nueva para pagar con tarjeta. Si tu banco la rechaza, no te preocupes:</p>
-        <div id="modal-pago-paypal-oficial" style="display:none;"></div>
-        <button type="button" id="modal-pago-paypal" style="width:100%; padding:12px; border:1px solid #6b2f6e; border-radius:10px; background:#fff; color:#6b2f6e; font-weight:600; font-size:15px; cursor:pointer;">Pagar con PayPal en su lugar</button>
+        <p style="font-size:14px; color:#2d2129; margin:0;">Se abrió una ventana nueva para pagar con tarjeta. Si tu banco la rechaza, escríbenos por WhatsApp y te ayudamos:</p>
+        <a href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20mi%20banco%20rechaz%C3%B3%20el%20pago%2C%20%C2%BFme%20ayudas%3F" target="_blank" rel="noopener" style="display:block; text-align:center; width:100%; box-sizing:border-box; margin-top:14px; padding:12px; border:1px solid #6b2f6e; border-radius:10px; background:#fff; color:#6b2f6e; font-weight:600; font-size:15px; text-decoration:none;">Escribir por WhatsApp</a>
       </div>
     </div>
   </div>
@@ -826,13 +824,10 @@
     // Los links de pago de Bold son de un solo uso: se agotan apenas alguien
     // paga. Cada clic pide uno nuevo a panel-terapeutas (propio de Fernanda).
     // Antes de mandar a pagar, pedimos nombre+teléfono en un modal — así se
-    // tiene el contacto pase lo que pase con el pago (Bold no lo garantiza,
-    // PayPal tampoco siempre). Bold va primero siempre; si el banco lo
-    // rechaza, dejamos PayPal visible como respaldo sin que tengan que
-    // escribir sus datos otra vez (22-sep-2026).
+    // tiene el contacto pase lo que pase con el pago. Solo Bold (23-sep-2026:
+    // se quitó el respaldo de PayPal — Fernanda reportó que no funcionaba).
     (function () {
       var ENDPOINT_BOLD = 'https://panel-terapeutas.vercel.app/api/public/bold-link';
-      var ENDPOINT_PAYPAL = 'https://panel-terapeutas.vercel.app/api/public/paypal-link';
 
       var modal = document.getElementById('modal-pago');
       var form = document.getElementById('modal-pago-form');
@@ -841,19 +836,7 @@
       var inputTelefono = document.getElementById('modal-pago-telefono');
       var error = document.getElementById('modal-pago-error');
       var btnContinuar = document.getElementById('modal-pago-continuar');
-      var btnPaypal = document.getElementById('modal-pago-paypal');
       var btnCerrar = document.getElementById('modal-pago-cerrar');
-      var contenedorOficial = document.getElementById('modal-pago-paypal-oficial');
-
-      // Botón oficial "Hosted Buttons" de PayPal (creado en su dashboard, un
-      // precio fijo por botón) — pedido de Fernanda, 23-sep-2026, para no
-      // depender de parámetros de la API que PayPal puede cambiar. Mientras
-      // no exista el de un producto, se usa el respaldo de siempre.
-      var HOSTED_BUTTONS = {
-        eli_paquete_x3: 'NDLWGPVH7HH98',
-        eli_individual: 'ZXDTN9RM8TPLN',
-      };
-      var botonOficialRenderizado = null;
 
       var productoActual = null;
       var hrefRespaldo = null;
@@ -865,22 +848,6 @@
         error.style.display = 'none';
         btnContinuar.disabled = false;
         btnContinuar.textContent = 'Continuar a pagar';
-      }
-
-      function mostrarOpcionPaypal() {
-        var hostedButtonId = HOSTED_BUTTONS[productoActual];
-        if (hostedButtonId && window.paypal && window.paypal.HostedButtons) {
-          btnPaypal.style.display = 'none';
-          contenedorOficial.style.display = 'block';
-          if (botonOficialRenderizado !== hostedButtonId) {
-            contenedorOficial.innerHTML = '';
-            window.paypal.HostedButtons({ hostedButtonId: hostedButtonId }).render('#modal-pago-paypal-oficial');
-            botonOficialRenderizado = hostedButtonId;
-          }
-        } else {
-          contenedorOficial.style.display = 'none';
-          btnPaypal.style.display = 'block';
-        }
       }
 
       function pedirLink(endpoint, datos) {
@@ -929,22 +896,6 @@
           .finally(function () {
             form.style.display = 'none';
             fallback.style.display = 'block';
-            mostrarOpcionPaypal();
-          });
-      });
-
-      btnPaypal.addEventListener('click', function () {
-        var nombre = inputNombre.value.trim();
-        var telefono = inputTelefono.value.trim();
-        btnPaypal.disabled = true;
-        btnPaypal.textContent = 'Preparando PayPal…';
-        pedirLink(ENDPOINT_PAYPAL, { producto: productoActual, nombre: nombre, telefono: telefono })
-          .then(function (data) {
-            if (data && data.url) window.location.href = data.url;
-          })
-          .finally(function () {
-            btnPaypal.disabled = false;
-            btnPaypal.textContent = 'Pagar con PayPal en su lugar';
           });
       });
     })();
