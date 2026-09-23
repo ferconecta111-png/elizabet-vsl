@@ -211,17 +211,17 @@
   .mov-detalle { margin: 0 0 14px; }
   .mov-detalle p { margin-top: 8px; }
   .mov-tit {
-    cursor: pointer; list-style: none; font-family: "Fraunces", Georgia, serif; font-size: 16.5px;
-    font-weight: 600; color: var(--gold-deep); display: flex; align-items: center; gap: 8px;
-    padding: 2px 0;
+    cursor: pointer; list-style: none; font-family: "Fraunces", Georgia, serif; font-size: 15px;
+    font-weight: 600; color: #fff; background: var(--navy-deep); display: flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 999px; transition: background 0.18s, color 0.18s, transform 0.18s;
   }
   .mov-tit::-webkit-details-marker { display: none; }
   .mov-tit::after {
-    content: "▾"; font-size: 13px; margin-left: auto; flex: none;
-    transition: transform 0.2s ease; display: inline-block; color: var(--gold);
+    content: "▾"; font-size: 12px; margin-left: auto; flex: none;
+    transition: transform 0.2s ease; display: inline-block;
   }
   .mov-detalle[open] .mov-tit::after { transform: rotate(180deg); }
-  .mov-tit:hover { color: var(--gold); }
+  .mov-tit:hover { background: linear-gradient(155deg, var(--gold), var(--gold-deep)); color: #241f18; transform: translateY(-2px); }
   .bio-detalle { margin: 4px 0 16px; }
   .bio-detalle summary {
     cursor: pointer; list-style: none; font-weight: 700; font-size: 14.5px;
@@ -239,13 +239,13 @@
     .bio-layout { flex-direction: column; align-items: center; text-align: center; }
     .bio-card { text-align: left; }
   }
-  .creds { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; }
+  .creds { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 20px 0 0; }
   .creds span {
-    font-size: 12.5px; background: var(--navy-deep); color: #fff; padding: 7px 14px; border-radius: 999px; font-weight: 600;
-    cursor: default; transition: background 0.18s, color 0.18s, transform 0.18s;
+    font-size: 13.5px; font-weight: 700; color: var(--navy-deep);
   }
-  .creds span:hover {
-    background: linear-gradient(155deg, var(--gold), var(--gold-deep)); color: #241f18; transform: translateY(-2px);
+  .creds span:nth-child(even) { color: var(--gold-deep); }
+  .creds span:not(:last-child)::after {
+    content: "·"; margin-left: 12px; color: var(--text-faint); font-weight: 400;
   }
 
   /* VIDEOS DE AUTORIDAD (YouTube) — carrusel automático, mismo patrón que testimonios */
