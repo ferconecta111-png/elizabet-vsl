@@ -56,7 +56,39 @@
     content: ""; position: absolute; top: -120px; right: -100px; width: 340px; height: 340px; border-radius: 50%;
     background: radial-gradient(circle, rgba(184,150,79,0.22), transparent 70%); pointer-events: none;
   }
-  .hero-layout { width: 100%; }
+  .hero-layout { width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+  @media (max-width: 860px) { .hero-layout { grid-template-columns: 1fr; gap: 32px; } }
+  .hero-photo-wrap { position: relative; display: flex; justify-content: center; padding-bottom: 22px; }
+  .hero-photo-wrap::before {
+    content: ""; position: absolute; width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,150,79,0.28), rgba(63,100,112,0.16) 55%, transparent 72%);
+    filter: blur(6px); z-index: 0;
+  }
+  .hero-photo-asiento {
+    position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+    width: 60%; height: 19%; min-height: 78px;
+    background: linear-gradient(160deg, rgba(184,150,79,0.9), rgba(63,100,112,0.92) 130%);
+    border-radius: 50%; filter: blur(2px);
+    box-shadow: 0 18px 30px -12px rgba(31,58,66,0.4);
+    z-index: 0;
+  }
+  .hero-photo-sombra {
+    position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+    width: 58%; height: 24px;
+    background: radial-gradient(closest-side, rgba(31,58,66,0.34), transparent 75%);
+    filter: blur(2px); z-index: 0;
+  }
+  .hero-photo {
+    width: min(400px, 86vw); height: auto; object-fit: contain;
+    filter: drop-shadow(0 26px 40px rgba(31,58,66,0.28));
+    position: relative; z-index: 1; display: block;
+  }
+  @media (max-width: 640px) {
+    .hero-photo { width: min(230px, 58vw); }
+    .hero-photo-wrap::before { width: 200px; height: 200px; }
+    .hero-photo-asiento { bottom: 16px; height: 15%; min-height: 46px; }
+    .hero-photo-sombra { height: 16px; }
+  }
   .hero .eyebrow {
     display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 22px;
@@ -485,6 +517,11 @@
         <h1>Entenderte es solo el comienzo.<br class="salto-desktop"> <em>Te&nbsp;acompaño</em> a transformar la forma en que te relacionas contigo, con los demás y con la vida.</h1>
         <p class="dek" style="font-weight: 600; color: var(--navy-deep);">Que tu historia lo explique no significa que tengas que seguir repitiéndola.</p>
         <a id="btn-hero-cta" class="btn-hero" style="margin-top: 28px;" href="#video">Quiero comenzar mi proceso</a>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-sombra"></div>
+        <div class="hero-photo-asiento"></div>
+        <img class="hero-photo" src="elizabeth-foto-hero.webp" alt="Elizabet García Duque">
       </div>
     </div>
   </header>
