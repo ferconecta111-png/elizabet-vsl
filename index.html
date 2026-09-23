@@ -16,10 +16,10 @@
     --navy-deep: #3c6e75;
     --navy-soft: #d9eeec;
     --navy-tint: #eef8f7;
-    --gold: #c17f92;
-    --gold-deep: #9c5c6e;
-    --gold-tint: #f6e6ea;
-    --gold-title: #ad6b7e;
+    --gold: #4a8a87;
+    --gold-deep: #2c4f54;
+    --gold-tint: #e3f1f0;
+    --gold-title: #3c6e75;
     --cream: #fdfaf3;
   }
   * { box-sizing: border-box; }
@@ -60,7 +60,7 @@
   @media (max-width: 640px) { .hero { padding: 36px 0 28px; } }
   .hero::after {
     content: ""; position: absolute; top: -120px; right: -100px; width: 340px; height: 340px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(184,150,79,0.22), transparent 70%); pointer-events: none;
+    background: radial-gradient(circle, rgba(74,138,135,0.22), transparent 70%); pointer-events: none;
   }
   .hero-layout {
     width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center;
@@ -78,26 +78,26 @@
   @media (max-width: 860px) { .hero-photo-wrap { padding-bottom: 4px; } }
   .hero-photo-wrap::before {
     content: ""; position: absolute; width: 340px; height: 340px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(184,150,79,0.28), rgba(63,100,112,0.16) 55%, transparent 72%);
+    background: radial-gradient(circle, rgba(74,138,135,0.28), rgba(88,161,158,0.16) 55%, transparent 72%);
     filter: blur(6px); z-index: 0;
   }
   .hero-photo-asiento {
     position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
     width: 84%; height: 15%; min-height: 66px;
-    background: linear-gradient(160deg, rgba(184,150,79,0.55), rgba(63,100,112,0.55) 130%);
+    background: linear-gradient(160deg, rgba(74,138,135,0.55), rgba(88,161,158,0.55) 130%);
     border-radius: 50%; filter: blur(1.5px);
-    box-shadow: 0 18px 30px -12px rgba(31,58,66,0.45);
+    box-shadow: 0 18px 30px -12px rgba(44,79,84,0.45);
     z-index: 0;
   }
   .hero-photo-sombra {
     position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%);
     width: 74%; height: 30px;
-    background: radial-gradient(closest-side, rgba(31,58,66,0.4), transparent 75%);
+    background: radial-gradient(closest-side, rgba(44,79,84,0.4), transparent 75%);
     filter: blur(2px); z-index: 0;
   }
   .hero-photo {
     width: min(460px, 88vw); height: auto; object-fit: contain;
-    filter: drop-shadow(0 26px 40px rgba(31,58,66,0.28));
+    filter: drop-shadow(0 26px 40px rgba(44,79,84,0.28));
     position: relative; z-index: 1; display: block;
   }
   @media (max-width: 640px) {
@@ -127,8 +127,8 @@
   }
   .hero-chips li {
     font-size: 13px; font-weight: 600; color: var(--navy-deep); background: rgba(255,255,255,0.65);
-    border: 1px solid rgba(63,100,112,0.18); padding: 8px 16px; border-radius: 999px;
-    box-shadow: 0 2px 6px rgba(31,58,66,0.06);
+    border: 1px solid rgba(88,161,158,0.18); padding: 8px 16px; border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(44,79,84,0.06);
   }
 
   /* VIDEO */
@@ -139,14 +139,14 @@
   .video-glow::before {
     content: ""; position: absolute; inset: 0; z-index: 0; border-radius: 40px;
     background:
-      radial-gradient(closest-side, rgba(184,150,79,0.75), transparent 72%) 50% 50% / 78% 78% no-repeat,
-      radial-gradient(closest-side, rgba(63,100,112,0.22), transparent 70%) 86% 80% / 46% 46% no-repeat;
+      radial-gradient(closest-side, rgba(74,138,135,0.75), transparent 72%) 50% 50% / 78% 78% no-repeat,
+      radial-gradient(closest-side, rgba(88,161,158,0.22), transparent 70%) 86% 80% / 46% 46% no-repeat;
     filter: blur(30px);
   }
   .video-frame {
     position: relative; z-index: 1;
     aspect-ratio: 16/9; background: #000; border-radius: 20px;
-    box-shadow: 0 0 1px rgba(31,58,66,0.1), 0 18px 40px rgba(31,58,66,0.22);
+    box-shadow: 0 0 1px rgba(44,79,84,0.1), 0 18px 40px rgba(44,79,84,0.22);
     overflow: hidden; border: 5px solid var(--gold);
   }
   .video-frame video { display: block; width: 100%; height: 100%; object-fit: contain; }
@@ -164,7 +164,7 @@
     background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
     bottom: -220px; right: -140px;
   }
-  .band.dark::after { background: radial-gradient(circle, rgba(184,150,79,0.14), transparent 70%); }
+  .band.dark::after { background: radial-gradient(circle, rgba(74,138,135,0.14), transparent 70%); }
   .band.tint-gold::after { background: radial-gradient(circle, rgba(0,0,0,0.1), transparent 70%); }
 
   .eyebrow-sm {
@@ -183,7 +183,7 @@
   .para-lista li {
     display: flex; gap: 14px; align-items: flex-start; padding: 18px 22px; font-size: 15.5px;
     background: var(--cream); border-radius: 14px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(31,58,66,0.08), 0 18px 30px rgba(31,58,66,0.18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(44,79,84,0.08), 0 18px 30px rgba(44,79,84,0.18);
   }
   @media (max-width: 480px) { .para-lista li { padding: 14px 16px; font-size: 14.5px; } }
   .para-lista .check {
@@ -252,7 +252,7 @@
   .video-track { margin-top: 4px; animation-duration: 30s; }
   .video-mini {
     position: relative; flex: 0 0 360px; width: 360px; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; background: #000 center/cover no-repeat;
-    box-shadow: 0 2px 4px rgba(31,58,66,0.1), 0 18px 32px rgba(31,58,66,0.2); border: 4px solid var(--cream);
+    box-shadow: 0 2px 4px rgba(44,79,84,0.1), 0 18px 32px rgba(44,79,84,0.2); border: 4px solid var(--cream);
     cursor: pointer;
   }
   @media (max-width: 480px) { .video-mini { flex-basis: 260px; width: 260px; } }
@@ -274,7 +274,7 @@
   .keyword-cloud { flex: 1; display: flex; flex-wrap: wrap; gap: 10px; align-content: center; }
   .keyword-cloud span {
     font-size: 13.5px; font-weight: 700; padding: 10px 18px; border-radius: 999px;
-    background: rgba(255,255,255,0.6); border: 1px solid rgba(63,100,112,0.18); color: var(--navy-deep);
+    background: rgba(255,255,255,0.6); border: 1px solid rgba(88,161,158,0.18); color: var(--navy-deep);
   }
   .band.tint-navy .keyword-cloud span { background: rgba(255,255,255,0.55); }
 
@@ -369,7 +369,7 @@
   .servicios li {
     list-style: none; background: var(--cream); border-radius: 14px; font-size: 14.5px;
     font-weight: 600; color: var(--navy-deep);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(31,58,66,0.08), 0 14px 26px rgba(31,58,66,0.16);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 4px rgba(44,79,84,0.08), 0 14px 26px rgba(44,79,84,0.16);
   }
   .servicios summary {
     cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px;
@@ -407,7 +407,7 @@
   @media (max-width: 480px) { .testi { flex-basis: 270px; width: 270px; padding: 18px 16px; } }
   .testi-photo {
     flex: none; width: 46px; height: 46px; border-radius: 50%; object-fit: cover;
-    border: 2px solid rgba(184,150,79,0.6);
+    border: 2px solid rgba(74,138,135,0.6);
   }
   .testi-initials {
     flex: none; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -443,9 +443,9 @@
     display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #fff;
     font-family: "Manrope", sans-serif; font-weight: 800; letter-spacing: 0.02em;
     font-size: 15.5px; padding: 17px 34px; border-radius: 999px; text-decoration: none;
-    transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 12px 24px -8px rgba(184,150,79,0.6);
+    transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 12px 24px -8px rgba(74,138,135,0.6);
   }
-  .btn-wa:hover { transform: translateY(-2px); background: #cba85d; }
+  .btn-wa:hover { transform: translateY(-2px); background: #6bb0ad; }
   @media (max-width: 400px) { .btn-wa { font-size: 14px; padding: 15px 22px; } }
 
   /* Botones de agendamiento a paquetes (Maria Elena Badillo tienda) */
@@ -453,7 +453,7 @@
   .pkg-single-dark { background: var(--navy-deep); padding: 34px 0; }
   .btn-pkg {
     display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(155deg, #d4ac5c, var(--gold) 55%, var(--gold-deep));
+    background: linear-gradient(155deg, #6bb0ad, var(--gold) 55%, var(--gold-deep));
     color: #fff; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 14.5px; padding: 14px 28px;
     border-radius: 999px; text-decoration: none;
     transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
@@ -478,13 +478,13 @@
     color: #fdfaf3; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 14.5px; padding: 14px 28px;
     border-radius: 999px; text-decoration: none;
     transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -3px 6px rgba(0,0,0,0.3), 0 10px 22px -6px rgba(31,58,66,0.55);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -3px 6px rgba(0,0,0,0.3), 0 10px 22px -6px rgba(44,79,84,0.55);
   }
-  .btn-pkg-navy:hover { transform: translateY(-3px) scale(1.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -3px 6px rgba(0,0,0,0.3), 0 16px 28px -6px rgba(31,58,66,0.65); }
+  .btn-pkg-navy:hover { transform: translateY(-3px) scale(1.06); box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -3px 6px rgba(0,0,0,0.3), 0 16px 28px -6px rgba(44,79,84,0.65); }
 
   .btn-hero {
     display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(155deg, #d4ac5c, var(--gold) 55%, var(--gold-deep));
+    background: linear-gradient(155deg, #6bb0ad, var(--gold) 55%, var(--gold-deep));
     color: #fff; font-family: "Manrope", sans-serif; font-weight: 800; font-size: 15.5px;
     padding: 17px 34px; border-radius: 999px; text-decoration: none;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -3px 6px rgba(0,0,0,0.15), 0 10px 22px -6px rgba(138,108,44,0.6);
@@ -881,23 +881,23 @@
   </script>
 
   <div id="modal-pago" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(45,33,41,.55); align-items:center; justify-content:center; padding:16px;">
-    <div style="background:#fffaf6; border-radius:16px; max-width:420px; width:100%; padding:28px 24px; position:relative; font-family:inherit;">
-      <button type="button" id="modal-pago-cerrar" aria-label="Cerrar" style="position:absolute; top:12px; right:14px; background:none; border:none; font-size:22px; line-height:1; cursor:pointer; color:#7a6a72;">&times;</button>
-      <h3 id="modal-pago-titulo" style="margin:0 0 6px 0; font-size:19px; color:#2d2129;">Antes de pagar</h3>
-      <p style="margin:0 0 16px 0; font-size:13.5px; color:#7a6a72;">Déjanos tu nombre y WhatsApp por si necesitamos contactarte sobre tu pago.</p>
+    <div style="background:var(--cream); border-radius:16px; max-width:420px; width:100%; padding:28px 24px; position:relative; font-family:inherit;">
+      <button type="button" id="modal-pago-cerrar" aria-label="Cerrar" style="position:absolute; top:12px; right:14px; background:none; border:none; font-size:22px; line-height:1; cursor:pointer; color:var(--text-faint);">&times;</button>
+      <h3 id="modal-pago-titulo" style="margin:0 0 6px 0; font-size:19px; color:var(--text);">Antes de pagar</h3>
+      <p style="margin:0 0 16px 0; font-size:13.5px; color:var(--text-faint);">Déjanos tu nombre y WhatsApp por si necesitamos contactarte sobre tu pago.</p>
 
       <div id="modal-pago-form">
-        <label style="display:block; font-size:13px; color:#2d2129; margin-bottom:4px;">Nombre completo</label>
-        <input id="modal-pago-nombre" type="text" style="width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid #ecdfd8; border-radius:10px; margin-bottom:12px; font-size:15px;" />
-        <label style="display:block; font-size:13px; color:#2d2129; margin-bottom:4px;">WhatsApp (con código de país)</label>
-        <input id="modal-pago-telefono" type="tel" placeholder="+57 300 1234567" style="width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid #ecdfd8; border-radius:10px; margin-bottom:4px; font-size:15px;" />
-        <p id="modal-pago-error" style="display:none; color:#1f3a42; font-size:12.5px; margin:4px 0 0 0;"></p>
-        <button type="button" id="modal-pago-continuar" style="width:100%; margin-top:16px; padding:12px; border:none; border-radius:10px; background:linear-gradient(155deg,#d4ac5c,#b8964f 55%,#8a6c2c); color:#fff; font-weight:700; font-size:15px; cursor:pointer;">Continuar a pagar</button>
+        <label style="display:block; font-size:13px; color:var(--text); margin-bottom:4px;">Nombre completo</label>
+        <input id="modal-pago-nombre" type="text" style="width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid var(--navy-soft); border-radius:10px; margin-bottom:12px; font-size:15px;" />
+        <label style="display:block; font-size:13px; color:var(--text); margin-bottom:4px;">WhatsApp (con código de país)</label>
+        <input id="modal-pago-telefono" type="tel" placeholder="+57 300 1234567" style="width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid var(--navy-soft); border-radius:10px; margin-bottom:4px; font-size:15px;" />
+        <p id="modal-pago-error" style="display:none; color:var(--navy-deep); font-size:12.5px; margin:4px 0 0 0;"></p>
+        <button type="button" id="modal-pago-continuar" style="width:100%; margin-top:16px; padding:12px; border:none; border-radius:10px; background:linear-gradient(155deg,#6bb0ad,var(--gold) 55%,var(--gold-deep)); color:#fff; font-weight:700; font-size:15px; cursor:pointer;">Continuar a pagar</button>
       </div>
 
       <div id="modal-pago-fallback" style="display:none;">
-        <p style="font-size:14px; color:#2d2129; margin:0;">Se abrió una ventana nueva para pagar con tarjeta. Si tu banco la rechaza, escríbenos por WhatsApp y te ayudamos:</p>
-        <a href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20mi%20banco%20rechaz%C3%B3%20el%20pago%2C%20%C2%BFme%20ayudas%3F" target="_blank" rel="noopener" style="display:block; text-align:center; width:100%; box-sizing:border-box; margin-top:14px; padding:12px; border:1px solid #3f6470; border-radius:10px; background:#fff; color:#1f3a42; font-weight:600; font-size:15px; text-decoration:none;">Escribir por WhatsApp</a>
+        <p style="font-size:14px; color:var(--text); margin:0;">Se abrió una ventana nueva para pagar con tarjeta. Si tu banco la rechaza, escríbenos por WhatsApp y te ayudamos:</p>
+        <a href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20mi%20banco%20rechaz%C3%B3%20el%20pago%2C%20%C2%BFme%20ayudas%3F" target="_blank" rel="noopener" style="display:block; text-align:center; width:100%; box-sizing:border-box; margin-top:14px; padding:12px; border:1px solid var(--navy); border-radius:10px; background:#fff; color:var(--navy-deep); font-weight:600; font-size:15px; text-decoration:none;">Escribir por WhatsApp</a>
       </div>
     </div>
   </div>
