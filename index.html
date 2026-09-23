@@ -302,6 +302,20 @@
   @media (max-width: 720px) {
     .mapa-mental .nodo .etiqueta { font-size: 18px; }
     .mapa-mental .hub .etiqueta-hub { font-size: 17px; }
+    .mapa-mental svg { transform: scale(1.15); margin: 14px 0; }
+    .mapa-mental .rama-nodo {
+      transform-box: view-box; transform-origin: 240px 160px;
+      animation: orbitar-suave 6s ease-in-out infinite;
+    }
+    .mapa-mental .nodo .icono, .mapa-mental .nodo .etiqueta {
+      transform-box: fill-box; transform-origin: center;
+      animation: contra-orbitar-suave 6s ease-in-out infinite;
+    }
+  }
+  @keyframes orbitar-suave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } }
+  @keyframes contra-orbitar-suave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-10deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .mapa-mental .rama-nodo, .mapa-mental .nodo .icono, .mapa-mental .nodo .etiqueta { animation: none; }
   }
   .quote-pull {
     font-style: italic; font-family: "Fraunces", Georgia, serif; font-size: 18px; color: var(--gold-deep);
