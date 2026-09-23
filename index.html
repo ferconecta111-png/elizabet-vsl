@@ -84,7 +84,7 @@
   .hero-photo-asiento {
     position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
     width: 84%; height: 15%; min-height: 66px;
-    background: linear-gradient(160deg, rgba(184,150,79,0.95), rgba(63,100,112,0.95) 130%);
+    background: linear-gradient(160deg, rgba(184,150,79,0.55), rgba(63,100,112,0.55) 130%);
     border-radius: 50%; filter: blur(1.5px);
     box-shadow: 0 18px 30px -12px rgba(31,58,66,0.45);
     z-index: 0;
@@ -208,10 +208,20 @@
   .bio-card p:last-child { margin-bottom: 0; }
   .bio-card b { color: var(--gold-deep); }
   .historia-movimientos { margin-top: 18px; padding-top: 4px; }
-  .historia-movimientos .mov-tit {
-    display: block; font-family: "Fraunces", Georgia, serif; font-size: 16.5px; font-weight: 600;
-    color: var(--gold-deep); margin-bottom: 4px;
+  .mov-detalle { margin: 0 0 14px; }
+  .mov-detalle p { margin-top: 8px; }
+  .mov-tit {
+    cursor: pointer; list-style: none; font-family: "Fraunces", Georgia, serif; font-size: 16.5px;
+    font-weight: 600; color: var(--gold-deep); display: flex; align-items: center; gap: 8px;
+    padding: 2px 0;
   }
+  .mov-tit::-webkit-details-marker { display: none; }
+  .mov-tit::after {
+    content: "▾"; font-size: 13px; margin-left: auto; flex: none;
+    transition: transform 0.2s ease; display: inline-block; color: var(--gold);
+  }
+  .mov-detalle[open] .mov-tit::after { transform: rotate(180deg); }
+  .mov-tit:hover { color: var(--gold); }
   .bio-detalle { margin: 4px 0 16px; }
   .bio-detalle summary {
     cursor: pointer; list-style: none; font-weight: 700; font-size: 14.5px;
@@ -597,10 +607,22 @@
         <div class="bio-card">
           <p><b>Psicóloga · Magíster en Psicología Clínica.</b></p>
           <div class="historia-movimientos">
-            <p><b class="mov-tit">Yo también tuve que aprender a mirarme</b><br>Durante mucho tiempo pensé que tenía que ser fuerte, poder con todo y tener el control para estar bien. Aprendí a exigirme, a cuidar a otros antes que a mí, a esconder la vulnerabilidad y a confundir muchas veces el control con seguridad. Por fuera podía funcionar. Por dentro, había miedo, tristeza, necesidad de aprobación y una sensación persistente de no ser suficiente.</p>
-            <p><b class="mov-tit">Y descubrí que entenderlo no era suficiente</b><br>Con el tiempo entendí que muchas de esas formas de relacionarme conmigo y con los demás no habían aparecido de la nada. Tenían una historia. Pero también descubrí algo que hoy atraviesa profundamente mi manera de hacer terapia: comprender de dónde viene un patrón no significa automáticamente saber cómo dejar de repetirlo.</p>
-            <p><b class="mov-tit">Mi propia transformación cambió mi forma de acompañar</b><br>He atravesado relaciones que me enseñaron sobre límites, momentos en los que mi cuerpo me mostró que no podía seguir exigiéndome de la misma manera, pérdidas que transformaron mi manera de entender la vida y etapas en las que tuve que reconstruir la relación conmigo misma. No todo fue fácil ni lineal. Pero cada proceso me llevó a dejar de pelearme con las partes de mí que habían aprendido a sobrevivir y empezar a comprenderlas para poder elegir diferente.</p>
-            <p style="margin-bottom: 0;"><b class="mov-tit">Por eso hoy te acompaño así</b><br>Mi trabajo no consiste solamente en ayudarte a entender lo que te pasa. Quiero ayudarte a reconocer lo que ocurre dentro de ti, comprender de dónde viene, aprender a regularlo y, poco a poco, construir nuevas formas de responder, relacionarte y elegir. Porque tu historia puede explicar muchas cosas de ti. Pero no tiene por qué decidir por ti para siempre.</p>
+            <details class="mov-detalle">
+              <summary class="mov-tit">Yo también tuve que aprender a mirarme</summary>
+              <p>Durante mucho tiempo pensé que tenía que ser fuerte, poder con todo y tener el control para estar bien. Aprendí a exigirme, a cuidar a otros antes que a mí, a esconder la vulnerabilidad y a confundir muchas veces el control con seguridad. Por fuera podía funcionar. Por dentro, había miedo, tristeza, necesidad de aprobación y una sensación persistente de no ser suficiente.</p>
+            </details>
+            <details class="mov-detalle">
+              <summary class="mov-tit">Y descubrí que entenderlo no era suficiente</summary>
+              <p>Con el tiempo entendí que muchas de esas formas de relacionarme conmigo y con los demás no habían aparecido de la nada. Tenían una historia. Pero también descubrí algo que hoy atraviesa profundamente mi manera de hacer terapia: comprender de dónde viene un patrón no significa automáticamente saber cómo dejar de repetirlo.</p>
+            </details>
+            <details class="mov-detalle">
+              <summary class="mov-tit">Mi propia transformación cambió mi forma de acompañar</summary>
+              <p>He atravesado relaciones que me enseñaron sobre límites, momentos en los que mi cuerpo me mostró que no podía seguir exigiéndome de la misma manera, pérdidas que transformaron mi manera de entender la vida y etapas en las que tuve que reconstruir la relación conmigo misma. No todo fue fácil ni lineal. Pero cada proceso me llevó a dejar de pelearme con las partes de mí que habían aprendido a sobrevivir y empezar a comprenderlas para poder elegir diferente.</p>
+            </details>
+            <details class="mov-detalle" style="margin-bottom: 0;">
+              <summary class="mov-tit">Por eso hoy te acompaño así</summary>
+              <p style="margin-bottom: 0;">Mi trabajo no consiste solamente en ayudarte a entender lo que te pasa. Quiero ayudarte a reconocer lo que ocurre dentro de ti, comprender de dónde viene, aprender a regularlo y, poco a poco, construir nuevas formas de responder, relacionarte y elegir. Porque tu historia puede explicar muchas cosas de ti. Pero no tiene por qué decidir por ti para siempre.</p>
+            </details>
           </div>
           <div class="creds">
             <span>Arteterapia</span>
