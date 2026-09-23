@@ -362,6 +362,17 @@
     .metodo-camino { grid-template-columns: 1fr; }
     .metodo-paso:nth-child(5) { max-width: none; }
   }
+  /* En web: metodología sin acordeón (todo el texto siempre visible) y fondo blanco. Móvil queda tal cual. */
+  @media (min-width: 481px) {
+    .band.tint-gold.metodo-band { background: var(--bg); }
+    .band.tint-gold.metodo-band .eyebrow-sm { color: var(--gold-deep); }
+    .metodo-band .dash { background: var(--gold-deep) !important; }
+    .metodo-band .metodo-paso { background: var(--gold-tint); border: 1px solid rgba(0,0,0,0.06); }
+    .metodo-band .metodo-paso h3 { color: var(--navy-deep); }
+    .metodo-band .metodo-paso p { color: var(--text-faint); }
+    .metodo-band .metodo-summary { cursor: default; }
+    .metodo-band .metodo-summary::after { display: none; }
+  }
 
   /* SERVICIOS — sobre banda petróleo clara (antes era verde, ya quitado) */
   .servicios { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 4px; }
@@ -692,7 +703,7 @@
     </div>
   </section>
 
-  <section class="band tint-gold">
+  <section class="band tint-gold metodo-band">
     <div class="wrap">
       <div class="mirada-flex" style="align-items: center;">
         <div class="txt">
@@ -980,6 +991,21 @@
             fallback.style.display = 'block';
           });
       });
+    })();
+  </script>
+
+  <script>
+    // Metodología: en web se ve completa sin necesidad de clic (todos los <details> abiertos).
+    // En móvil se queda como acordeón normal — no se toca su estado.
+    (function () {
+      function ajustarMetodologia() {
+        var abrir = window.innerWidth > 480;
+        document.querySelectorAll('.metodo-band .metodo-paso').forEach(function (d) {
+          if (abrir) d.setAttribute('open', ''); else d.removeAttribute('open');
+        });
+      }
+      ajustarMetodologia();
+      window.addEventListener('resize', ajustarMetodologia);
     })();
   </script>
 
