@@ -1005,7 +1005,11 @@
         // el link. En móvil (Safari/Chrome), un window.open() después de esperar
         // el fetch se bloquea por no ser "gesto directo del usuario" — por eso
         // el botón no hacía nada en celular aunque en PC sí funcionaba.
-        var pestana = window.open('', '_blank', 'noopener');
+        // OJO: 'noopener' hace que window.open() devuelva null (se pierde la
+        // referencia a la pestaña) — sin la referencia no se puede redirigir
+        // después, y la pestaña se queda en blanco para siempre. Por eso aquí
+        // NO se usa noopener (sí se sigue usando en los demás links estáticos).
+        var pestana = window.open('', '_blank');
 
         pedirLink(ENDPOINT_BOLD, { producto: productoActual, nombre: nombre, telefono: telefono })
           .then(function (data) {
