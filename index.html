@@ -293,22 +293,6 @@
   .punch-line { font-weight: 700; font-size: 17px; margin: 18px 0 0; color: var(--navy-deep); }
   .band.tint-navy .punch-line { color: var(--navy-deep); }
 
-  .acompanarte-card {
-    margin-top: 40px; padding: 32px; background: var(--gold-tint); border-radius: 22px;
-  }
-  .acompanarte-row { display: flex; gap: 22px; margin-top: 20px; }
-  .acompanarte-item {
-    flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;
-  }
-  .acompanarte-item p { font-size: 13.5px; margin: 0; color: var(--text); font-weight: 600; }
-  .acompanarte-icono {
-    width: 54px; height: 54px; border-radius: 50%; background: #fff; display: flex; align-items: center;
-    justify-content: center; flex-shrink: 0; box-shadow: 0 6px 14px rgba(63,100,112,0.12);
-  }
-  @media (max-width: 640px) {
-    .acompanarte-card { padding: 26px 20px; }
-    .acompanarte-row { flex-direction: column; gap: 26px; }
-  }
   @media (max-width: 720px) { .mirada-flex { flex-direction: column; align-items: flex-start; } }
   .mirada-photo { flex: 0 0 auto; display: flex; justify-content: center; }
   .mirada-photo img {
@@ -692,37 +676,18 @@
             </g>
 
             <g class="hub">
-              <rect x="170" y="136" width="140" height="48" rx="24"></rect>
-              <text class="etiqueta-hub" x="240" y="165" text-anchor="middle">Dentro de ti</text>
+              <rect x="155" y="112" width="170" height="86" rx="26"></rect>
+              <text class="etiqueta-hub" x="240" y="133" text-anchor="middle">Dentro de ti</text>
+              <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <g transform="translate(188,150)"><circle cx="7" cy="9" r="4.2"/><circle cx="13" cy="9" r="4.2"/></g>
+                <g transform="translate(231,150)"><path d="M9 17.5s-6-3.7-8-7.5C-.2 6.7 1 4 4 4c1.6 0 2.8 1 3.2 2C7.6 5 8.8 4 10.4 4c3 0 4.2 2.7 2.8 6-2 3.8-6.8 7.5-6.8 7.5z" transform="scale(0.85) translate(1,1)"/></g>
+                <g transform="translate(274,150)"><path d="M16.5 8.5A6.5 6.5 0 0 0 5 5.8M2.5 2.5v4h4"/><path d="M1.5 9.5A6.5 6.5 0 0 0 13 12.2M15.5 15.5v-4h-4"/></g>
+              </g>
             </g>
           </svg>
           <p class="mapa-caption">"Saberlo todo de ti no es lo mismo que transformarlo. Por eso te acompaño mientras sucede, no después."</p>
+          <p class="mapa-caption" style="margin-top: 6px;">Dentro de ti: cómo te relacionas contigo, qué haces cuando aparece una emoción y qué patrón está ocurriendo en ese momento.</p>
         </div>
-      </div>
-
-      <div class="acompanarte-card">
-        <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Mi forma de acompañarte</p>
-        <div class="acompanarte-row">
-          <div class="acompanarte-item">
-            <span class="acompanarte-icono">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
-            </span>
-            <p>Cómo te relacionas contigo</p>
-          </div>
-          <div class="acompanarte-item">
-            <span class="acompanarte-icono">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-9C1 7.5 2.5 4 6 4c2 0 3.5 1.2 4 2.5C10.5 5.2 12 4 14 4c3.5 0 5 3.5 3.5 7-2.5 4.65-9.5 9-9.5 9z"/></svg>
-            </span>
-            <p>Qué haces cuando aparece una emoción</p>
-          </div>
-          <div class="acompanarte-item">
-            <span class="acompanarte-icono">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4"/><path d="M20 20v-5h-5"/></svg>
-            </span>
-            <p>Qué patrón está ocurriendo en ese momento</p>
-          </div>
-        </div>
-        <p class="mapa-caption" style="margin-top: 26px;">"Aquí no vienes solamente a entenderte. Vienes a observarte en relación y a practicar una forma diferente de estar contigo."</p>
       </div>
     </div>
   </section>
