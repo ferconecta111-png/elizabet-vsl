@@ -383,10 +383,14 @@
   .band.dark h2.tit { color: #fbf7ee; }
 
   .marquee {
-    margin-top: 12px; overflow: hidden;
+    margin-top: 12px; overflow: hidden; flex: 1; min-width: 0;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   }
+  .testi-fila { display: flex; gap: 18px; align-items: flex-start; margin-top: 12px; }
+  .testi-fila .marquee { margin-top: 0; }
+  .testi-video-fija { flex: none; }
+  @media (max-width: 720px) { .testi-fila { flex-direction: column; } .testi-video-fija { align-self: center; } }
   .marquee-track { display: flex; gap: 18px; width: max-content; animation: marquee-right 46s linear infinite; }
   .marquee:hover .marquee-track { animation-play-state: paused; }
   @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
@@ -838,7 +842,12 @@
       <p class="eyebrow-sm"><span class="dash" style="background:var(--gold);"></span>Lo que dicen quienes ya vivieron el proceso</p>
       <h2 class="tit">Lo que ocurre cuando empiezas a mirarte diferente</h2>
     </div>
-    <div class="marquee">
+    <div class="wrap testi-fila">
+      <div class="testi testi-video testi-video-fija">
+        <video controls preload="metadata" poster="testi-vera-madrigal-poster.jpg" playsinline><source src="testimonio-video-1.mp4" type="video/mp4"></video>
+        <p class="who">Vera Madrigal · España</p>
+      </div>
+      <div class="marquee">
       <div class="marquee-track">
         <div class="testi"><img loading="lazy" class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz"><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
         <div class="testi"><img loading="lazy" class="testi-photo" src="testi-isabela-villa.jpg" alt="Isabela Villa"><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
@@ -846,10 +855,6 @@
         <div class="testi"><img loading="lazy" class="testi-photo" src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios"><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
         <div class="testi"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
         <div class="testi"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
-        <div class="testi testi-video">
-          <video controls preload="metadata" poster="testi-vera-madrigal-poster.jpg" playsinline><source src="testimonio-video-1.mp4" type="video/mp4"></video>
-          <p class="who">Vera Madrigal · España</p>
-        </div>
         <!-- duplicado para el loop infinito -->
         <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt=""><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
         <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-isabela-villa.jpg" alt=""><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
@@ -857,10 +862,7 @@
         <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-alexandra-barrios.jpg" alt=""><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
         <div class="testi" aria-hidden="true"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
         <div class="testi" aria-hidden="true"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
-        <div class="testi testi-video" aria-hidden="true">
-          <video preload="none" poster="testi-vera-madrigal-poster.jpg" playsinline muted tabindex="-1"><source src="testimonio-video-1.mp4" type="video/mp4"></video>
-          <p class="who">Vera Madrigal · España</p>
-        </div>
+      </div>
       </div>
     </div>
   </section>
