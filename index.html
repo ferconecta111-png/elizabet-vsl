@@ -76,20 +76,6 @@
   }
   .hero-photo-wrap { grid-area: foto; position: relative; display: flex; justify-content: center; padding-bottom: 22px; }
   @media (max-width: 860px) { .hero-photo-wrap { padding-bottom: 4px; } }
-  .hero-photo-asiento {
-    position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
-    width: 84%; height: 15%; min-height: 66px;
-    background: linear-gradient(160deg, rgba(169,125,121,0.55), rgba(92,138,155,0.55) 130%);
-    border-radius: 50%; filter: blur(1.5px);
-    box-shadow: 0 18px 30px -12px rgba(63,100,112,0.45);
-    z-index: 0;
-  }
-  .hero-photo-sombra {
-    position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%);
-    width: 74%; height: 30px;
-    background: radial-gradient(closest-side, rgba(63,100,112,0.4), transparent 75%);
-    filter: blur(2px); z-index: 0;
-  }
   .hero-photo {
     width: min(500px, 92vw); height: auto; object-fit: contain;
     filter: drop-shadow(0 26px 40px rgba(63,100,112,0.28));
@@ -97,8 +83,6 @@
   }
   @media (max-width: 640px) {
     .hero-photo { width: min(280px, 70vw); }
-    .hero-photo-asiento { bottom: 2px; height: 15%; min-height: 46px; }
-    .hero-photo-sombra { height: 16px; }
   }
   .hero .eyebrow {
     display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700;
@@ -206,7 +190,7 @@
   .mov-detalle p { margin-top: 8px; }
   .mov-tit {
     cursor: pointer; list-style: none; font-family: "Fraunces", Georgia, serif; font-size: 15px;
-    font-weight: 600; color: #fff; background: var(--navy-deep); display: flex; align-items: center; gap: 8px;
+    font-weight: 600; color: #fff; background: var(--navy); display: flex; align-items: center; gap: 8px;
     padding: 11px 18px; border-radius: 999px; transition: background 0.18s, color 0.18s, transform 0.18s;
   }
   .mov-tit::-webkit-details-marker { display: none; }
@@ -308,6 +292,23 @@
   }
   .punch-line { font-weight: 700; font-size: 17px; margin: 18px 0 0; color: var(--navy-deep); }
   .band.tint-navy .punch-line { color: var(--navy-deep); }
+
+  .acompanarte-card {
+    margin-top: 40px; padding: 32px; background: var(--gold-tint); border-radius: 22px;
+  }
+  .acompanarte-row { display: flex; gap: 22px; margin-top: 20px; }
+  .acompanarte-item {
+    flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;
+  }
+  .acompanarte-item p { font-size: 13.5px; margin: 0; color: var(--text); font-weight: 600; }
+  .acompanarte-icono {
+    width: 54px; height: 54px; border-radius: 50%; background: #fff; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; box-shadow: 0 6px 14px rgba(63,100,112,0.12);
+  }
+  @media (max-width: 640px) {
+    .acompanarte-card { padding: 26px 20px; }
+    .acompanarte-row { flex-direction: column; gap: 26px; }
+  }
   @media (max-width: 720px) { .mirada-flex { flex-direction: column; align-items: flex-start; } }
   .mirada-photo { flex: 0 0 auto; display: flex; justify-content: center; }
   .mirada-photo img {
@@ -551,8 +552,6 @@
         <h1><em>Te&nbsp;acompaño</em> a mirarte con más calma y a relacionarte distinto contigo, con los demás y con la vida.</h1>
       </div>
       <div class="hero-photo-wrap">
-        <div class="hero-photo-sombra"></div>
-        <div class="hero-photo-asiento"></div>
         <img class="hero-photo" src="elizabeth-foto-hero.webp" alt="Elizabet García Duque">
       </div>
       <div class="hero-detalle">
@@ -703,29 +702,29 @@
         </div>
       </div>
 
-      <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border);">
+      <div class="acompanarte-card">
         <p class="eyebrow-sm c-gold"><span class="dash" style="background:var(--gold);"></span>Mi forma de acompañarte</p>
-        <div style="display: flex; gap: 22px; flex-wrap: wrap; margin-top: 20px;">
-          <div style="flex: 1; min-width: 170px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;">
-            <span style="width: 54px; height: 54px; border-radius: 50%; background: var(--gold-tint); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <div class="acompanarte-row">
+          <div class="acompanarte-item">
+            <span class="acompanarte-icono">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
             </span>
-            <p style="font-size: 13.5px; margin: 0; color: var(--text-faint);">Cómo te relacionas contigo</p>
+            <p>Cómo te relacionas contigo</p>
           </div>
-          <div style="flex: 1; min-width: 170px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;">
-            <span style="width: 54px; height: 54px; border-radius: 50%; background: var(--gold-tint); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <div class="acompanarte-item">
+            <span class="acompanarte-icono">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-9.5-9C1 7.5 2.5 4 6 4c2 0 3.5 1.2 4 2.5C10.5 5.2 12 4 14 4c3.5 0 5 3.5 3.5 7-2.5 4.65-9.5 9-9.5 9z"/></svg>
             </span>
-            <p style="font-size: 13.5px; margin: 0; color: var(--text-faint);">Qué haces cuando aparece una emoción</p>
+            <p>Qué haces cuando aparece una emoción</p>
           </div>
-          <div style="flex: 1; min-width: 170px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;">
-            <span style="width: 54px; height: 54px; border-radius: 50%; background: var(--gold-tint); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <div class="acompanarte-item">
+            <span class="acompanarte-icono">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--gold-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4"/><path d="M4 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4"/><path d="M20 20v-5h-5"/></svg>
             </span>
-            <p style="font-size: 13.5px; margin: 0; color: var(--text-faint);">Qué patrón está ocurriendo en ese momento</p>
+            <p>Qué patrón está ocurriendo en ese momento</p>
           </div>
         </div>
-        <p class="mapa-caption" style="margin-top: 24px;">"Aquí no vienes solamente a entenderte. Vienes a observarte en relación y a practicar una forma diferente de estar contigo."</p>
+        <p class="mapa-caption" style="margin-top: 26px;">"Aquí no vienes solamente a entenderte. Vienes a observarte en relación y a practicar una forma diferente de estar contigo."</p>
       </div>
     </div>
   </section>
