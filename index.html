@@ -357,14 +357,17 @@
     .metodo-camino { grid-template-columns: 1fr; }
     .metodo-paso:nth-child(5) { max-width: none; }
   }
-  /* En web: metodología sin acordeón (todo el texto siempre visible) y fondo blanco. Móvil queda tal cual. */
+  /* Fondo claro en todo tamaño (mejor contraste en móvil). En web además
+     queda sin acordeón (todo el texto siempre visible); en móvil se mantiene
+     el toque para desplegar. */
+  .band.tint-gold.metodo-band { background: var(--bg); }
+  .band.tint-gold.metodo-band .eyebrow-sm { color: var(--gold-deep); }
+  .metodo-band .dash { background: var(--gold-deep) !important; }
+  .metodo-band .metodo-paso { background: var(--gold-tint); border: 1px solid rgba(0,0,0,0.06); }
+  .metodo-band .metodo-paso h3 { color: var(--navy-deep); }
+  .metodo-band .metodo-paso p { color: var(--text-faint); }
+  .metodo-band .metodo-summary::after { color: var(--gold-deep); }
   @media (min-width: 481px) {
-    .band.tint-gold.metodo-band { background: var(--bg); }
-    .band.tint-gold.metodo-band .eyebrow-sm { color: var(--gold-deep); }
-    .metodo-band .dash { background: var(--gold-deep) !important; }
-    .metodo-band .metodo-paso { background: var(--gold-tint); border: 1px solid rgba(0,0,0,0.06); }
-    .metodo-band .metodo-paso h3 { color: var(--navy-deep); }
-    .metodo-band .metodo-paso p { color: var(--text-faint); }
     .metodo-band .metodo-summary { cursor: default; }
     .metodo-band .metodo-summary::after { display: none; }
   }
