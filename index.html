@@ -486,6 +486,25 @@
   .btn-wa:hover { transform: translateY(-2px); background: #BD948F; }
   @media (max-width: 400px) { .btn-wa { font-size: 14px; padding: 15px 22px; } }
 
+  /* Precios — mismo patron de tarjetas que usa Adriana */
+  .pkg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 760px; margin: 0 auto; }
+  @media (max-width: 640px) { .pkg-grid { grid-template-columns: 1fr; } }
+  .pkg-card {
+    background: var(--surface); border-radius: 22px; padding: 30px 26px; text-align: center;
+    border: 1px solid var(--border); box-shadow: 0 20px 40px -20px rgba(28,34,36,0.2);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .pkg-card.destacado { border: 2px solid var(--gold); position: relative; }
+  .pkg-card .badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; padding: 5px 14px; border-radius: 999px;
+  }
+  .pkg-card h3 { font-size: 20px; color: var(--navy-deep); margin: 0 0 6px; }
+  .pkg-card p.desc { font-size: 14px; color: var(--text-faint); margin: 0 0 20px; }
+  .pkg-card .precio { font-family: "Fraunces", Georgia, serif; font-size: 22px; color: var(--gold-deep); margin: 0 0 18px; }
+  .pkg-card .btn-pkg { width: 100%; justify-content: center; box-sizing: border-box; }
+
   /* Botones de agendamiento a paquetes (Maria Elena Badillo tienda) */
   .pkg-single { padding: 30px 0 6px; text-align: center; background: var(--bg); }
   .pkg-single-dark { background: var(--navy-deep); padding: 34px 0; }
@@ -624,11 +643,24 @@
   </section>
 
   <div class="pkg-single" id="ofertas">
-    <div class="btn-pair">
-      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones</a>
-      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" target="_blank" rel="noopener">Agenda tu sesión individual</a>
+    <div class="wrap">
+      <div class="pkg-grid">
+        <div class="pkg-card">
+          <h3>Sesión individual</h3>
+          <p class="desc">Un primer encuentro para nombrar lo que sientes y empezar tu proceso.</p>
+          <p class="precio">$75 USD</p>
+          <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" data-producto-label="Sesión individual — $75 USD" target="_blank" rel="noopener">Agendar y pagar</a>
+        </div>
+        <div class="pkg-card destacado">
+          <span class="badge">Más recomendado</span>
+          <h3>Paquete de 3 sesiones</h3>
+          <p class="desc">El proceso completo, acompañándote de principio a fin.</p>
+          <p class="precio">$203 USD</p>
+          <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" data-producto-label="Paquete de 3 sesiones — $203 USD" target="_blank" rel="noopener">Agendar y pagar</a>
+        </div>
+      </div>
+      <p style="margin: 20px 0 0; font-size: 12px; color: var(--text-faint); opacity: 0.85; text-align: center;">Precios en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
     </div>
-    <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">El cobro se procesa en pesos colombianos (COP). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
     <!-- FALTA: política de cancelación de citas y duración del tiempo disponible tras la compra —
          Elizabeth pidió agregarla en condiciones del servicio, pero no dio el texto/valores exactos.
          Pendiente de Fernanda antes de publicar esta parte. -->
@@ -907,10 +939,10 @@
   <div class="pkg-single pkg-single-dark">
     <p style="color: var(--gold-tint); font-size: 14px; margin: 0 0 16px;">¿Cómo puedo acompañarte? — Terapia individual: si quieres trabajar profundamente en tu historia, tus patrones, tus emociones y tus vínculos.</p>
     <div class="btn-pair">
-      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones</a>
-      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" target="_blank" rel="noopener">Agenda tu sesión individual</a>
+      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" data-producto-label="Paquete de 3 sesiones — $203 USD" target="_blank" rel="noopener">Agenda tu paquete de 3 sesiones — $203 USD</a>
+      <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" data-producto-label="Sesión individual — $75 USD" target="_blank" rel="noopener">Agenda tu sesión individual — $75 USD</a>
     </div>
-    <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">El cobro se procesa en pesos colombianos (COP). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
+    <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">Precios en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
   </div>
 
   <section class="band cream">
@@ -927,10 +959,10 @@
             </a>
             <div class="pkg-divider"><span>o agenda directo tu consulta</span></div>
             <div class="btn-pair">
-              <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" target="_blank" rel="noopener">Sesión individual</a>
-              <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" target="_blank" rel="noopener">Paquete x3 sesiones</a>
+              <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" data-producto-label="Sesión individual — $75 USD" target="_blank" rel="noopener">Sesión individual — $75 USD</a>
+              <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" data-producto-label="Paquete de 3 sesiones — $203 USD" target="_blank" rel="noopener">Paquete x3 sesiones — $203 USD</a>
             </div>
-            <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">El cobro se procesa en pesos colombianos (COP). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
+            <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">Precios en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
                     <p style="margin: 22px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85;">Volver a ti no significa volver a quien eras. Significa comenzar a encontrarte con quién eres y elegir desde ahí.</p>
           </div>
         </div>
@@ -958,6 +990,7 @@
     <div style="background:var(--cream); border-radius:16px; max-width:420px; width:100%; padding:28px 24px; position:relative; font-family:inherit;">
       <button type="button" id="modal-pago-cerrar" aria-label="Cerrar" style="position:absolute; top:12px; right:14px; background:none; border:none; font-size:22px; line-height:1; cursor:pointer; color:var(--text-faint);">&times;</button>
       <h3 id="modal-pago-titulo" style="margin:0 0 6px 0; font-size:19px; color:var(--text);">Antes de pagar</h3>
+      <p id="modal-pago-item" style="margin:0 0 14px 0; padding:10px 14px; background:var(--gold-tint); border-radius:10px; font-size:14.5px; font-weight:700; color:var(--gold-deep);"></p>
       <p style="margin:0 0 16px 0; font-size:13.5px; color:var(--text-faint);">Déjanos tu nombre y WhatsApp por si necesitamos contactarte sobre tu pago.</p>
 
       <div id="modal-pago-form">
@@ -986,6 +1019,7 @@
       var ENDPOINT_BOLD = 'https://panel-terapeutas.vercel.app/api/public/bold-link';
 
       var modal = document.getElementById('modal-pago');
+      var itemResumen = document.getElementById('modal-pago-item');
       var form = document.getElementById('modal-pago-form');
       var fallback = document.getElementById('modal-pago-fallback');
       var inputNombre = document.getElementById('modal-pago-nombre');
@@ -1019,6 +1053,7 @@
           ev.preventDefault();
           productoActual = btn.getAttribute('data-producto-bold');
           hrefRespaldo = btn.getAttribute('href');
+          itemResumen.textContent = btn.getAttribute('data-producto-label') || '';
           modal.style.display = 'flex';
         });
       });
