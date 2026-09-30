@@ -3,6 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3452029298301201');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <title>Elizabet García Duque — Psicóloga Clínica | Terapia Online en Español</title>
 <meta name="description" content="Elizabet García Duque, psicóloga clínica magíster, te acompaña en ansiedad, duelo, crisis y cambios de vida. Terapia online en español para todo el mundo. Agenda tu primera sesión.">
 <link rel="canonical" href="https://psicologaelizabetgarciad.com/">
@@ -1018,6 +1037,23 @@
     (function () {
       var ENDPOINT_BOLD = 'https://panel-terapeutas.vercel.app/api/public/bold-link';
 
+      // Valor real de cada producto, para mandarle el monto correcto a Meta
+      // (Pixel + API de Conversiones) — no hay forma confiable de leerlo del
+      // texto visible del botón.
+      var VALOR_PRODUCTO = {
+        eli_individual: { value: 75, currency: 'USD' },
+        eli_paquete_x3: { value: 203, currency: 'USD' },
+      };
+
+      function leerCookie(nombre) {
+        var match = document.cookie.match(new RegExp('(^| )' + nombre + '=([^;]+)'));
+        return match ? match[2] : null;
+      }
+
+      function generarEventId() {
+        return 'evt_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+      }
+
       var modal = document.getElementById('modal-pago');
       var itemResumen = document.getElementById('modal-pago-item');
       var form = document.getElementById('modal-pago-form');
@@ -1083,7 +1119,20 @@
         // NO se usa noopener (sí se sigue usando en los demás links estáticos).
         var pestana = window.open('', '_blank');
 
-        pedirLink(ENDPOINT_BOLD, { producto: productoActual, nombre: nombre, telefono: telefono })
+        var eventId = generarEventId();
+        var infoProducto = VALOR_PRODUCTO[productoActual];
+        if (typeof fbq === 'function') {
+          fbq('track', 'InitiateCheckout', {
+            value: infoProducto ? infoProducto.value : undefined,
+            currency: infoProducto ? infoProducto.currency : undefined,
+            content_name: productoActual,
+          }, { eventID: eventId });
+        }
+
+        pedirLink(ENDPOINT_BOLD, {
+          producto: productoActual, nombre: nombre, telefono: telefono,
+          fbp: leerCookie('_fbp'), fbc: leerCookie('_fbc'), eventId: eventId,
+        })
           .then(function (data) {
             var url = (data && data.url) ? data.url : hrefRespaldo;
             if (pestana) { pestana.location = url; } else { window.location.href = url; }
