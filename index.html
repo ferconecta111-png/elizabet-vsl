@@ -472,6 +472,8 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
   @media (max-width: 480px) { .testi-video { flex-basis: 190px; width: 190px; } }
   .testi-video video { width: 100%; aspect-ratio: 478/850; border-radius: 12px; object-fit: cover; background: #000; display: block; }
   .testi-video p.who { text-align: center; color: #fbf7ee; }
+  .testi-video-grupo { display: flex; gap: 10px; }
+  @media (max-width: 480px) { .testi-video-grupo .testi-video { flex-basis: 140px; width: 140px; padding: 10px; } }
 
   /* CTA — degradado verde/dorado, boton alto contraste */
   .cta-block {
@@ -931,9 +933,15 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
       <h2 class="tit">Lo que ocurre cuando empiezas a mirarte diferente</h2>
     </div>
     <div class="wrap testi-fila">
-      <div class="testi testi-video testi-video-fija">
-        <video controls preload="metadata" poster="testi-vera-madrigal-poster.jpg" playsinline><source src="testimonio-video-1.mp4" type="video/mp4"></video>
-        <p class="who">Vera Madrigal · España</p>
+      <div class="testi-video-fija testi-video-grupo">
+        <div class="testi testi-video">
+          <video controls preload="metadata" poster="testi-vera-madrigal-poster.jpg" playsinline><source src="testimonio-video-1.mp4" type="video/mp4"></video>
+          <p class="who">Vera Madrigal · España</p>
+        </div>
+        <div class="testi testi-video">
+          <video controls preload="metadata" poster="testi-sayuri-poster.jpg" playsinline><source src="testimonio-video-2-sayuri.mp4" type="video/mp4"></video>
+          <p class="who">Sayuri · Japón</p>
+        </div>
       </div>
       <div class="marquee">
       <div class="marquee-track">
