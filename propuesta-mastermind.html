@@ -25,6 +25,13 @@
     --line: #e4e0d8;
     --rosa-metal: linear-gradient(120deg, #B06B78 0%, #EFD4D8 20%, #C98A96 42%, #F6E3E6 58%, #A9565F 78%, #E3B6BD 100%);
     --azul-metal: linear-gradient(120deg, #13232c 0%, #4C7E91 24%, #1E3440 46%, #7FA7B8 64%, #13232c 84%, #3A5A6E 100%);
+    --dusk-indigo: #231a3d;
+    --dusk-purple: #5a3a74;
+    --dusk-magenta: #ab4a6c;
+    --dusk-orange: #e8824f;
+    --dusk-gold: #f3bd74;
+    --torre: #2a1f42;
+    --torre-sombra: #170f28;
   }
   * { box-sizing: border-box; }
   body {
@@ -38,16 +45,12 @@
 
   /* ===== Header ===== */
   header.band {
-    background: var(--azul-metal);
-    background-size: 220% 220%;
-    animation: sheen-azul 16s ease-in-out infinite;
-    padding: 64px 0 0;
+    background: linear-gradient(175deg, var(--dusk-indigo) 0%, var(--dusk-purple) 32%, var(--dusk-magenta) 58%, var(--dusk-orange) 82%, var(--dusk-gold) 100%);
+    padding: 44px 0 0;
     color: #fdfaf3;
     position: relative;
     overflow: hidden;
   }
-  @keyframes sheen-azul { 0%, 100% { background-position: 0% 30%; } 50% { background-position: 100% 70%; } }
-  @media (prefers-reduced-motion: reduce) { header.band { animation: none; } }
   /* texturas con movimiento: manchas de luz que derivan despacio */
   .textura { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
   .mancha {
@@ -64,10 +67,10 @@
   }
   @media (prefers-reduced-motion: reduce) { .mancha { animation: none; } }
 
-  /* skyline al borde inferior del header: el "mercado" como ciudad */
-  .skyline { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 210px; z-index: 0; }
-  .skyline .ciudad-fondo { fill: var(--navy); opacity: 0.35; }
-  .skyline .ciudad-frente { fill: var(--navy-ink); opacity: 0.85; }
+  /* skyline al borde inferior del header: el "mercado" como ciudad, al atardecer */
+  .skyline { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 240px; z-index: 0; }
+  .skyline .ciudad-fondo { fill: var(--torre-sombra); opacity: 0.55; }
+  .skyline .ciudad-frente { fill: var(--torre-sombra); opacity: 0.95; }
   .skyline .ventana { fill: var(--gold-tint); opacity: 0.55; animation: parpadeo 5s ease-in-out infinite; }
   .skyline .ventana:nth-child(odd) { animation-delay: -2.3s; }
   .skyline .ventana:nth-child(3n) { animation-delay: -3.8s; }
@@ -104,33 +107,45 @@
   @media (prefers-reduced-motion: reduce) { .icono-flot, .icono-flot .glow { animation: none; } }
 
   /* rasgo tecnico de trading, mas grande, dibujandose sobre la ciudad */
-  .velas { position: absolute; left: 0; right: 0; bottom: 56px; width: 100%; height: 110px; opacity: 0.9; z-index: 0; }
+  .velas { position: absolute; left: 0; right: 0; bottom: 86px; width: 100%; height: 110px; opacity: 0.85; z-index: 0; }
   .velas .linea-trazo { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: trazar 2.6s ease-out 0.3s forwards; }
   @media (prefers-reduced-motion: reduce) { .velas .linea-trazo { stroke-dashoffset: 0; animation: none; } }
   @keyframes trazar { to { stroke-dashoffset: 0; } }
 
-  .header-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; margin-bottom: 200px; }
-  @media (max-width: 620px) { .header-inner { margin-bottom: 150px; } .skyline, .velas { transform: scale(1.3); transform-origin: bottom center; } }
-  .header-texto { flex: 1 1 380px; min-width: 0; }
-  .header-foto { flex: 0 0 auto; }
-  .header-foto img {
-    width: 168px; height: 168px; border-radius: 50%; object-fit: cover;
-    border: 4px solid var(--gold-tint); box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+  /* foto grande, sin circulo, recortada y fundida con la escena */
+  .header-foto-grande {
+    position: absolute; right: 3%; bottom: 0; z-index: 1;
+    height: 330px; width: auto; max-width: 48%;
+    object-fit: contain; object-position: bottom;
+    opacity: 0.93;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 74%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 74%, rgba(0,0,0,0) 100%);
+    filter: drop-shadow(0 16px 26px rgba(0,0,0,0.35));
+    pointer-events: none;
   }
+
+  .header-inner { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; margin-bottom: 205px; }
+  .header-texto { flex: 1 1 380px; min-width: 0; max-width: 520px; }
 
   .eyebrow {
     font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold-tint); display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
+    color: var(--gold-tint); display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
   }
   .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--gold-tint); display: inline-block; }
-  header.band h1 { font-size: clamp(32px, 5.2vw, 50px); line-height: 1.15; max-width: 16ch; color: #fff; }
-  header.band p.sub { margin-top: 18px; font-size: 18px; color: var(--navy-soft); max-width: 50ch; line-height: 1.5; }
-  .firma { margin-top: 28px; font-size: 14.5px; color: var(--navy-soft); display: flex; align-items: center; gap: 10px; }
+  header.band h1 { font-size: clamp(30px, 4.8vw, 46px); line-height: 1.15; max-width: 16ch; color: #fff; }
+  header.band p.sub { margin-top: 14px; font-size: 16.5px; color: var(--navy-soft); max-width: 48ch; line-height: 1.5; }
+  .firma { margin-top: 18px; font-size: 14px; color: var(--navy-soft); display: flex; align-items: center; gap: 10px; }
   .firma b { color: #fff; font-weight: 700; }
 
+  @media (max-width: 760px) { .header-foto-grande { height: 250px; max-width: 58%; } }
   @media (max-width: 620px) {
-    .header-inner { flex-direction: column; text-align: center; }
-    .header-foto img { width: 128px; height: 128px; }
+    .header-inner { flex-direction: column; text-align: center; margin-bottom: 130px; }
+    .header-texto { max-width: 100%; }
+    .skyline, .velas { transform: scale(1.3); transform-origin: bottom center; }
+    .header-foto-grande {
+      position: static; display: block; margin: 20px auto 0; height: 220px; max-width: 70%;
+      opacity: 0.96; -webkit-mask-image: none; mask-image: none; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.3));
+    }
   }
 
   main { padding: 56px 0 72px; }
@@ -302,11 +317,19 @@
     <span class="mancha m2"></span>
     <span class="mancha m3"></span>
   </div>
-  <svg class="skyline" viewBox="0 0 900 210" preserveAspectRatio="none" aria-hidden="true">
+  <svg class="skyline" viewBox="0 0 900 240" preserveAspectRatio="none" aria-hidden="true">
     <defs>
       <filter id="brillo-icono" x="-60%" y="-60%" width="220%" height="220%">
         <feGaussianBlur stdDeviation="7"/>
       </filter>
+      <linearGradient id="neon-torre" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d98bff"/>
+        <stop offset="100%" stop-color="#6fd6ff"/>
+      </linearGradient>
+      <linearGradient id="fade-agua" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fff" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
     </defs>
     <g class="ciudad-fondo">
       <rect x="10" y="130" width="46" height="80"/><rect x="66" y="100" width="34" height="110"/>
@@ -328,31 +351,43 @@
       <g class="ventana"><rect x="428" y="148" width="6" height="7"/><rect x="442" y="148" width="6" height="7"/><rect x="428" y="164" width="6" height="7"/><rect x="442" y="164" width="6" height="7"/></g>
       <g class="ventana"><rect x="648" y="122" width="6" height="8"/><rect x="662" y="122" width="6" height="8"/><rect x="648" y="140" width="6" height="8"/><rect x="662" y="140" width="6" height="8"/><rect x="648" y="158" width="6" height="8"/><rect x="662" y="158" width="6" height="8"/></g>
       <g class="ventana"><rect x="694" y="160" width="5" height="7"/><rect x="706" y="160" width="5" height="7"/><rect x="694" y="175" width="5" height="7"/><rect x="706" y="175" width="5" height="7"/></g>
+      <rect x="220" y="122" width="3" height="86" fill="url(#neon-torre)" opacity="0.75" filter="url(#brillo-icono)"/>
+      <rect x="220" y="122" width="1.4" height="86" fill="url(#neon-torre)" opacity="0.95"/>
+      <rect x="658" y="112" width="3" height="96" fill="url(#neon-torre)" opacity="0.75" filter="url(#brillo-icono)"/>
+      <rect x="658" y="112" width="1.4" height="96" fill="url(#neon-torre)" opacity="0.95"/>
+    </g>
+    <g class="reflejo">
+      <rect x="150" y="210" width="48" height="30" fill="url(#fade-agua)"/><rect x="204" y="210" width="36" height="30" fill="url(#fade-agua)"/>
+      <rect x="330" y="210" width="38" height="30" fill="url(#fade-agua)"/><rect x="420" y="210" width="44" height="30" fill="url(#fade-agua)"/>
+      <rect x="560" y="210" width="42" height="30" fill="url(#fade-agua)"/><rect x="640" y="210" width="40" height="30" fill="url(#fade-agua)"/>
+      <rect x="790" y="210" width="36" height="30" fill="url(#fade-agua)"/><rect x="880" y="210" width="20" height="30" fill="url(#fade-agua)"/>
+      <line x1="0" y1="222" x2="900" y2="222" stroke="#fff" stroke-width="1" opacity="0.1"/>
+      <line x1="0" y1="232" x2="900" y2="232" stroke="#fff" stroke-width="1" opacity="0.07"/>
     </g>
     <g class="iconos-trading">
-      <g transform="translate(110,42)"><g class="icono-flot">
+      <g transform="translate(110,80)"><g class="icono-flot">
         <circle class="glow" r="22" fill="var(--gold)" opacity="0.3" filter="url(#brillo-icono)"/>
         <circle r="16" fill="rgba(253,250,243,0.07)" stroke="var(--gold-tint)" stroke-width="1" opacity="0.6"/>
         <text x="0" y="6" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="17" fill="var(--gold-tint)" opacity="0.9">&#8383;</text>
       </g></g>
-      <g transform="translate(258,20)"><g class="icono-flot">
+      <g transform="translate(258,65)"><g class="icono-flot">
         <text x="0" y="8" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="700" font-size="24" fill="var(--gold-tint)" opacity="0.5">%</text>
       </g></g>
-      <g transform="translate(392,54)"><g class="icono-flot">
+      <g transform="translate(392,90)"><g class="icono-flot">
         <circle class="glow" r="19" fill="var(--gold)" opacity="0.26" filter="url(#brillo-icono)"/>
         <circle r="14" fill="rgba(253,250,243,0.07)" stroke="var(--gold-tint)" stroke-width="1" opacity="0.55"/>
         <text x="0" y="5" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="15" fill="var(--gold-tint)" opacity="0.9">$</text>
       </g></g>
-      <g transform="translate(528,28)"><g class="icono-flot">
+      <g transform="translate(528,72)"><g class="icono-flot">
         <polyline points="-14,8 -4,-4 4,2 14,-10" fill="none" stroke="var(--gold-tint)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
         <path d="M6,-16 L14,-10 L7,-4" fill="none" stroke="var(--gold-tint)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
       </g></g>
-      <g transform="translate(668,48)"><g class="icono-flot">
+      <g transform="translate(668,85)"><g class="icono-flot">
         <circle class="glow" r="20" fill="var(--gold)" opacity="0.27" filter="url(#brillo-icono)"/>
         <circle r="15" fill="rgba(253,250,243,0.07)" stroke="var(--gold-tint)" stroke-width="1" opacity="0.58"/>
         <text x="0" y="5" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="16" fill="var(--gold-tint)" opacity="0.9">&#8364;</text>
       </g></g>
-      <g transform="translate(812,24)"><g class="icono-flot">
+      <g transform="translate(812,68)"><g class="icono-flot">
         <line x1="-8" y1="-10" x2="-8" y2="12" stroke="var(--gold-tint)" stroke-width="2" opacity="0.5"/>
         <rect x="-12" y="-4" width="8" height="12" fill="var(--gold-tint)" opacity="0.55"/>
         <line x1="8" y1="-16" x2="8" y2="6" stroke="var(--gold-tint)" stroke-width="2" opacity="0.5"/>
@@ -380,14 +415,12 @@
       <div class="header-texto">
         <p class="eyebrow">Psicología clínica aplicada al trading</p>
         <h1>No es falta de disciplina: es cómo decide el cerebro bajo presión. Y eso sí se interviene.</h1>
-        <p class="sub">Como psicóloga clínica especializada en toma de decisiones, veo el mismo patrón en cada comunidad de trading: se domina la estrategia y, aun así, se opera por impulso. Dos espacios en vivo, con base en neurociencia y análisis funcional de la conducta, para que tu comunidad identifique ese patrón — y aprenda a intervenir antes de romper su plan.</p>
+        <p class="sub">Como psicóloga clínica especializada en toma de decisiones, veo el mismo patrón en cada comunidad de trading: se domina la estrategia y, aun así, se opera por impulso. Dos espacios en vivo, con base en neurociencia, para que tu comunidad identifique ese patrón y aprenda a intervenir antes de romper su plan.</p>
         <div class="firma">Preparado por <b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica</div>
-      </div>
-      <div class="header-foto">
-        <img src="eli-retrato-propuesta.jpg" alt="Elizabet García Duque">
       </div>
     </div>
   </div>
+  <img class="header-foto-grande" src="eli-cutout-propuesta.png" alt="Elizabet García Duque">
 </header>
 
 <div class="wrap">
