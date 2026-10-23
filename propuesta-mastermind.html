@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Propuesta — Tu cerebro frente al mercado | Elizabet García Duque</title>
+<title>Propuesta — Talleres de Psicología Aplicada al Trading | Elizabet García Duque</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="icon" href="favicon-32.png">
 <style>
   :root {
@@ -30,58 +30,118 @@
     margin: 0;
   }
   h1, h2, h3 { font-family: "Fraunces", Georgia, serif; text-wrap: balance; margin: 0; font-weight: 600; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
 
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
-
+  /* ===== Header ===== */
   header.band {
-    background: linear-gradient(155deg, var(--navy-deep), var(--navy));
-    padding: 48px 0 40px;
+    background:
+      radial-gradient(circle at 85% 0%, rgba(169,125,121,0.35), transparent 50%),
+      linear-gradient(160deg, var(--navy-deep), var(--navy) 85%);
+    padding: 64px 0 56px;
     color: #fdfaf3;
+    position: relative;
+    overflow: hidden;
   }
   .eyebrow {
-    font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--gold-tint); display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-tint); display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
   }
-  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--gold-tint); display: inline-block; }
-  header.band h1 { font-size: clamp(26px, 4.4vw, 38px); line-height: 1.25; max-width: 22ch; color: #fff; }
-  header.band p.sub { margin-top: 14px; font-size: 16px; color: var(--navy-soft); max-width: 48ch; }
+  .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--gold-tint); display: inline-block; }
+  header.band h1 { font-size: clamp(32px, 5.2vw, 50px); line-height: 1.15; max-width: 16ch; color: #fff; }
+  header.band p.sub { margin-top: 18px; font-size: 18px; color: var(--navy-soft); max-width: 50ch; line-height: 1.5; }
+  .firma { margin-top: 28px; font-size: 14.5px; color: var(--navy-soft); display: flex; align-items: center; gap: 10px; }
+  .firma b { color: #fff; font-weight: 700; }
 
-  main { padding: 40px 0 64px; }
-  section { margin-bottom: 40px; }
-  section h2 { font-size: 21px; color: var(--navy-deep); margin-bottom: 14px; }
-  section h3 { font-size: 16px; color: var(--gold-deep); margin-bottom: 10px; font-family: "Manrope", sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
-  p { line-height: 1.65; font-size: 16px; color: var(--text); max-width: 62ch; }
-  p.faint { color: var(--text-faint); font-size: 14.5px; }
+  main { padding: 56px 0 72px; }
+  .taller-block { margin-bottom: 64px; }
+  .taller-num {
+    display: inline-flex; align-items: center; gap: 12px; margin-bottom: 8px;
+    font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-deep);
+  }
+  .taller-num span.n {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%; background: var(--gold-tint); color: var(--gold-deep);
+    font-family: "Fraunces", serif; font-size: 14px;
+  }
+  .taller-block h2.titulo { font-size: clamp(24px, 3.4vw, 32px); color: var(--navy-deep); margin-bottom: 10px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 30px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600;
+    color: var(--navy-deep); background: var(--navy-tint); border: 1px solid var(--navy-soft);
+    padding: 8px 16px; border-radius: 100px;
+  }
 
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; }
-  .card + .card { margin-top: 16px; }
+  section.sub { margin-bottom: 30px; }
+  section.sub h3 {
+    font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--gold-deep); margin-bottom: 12px; font-family: "Manrope", sans-serif;
+  }
+  p { line-height: 1.7; font-size: 16px; color: var(--text); max-width: 64ch; }
 
-  ul.specs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-  ul.specs li { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-  ul.specs li:last-child { border-bottom: none; padding-bottom: 0; }
-  ul.specs .label { flex: 0 0 140px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold-deep); }
-  ul.specs .val { color: var(--text); font-size: 15.5px; flex: 1; min-width: 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 30px; }
+  .card p + p { margin-top: 14px; }
 
-  ul.valor { margin: 0; padding: 0 0 0 20px; display: grid; gap: 10px; }
-  ul.valor li { font-size: 15.5px; line-height: 1.55; color: var(--text); }
+  ul.contenidos { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  ul.contenidos li {
+    display: flex; gap: 14px; align-items: flex-start; font-size: 15.5px; line-height: 1.55;
+  }
+  ul.contenidos li::before {
+    content: ""; flex: none; width: 8px; height: 8px; margin-top: 7px; border-radius: 50%;
+    background: var(--gold);
+  }
 
-  .precio-box { background: linear-gradient(160deg, var(--gold-tint), var(--surface) 120%); border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
-  .precio-final { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .precio-final .num { font-family: "Fraunces", Georgia, serif; font-size: 44px; color: var(--gold-deep); font-weight: 600; font-variant-numeric: tabular-nums; }
-  .precio-final .et { font-size: 14px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; }
-  .precio-box p.incluye { margin: 18px 0 0; padding-top: 18px; border-top: 1px dashed var(--gold); font-size: 14.5px; color: var(--text-faint); }
+  /* ===== Taller 2 pendiente ===== */
+  .pendiente {
+    border: 2px dashed var(--gold); border-radius: 20px; padding: 34px; text-align: center;
+    background: var(--gold-tint); opacity: 0.9;
+  }
+  .pendiente p { margin: 0 auto; max-width: 42ch; color: var(--gold-deep); font-weight: 600; }
 
-  .cta { margin-top: 44px; padding: 28px; border-radius: 18px; background: var(--navy-tint); border: 1px solid var(--navy-soft); }
-  .cta h2 { color: var(--navy-deep); }
+  /* ===== Enfoque y alcance ===== */
+  .alcance { background: var(--navy-deep); color: #fdfaf3; border-radius: 24px; padding: 40px; margin-bottom: 64px; }
+  .alcance h2 { color: #fff; font-size: 24px; margin-bottom: 18px; }
+  .alcance p { color: var(--navy-soft); max-width: 68ch; }
+  .alcance p + p { margin-top: 14px; }
+  .alcance .nota {
+    margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.18);
+    font-size: 14px; color: var(--gold-tint); font-style: italic;
+  }
 
-  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; margin-top: 12px; }
+  /* ===== Precios ===== */
+  .precios-tit { text-align: center; margin-bottom: 36px; }
+  .precios-tit h2 { font-size: 30px; color: var(--navy-deep); }
+  .precios-grid { display: grid; grid-template-columns: 1fr 1fr 1.15fr; gap: 20px; align-items: stretch; margin-bottom: 64px; }
+  .plan {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .plan.destacado {
+    background: linear-gradient(165deg, var(--gold-tint), var(--surface) 130%);
+    border: 2px solid var(--gold); position: relative;
+  }
+  .plan .badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 6px 16px; border-radius: 100px; white-space: nowrap;
+  }
+  .plan h3 { font-size: 17px; color: var(--navy-deep); font-family: "Fraunces", serif; font-weight: 600; }
+  .plan .precio { font-family: "Fraunces", serif; font-size: 40px; color: var(--gold-deep); font-weight: 600; font-variant-numeric: tabular-nums; margin: 4px 0; }
+  .plan .desc { font-size: 14px; color: var(--text-faint); line-height: 1.5; flex: 1; }
+  .plan .ahorro { font-size: 13px; color: var(--navy); font-weight: 700; }
+
+  .incluye-box { background: var(--navy-tint); border-radius: 18px; padding: 24px 28px; font-size: 14.5px; color: var(--navy-deep); margin-bottom: 64px; }
+  .incluye-box b { display: block; margin-bottom: 6px; font-family: "Fraunces", serif; font-size: 16px; }
+
+  .cta { padding: 36px; border-radius: 24px; background: linear-gradient(160deg, var(--navy-deep), var(--navy)); color: #fff; text-align: center; }
+  .cta h2 { color: #fff; margin-bottom: 12px; }
+  .cta p { color: var(--navy-soft); margin: 0 auto; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; margin-top: 12px; text-align: center; }
   footer p { font-size: 13.5px; color: var(--text-faint); }
 
-  @media (max-width: 480px) {
-    ul.specs li { flex-direction: column; gap: 4px; }
-    ul.specs .label { flex: none; }
-    .precio-final { flex-direction: column; gap: 4px; }
-    .precio-final .num { font-size: 36px; }
+  @media (max-width: 720px) {
+    .precios-grid { grid-template-columns: 1fr; }
+    .plan.destacado { order: -1; }
   }
 </style>
 </head>
@@ -89,81 +149,121 @@
 
 <header class="band">
   <div class="wrap">
-    <p class="eyebrow">Propuesta de taller · Psicología aplicada al trading</p>
-    <h1>Tu cerebro frente al mercado</h1>
-    <p class="sub">Comprender mis reacciones y mejorar mis decisiones — Elizabet García Duque, Psicóloga · Magíster en Psicología Clínica</p>
+    <p class="eyebrow">Propuesta profesional</p>
+    <h1>Talleres de psicología aplicada al trading</h1>
+    <p class="sub">Dos espacios complementarios para que tu comunidad entienda — y aprenda a manejar — lo que pasa por dentro cuando se opera.</p>
+    <div class="firma">Preparado por <b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica</div>
   </div>
 </header>
 
 <div class="wrap">
   <main>
 
-    <section>
-      <h2>Formato</h2>
-      <ul class="specs">
-        <li><span class="label">Duración</span><span class="val">Aproximada, dos horas</span></li>
-        <li><span class="label">Modalidad</span><span class="val">Virtual</span></li>
-        <li><span class="label">Dirigido a</span><span class="val">Grupo de hasta 80 participantes</span></li>
-      </ul>
-    </section>
+    <!-- ============ TALLER 1 ============ -->
+    <div class="taller-block">
+      <p class="taller-num"><span class="n">1</span>Taller para el grupo de estudio</p>
+      <h2 class="titulo">Tu cerebro frente al mercado</h2>
+      <p style="color:var(--text-faint); font-size:15.5px; margin-bottom:4px">Comprender mis reacciones y mejorar mis decisiones</p>
 
-    <section>
-      <h2>Objetivo</h2>
-      <p>Comprender cómo los procesos cognitivos, emocionales y de aprendizaje pueden influir en las decisiones de trading, facilitando el reconocimiento de patrones personales que interfieren con la operativa y la identificación de estrategias para gestionarlos.</p>
-    </section>
-
-    <section>
-      <h2>Contenidos</h2>
-      <ul class="valor">
-        <li>Cerebro, incertidumbre y toma de decisiones: qué sucede cuando operamos bajo presión.</li>
-        <li>Respuesta al estrés, atención y regulación de la conducta.</li>
-        <li>Recompensa, aprendizaje y repetición de patrones.</li>
-        <li>Sesgos cognitivos y situaciones frecuentes: perseguir pérdidas, operar por miedo a perder una oportunidad, sobreoperar o modificar criterios bajo presión.</li>
-        <li>Identificación de señales personales y puntos de intervención.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Enfoque metodológico</h2>
-      <div class="card">
-        <p style="margin:0 0 14px">Se desarrollará una experiencia participativa que combina psicoeducación, fundamentos de neurociencia y ejercicios de reflexión aplicados a situaciones habituales del trading.</p>
-        <p style="margin:0 0 14px">Mediante encuestas anónimas, análisis de situaciones y ejercicios de autoobservación, los participantes podrán identificar tendencias en su propia conducta sin necesidad de compartir públicamente experiencias personales o información financiera.</p>
-        <p style="margin:0 0 14px">La metodología permitirá pasar de la comprensión teórica al reconocimiento individual: identificar qué situaciones los activan, cómo cambia su manera de decidir y en qué momento pueden comenzar a apartarse de sus criterios.</p>
-        <p style="margin:0">El taller finalizará con la elaboración de una estrategia personal para reconocer y abordar uno de los patrones identificados.</p>
+      <div class="meta-row">
+        <span class="pill">⏱ 2 horas aprox.</span>
+        <span class="pill">💻 Virtual</span>
+        <span class="pill">👥 Hasta 80 participantes</span>
       </div>
-    </section>
 
-    <section>
-      <h2>Resultados esperados</h2>
-      <p>Al finalizar, los participantes contarán con una comprensión más clara de los mecanismos psicológicos que pueden influir en su operativa, habrán identificado al menos un patrón personal relevante y dispondrán de una estrategia inicial para abordarlo.</p>
-    </section>
+      <section class="sub">
+        <h3>Objetivo</h3>
+        <p>Comprender cómo los procesos cognitivos, emocionales y de aprendizaje pueden influir en las decisiones de trading, facilitando el reconocimiento de patrones personales que interfieren con la operativa y la identificación de estrategias para gestionarlos.</p>
+      </section>
 
-    <section>
-      <h2>Quién lo facilita</h2>
-      <div class="card">
-        <p style="margin:0"><b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica · Certificada en Crianza Respetuosa · Diplomada en Neurolingüística y Coaching · Arteterapia. Acompaña procesos de ansiedad, crisis y cambios de vida, con terapia online en español para Latinoamérica y Estados Unidos.</p>
-      </div>
-    </section>
+      <section class="sub">
+        <h3>Contenidos</h3>
+        <ul class="contenidos">
+          <li>Cerebro, incertidumbre y toma de decisiones: qué sucede cuando operamos bajo presión.</li>
+          <li>Respuesta al estrés, atención y regulación de la conducta.</li>
+          <li>Recompensa, aprendizaje y repetición de patrones.</li>
+          <li>Sesgos cognitivos y situaciones frecuentes: perseguir pérdidas, operar por miedo a perder una oportunidad, sobreoperar o modificar criterios bajo presión.</li>
+          <li>Identificación de señales personales y puntos de intervención.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Inversión</h2>
-      <div class="precio-box">
-        <div class="precio-final">
-          <span class="et">Inversión total</span>
-          <span class="num">$500 USD</span>
+      <section class="sub">
+        <h3>Enfoque metodológico</h3>
+        <div class="card">
+          <p>Se desarrollará una experiencia participativa que combina psicoeducación, fundamentos de neurociencia y ejercicios de reflexión aplicados a situaciones habituales del trading.</p>
+          <p>Mediante encuestas anónimas, análisis de situaciones y ejercicios de autoobservación, los participantes podrán identificar tendencias en su propia conducta sin necesidad de compartir públicamente experiencias personales o información financiera.</p>
+          <p>La metodología permitirá pasar de la comprensión teórica al reconocimiento individual: identificar qué situaciones los activan, cómo cambia su manera de decidir y en qué momento pueden comenzar a apartarse de sus criterios.</p>
+          <p>El taller finalizará con la elaboración de una estrategia personal para reconocer y abordar uno de los patrones identificados.</p>
         </div>
-        <p class="incluye">Incluye preparación y adaptación del contenido, diseño de ejercicios, facilitación del taller y materiales digitales básicos.</p>
+      </section>
+
+      <section class="sub">
+        <h3>Resultados esperados</h3>
+        <p>Al finalizar, los participantes contarán con una comprensión más clara de los mecanismos psicológicos que pueden influir en su operativa, habrán identificado al menos un patrón personal relevante y dispondrán de una estrategia inicial para abordarlo.</p>
+      </section>
+    </div>
+
+    <!-- ============ TALLER 2 ============ -->
+    <div class="taller-block">
+      <p class="taller-num"><span class="n">2</span>Taller para el mastermind</p>
+      <h2 class="titulo">Análisis funcional y estrategias individualizadas</h2>
+      <div class="meta-row">
+        <span class="pill">🔎 Análisis funcional</span>
+        <span class="pill">🎯 Estrategias individualizadas</span>
+        <span class="pill">👥 Grupo del mastermind</span>
       </div>
-    </section>
+      <div class="card">
+        <p>Mientras el grupo de estudio se centra en la comprensión y el reconocimiento inicial de patrones, este espacio profundiza en el análisis funcional y la construcción de estrategias individualizadas para cada integrante del mastermind — un acompañamiento más cercano, pensado para un grupo reducido.</p>
+      </div>
+    </div>
+
+    <!-- ============ ENFOQUE Y ALCANCE ============ -->
+    <div class="alcance">
+      <h2>Enfoque y alcance profesional</h2>
+      <p>Ambos talleres se fundamentan en la psicología y la neurociencia aplicadas a la toma de decisiones. Su propósito es favorecer el autoconocimiento, la comprensión de patrones conductuales y el desarrollo de estrategias de autorregulación en el contexto del trading.</p>
+      <p>Los espacios son complementarios, pero responden a necesidades diferentes: el grupo de estudio se centra en la comprensión y el reconocimiento inicial de patrones, mientras que el mastermind profundiza en el análisis funcional y la construcción de estrategias individualizadas.</p>
+      <p>El trabajo psicológico complementa la formación técnica, pero no la sustituye. Los criterios de entrada y salida, la gestión del riesgo y las reglas de operación corresponden al marco técnico definido por el formador y cada participante.</p>
+      <p class="nota">Los talleres no constituyen psicoterapia individual ni garantizan resultados financieros.</p>
+    </div>
+
+    <!-- ============ PRECIOS ============ -->
+    <div class="precios-tit">
+      <h2>Inversión</h2>
+    </div>
+    <div class="precios-grid">
+      <div class="plan">
+        <h3>Solo Taller 1</h3>
+        <p class="precio">$500</p>
+        <p class="desc">Grupo de estudio · hasta 80 personas · 2 horas virtuales.</p>
+      </div>
+      <div class="plan">
+        <h3>Solo Taller 2</h3>
+        <p class="precio">$500</p>
+        <p class="desc">Mastermind · análisis funcional y estrategias individualizadas.</p>
+      </div>
+      <div class="plan destacado">
+        <span class="badge">Mejor valor</span>
+        <h3>Ambos talleres</h3>
+        <p class="precio">$800</p>
+        <p class="desc">Los dos espacios completos, para cubrir a toda la comunidad.</p>
+        <p class="ahorro">Ahorras $200 USD vs. comprarlos por separado</p>
+      </div>
+    </div>
+
+    <div class="incluye-box">
+      <b>La inversión incluye</b>
+      Preparación y adaptación del contenido, diseño de ejercicios, facilitación del taller y materiales digitales básicos. Cualquier seguimiento posterior, sesión individual o actividad adicional se acordará y cotizará por separado.
+    </div>
 
     <div class="cta">
-      <h2>Siguientes pasos</h2>
-      <p style="margin-bottom:0">Si te interesa, confirmamos fecha y horario y queda agendado directo. Cualquier pregunta sobre el contenido o el formato, aquí estoy.</p>
+      <h2>¿Coordinamos la fecha?</h2>
+      <p>Quedo atenta a sus comentarios para coordinar la realización de los talleres.</p>
     </div>
+
   </main>
 
   <footer>
-    <p>Elizabet García Duque · Psicóloga clínica, Mag.</p>
+    <p>Elizabet García Duque · Psicóloga · Magíster en Psicología Clínica</p>
   </footer>
 </div>
 
