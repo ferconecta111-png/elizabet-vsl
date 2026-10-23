@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Propuesta — Charla para tu Mastermind | Elizabet García Duque</title>
+<title>Propuesta — Tu cerebro frente al mercado | Elizabet García Duque</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap">
 <link rel="icon" href="favicon-32.png">
@@ -43,16 +43,18 @@
     color: var(--gold-tint); display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
   }
   .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--gold-tint); display: inline-block; }
-  header.band h1 { font-size: clamp(26px, 4.4vw, 36px); line-height: 1.25; max-width: 24ch; color: #fff; }
+  header.band h1 { font-size: clamp(26px, 4.4vw, 38px); line-height: 1.25; max-width: 22ch; color: #fff; }
   header.band p.sub { margin-top: 14px; font-size: 16px; color: var(--navy-soft); max-width: 48ch; }
 
   main { padding: 40px 0 64px; }
   section { margin-bottom: 40px; }
   section h2 { font-size: 21px; color: var(--navy-deep); margin-bottom: 14px; }
+  section h3 { font-size: 16px; color: var(--gold-deep); margin-bottom: 10px; font-family: "Manrope", sans-serif; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
   p { line-height: 1.65; font-size: 16px; color: var(--text); max-width: 62ch; }
   p.faint { color: var(--text-faint); font-size: 14.5px; }
 
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; }
+  .card + .card { margin-top: 16px; }
 
   ul.specs { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
   ul.specs li { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
@@ -60,12 +62,14 @@
   ul.specs .label { flex: 0 0 140px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold-deep); }
   ul.specs .val { color: var(--text); font-size: 15.5px; flex: 1; min-width: 0; }
 
+  ul.valor { margin: 0; padding: 0 0 0 20px; display: grid; gap: 10px; }
+  ul.valor li { font-size: 15.5px; line-height: 1.55; color: var(--text); }
+
   .precio-box { background: linear-gradient(160deg, var(--gold-tint), var(--surface) 120%); border: 1px solid var(--line); border-radius: 18px; padding: 28px; }
-  .precio-linea { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; font-size: 15px; color: var(--text-faint); gap: 12px; }
-  .precio-linea strong { color: var(--text); font-weight: 600; white-space: nowrap; }
-  .precio-final { margin-top: 16px; padding-top: 20px; border-top: 1px dashed var(--gold); display: flex; justify-content: space-between; align-items: baseline; }
-  .precio-final .num { font-family: "Fraunces", Georgia, serif; font-size: 40px; color: var(--gold-deep); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .precio-final { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .precio-final .num { font-family: "Fraunces", Georgia, serif; font-size: 44px; color: var(--gold-deep); font-weight: 600; font-variant-numeric: tabular-nums; }
   .precio-final .et { font-size: 14px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; }
+  .precio-box p.incluye { margin: 18px 0 0; padding-top: 18px; border-top: 1px dashed var(--gold); font-size: 14.5px; color: var(--text-faint); }
 
   .cta { margin-top: 44px; padding: 28px; border-radius: 18px; background: var(--navy-tint); border: 1px solid var(--navy-soft); }
   .cta h2 { color: var(--navy-deep); }
@@ -76,8 +80,8 @@
   @media (max-width: 480px) {
     ul.specs li { flex-direction: column; gap: 4px; }
     ul.specs .label { flex: none; }
-    .precio-final .num { font-size: 32px; }
-    .precio-linea { flex-direction: column; gap: 2px; }
+    .precio-final { flex-direction: column; gap: 4px; }
+    .precio-final .num { font-size: 36px; }
   }
 </style>
 </head>
@@ -85,71 +89,63 @@
 
 <header class="band">
   <div class="wrap">
-    <p class="eyebrow">Propuesta profesional</p>
-    <h1>Un espacio de claridad para quienes operan bajo presión</h1>
-    <p class="sub">Elizabet García Duque — Psicóloga clínica, Mag.</p>
+    <p class="eyebrow">Propuesta de taller · Psicología aplicada al trading</p>
+    <h1>Tu cerebro frente al mercado</h1>
+    <p class="sub">Comprender mis reacciones y mejorar mis decisiones — Elizabet García Duque, Psicóloga · Magíster en Psicología Clínica</p>
   </div>
 </header>
 
 <div class="wrap">
   <main>
-    <section>
-      <p>Gracias por pensar en mí para acompañar a tu grupo. El trading se enseña como técnica, pero se vive como psicología: el miedo a perder que hace cerrar una posición antes de tiempo, la necesidad de recuperar lo perdido que empuja a operar de más, la parálisis frente a una buena entrada porque la última salió mal. Nadie enseña esa parte — y es la que más cuenta.</p>
-    </section>
-
-    <section>
-      <h2>Lo que reconozco en quienes operan</h2>
-      <div class="card">
-        <p style="margin:0 0 14px">No hace falta que me cuenten su estrategia para reconocer el patrón: deciden desde el miedo y le llaman disciplina, o desde la urgencia y le llaman oportunidad. La mente no distingue entre una pérdida de dinero y una amenaza real — reacciona igual, y desde ahí no se opera bien.</p>
-        <p style="margin:0">Esta charla no reemplaza la parte técnica del mastermind. La completa: trabaja la relación con el miedo, la escasez y el propósito que sostiene a alguien incluso en una mala racha.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Qué se llevan</h2>
-      <ul class="specs">
-        <li><span class="label">Claridad</span><span class="val">Identificar el momento exacto en que una decisión deja de ser técnica y pasa a ser emocional</span></li>
-        <li><span class="label">Herramienta</span><span class="val">Una pausa concreta para usar antes de entrar o salir de una operación importante, no solo teoría</span></li>
-        <li><span class="label">Propósito</span><span class="val">Reconectar el trading con el motivo de fondo — no solo ganar, sino para qué se quiere ganar</span></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Quién te acompaña</h2>
-      <div class="card">
-        <p style="margin:0 0 10px"><b>Psicóloga · Magíster en Psicología Clínica · Certificada en Crianza Respetuosa · Diplomada en Neurolingüística y Coaching · Arteterapia.</b></p>
-        <p style="margin:0 0 14px; font-style: italic; color: var(--text-faint)">"Saberlo todo de ti no es lo mismo que transformarlo. Por eso te acompaño mientras sucede, no después."</p>
-        <p style="margin:0">Acompaño procesos de ansiedad, crisis y cambios de vida desde hace años, con terapia online en español para toda Latinoamérica y Estados Unidos. Lo que dicen quienes ya han trabajado conmigo:</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="card" style="display:grid; gap:18px;">
-        <p style="margin:0; border-left: 3px solid var(--gold); padding-left: 16px;">"Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal." <span style="display:block; margin-top:6px; font-size:13px; color: var(--text-faint);">— Francisca Jesús Díaz · Chile</span></p>
-        <p style="margin:0; border-left: 3px solid var(--gold); padding-left: 16px;">"Me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos." <span style="display:block; margin-top:6px; font-size:13px; color: var(--text-faint);">— Isabela Villa · Colombia</span></p>
-      </div>
-    </section>
 
     <section>
       <h2>Formato</h2>
       <ul class="specs">
-        <li><span class="label">Duración</span><span class="val">1.5 horas de sesión + preguntas abiertas</span></li>
-        <li><span class="label">Modalidad</span><span class="val">En vivo, grupal — 7 integrantes</span></li>
-        <li><span class="label">Grabación</span><span class="val">Incluida. El mastermind se queda con el video para quien no pueda conectarse en vivo o quiera repasarlo después</span></li>
+        <li><span class="label">Duración</span><span class="val">Aproximada, dos horas</span></li>
+        <li><span class="label">Modalidad</span><span class="val">Virtual</span></li>
+        <li><span class="label">Dirigido a</span><span class="val">Grupo de hasta 80 participantes</span></li>
       </ul>
     </section>
 
     <section>
-      <h2>La inversión</h2>
-      <p class="faint" style="margin-bottom:16px">Para que el número tenga contexto: así se calcula, a partir de mi tarifa real de sesión.</p>
+      <h2>Objetivo</h2>
+      <p>Comprender cómo los procesos cognitivos, emocionales y de aprendizaje pueden influir en las decisiones de trading, favoreciendo el reconocimiento de patrones personales que interfieren con la operativa y el desarrollo de estrategias para gestionarlos.</p>
+    </section>
+
+    <section>
+      <h2>Descripción</h2>
+      <div class="card">
+        <p style="margin:0 0 14px">Este taller integra conocimientos de psicología clínica y neurociencia para explorar qué sucede cuando la incertidumbre, las pérdidas, las ganancias o la expectativa de una oportunidad influyen en nuestra manera de decidir.</p>
+        <p style="margin:0 0 14px">Se abordarán mecanismos relacionados con la respuesta al estrés, los sesgos cognitivos, el aprendizaje por recompensa y la repetición de conductas que pueden llevar a operar impulsivamente, perseguir pérdidas, anticiparse a oportunidades o modificar criterios bajo presión.</p>
+        <p style="margin:0">A través de ejercicios de autorreflexión, encuestas anónimas y situaciones aplicadas al trading, los participantes podrán reconocer sus propias tendencias, identificar momentos críticos de su proceso operativo y construir estrategias concretas para responder de manera más consciente y estructurada.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Valor para los participantes</h2>
+      <ul class="valor">
+        <li>Comprender los mecanismos psicológicos que pueden influir en sus decisiones.</li>
+        <li>Identificar patrones personales que dificultan el cumplimiento de su plan operativo.</li>
+        <li>Reconocer señales tempranas de activación emocional e impulsividad.</li>
+        <li>Diseñar una estrategia personal para intervenir en los momentos de mayor vulnerabilidad.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Quién lo facilita</h2>
+      <div class="card">
+        <p style="margin:0"><b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica · Certificada en Crianza Respetuosa · Diplomada en Neurolingüística y Coaching · Arteterapia. Acompaña procesos de ansiedad, crisis y cambios de vida, con terapia online en español para Latinoamérica y Estados Unidos.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Inversión</h2>
       <div class="precio-box">
-        <div class="precio-linea"><span>Sesión individual conmigo</span><strong>$75 USD</strong></div>
-        <div class="precio-linea"><span>7 sesiones individuales (una por integrante)</span><strong>$525 USD</strong></div>
-        <div class="precio-linea"><span>Esta charla: una sola sesión en vivo para las 7 personas + grabación</span><strong>—</strong></div>
         <div class="precio-final">
           <span class="et">Inversión total</span>
           <span class="num">$500 USD</span>
         </div>
+        <p class="incluye">Incluye preparación y adaptación del contenido, diseño de ejercicios, facilitación del taller y materiales digitales básicos.</p>
       </div>
     </section>
 
