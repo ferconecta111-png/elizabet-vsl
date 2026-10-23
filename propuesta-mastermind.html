@@ -124,7 +124,7 @@
     }
   }
 
-  main { padding: 56px 0 72px; }
+  main { padding: 56px 0 44px; }
   .taller-block { margin-bottom: 64px; }
   .taller-num {
     display: inline-flex; align-items: center; gap: 12px; margin-bottom: 8px;
@@ -261,13 +261,13 @@
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
   /* ===== Respaldo / testimonios ===== */
-  .respaldo { margin-bottom: 56px; }
+  .respaldo { margin-bottom: 0; }
   .respaldo-tit { text-align: center; margin-bottom: 6px; }
   .respaldo-tit h2 { font-size: 26px; color: var(--navy-deep); }
   .respaldo-sub { text-align: center; color: var(--text-faint); font-size: 14.5px; margin: 0 auto 30px; max-width: 56ch; }
   .respaldo-divisor { height: 3px; width: 64px; margin: 0 auto 30px; border-radius: 2px; background: linear-gradient(90deg, var(--rosa-metal), var(--azul-metal)); background-size: 200% 100%; animation: sheen-rosa 7s ease-in-out infinite; }
   /* carrusel de testimonios: misma mecánica que el sitio principal de Elizabet */
-  .testi-carousel-wrap { width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; padding: 4px 0 26px; }
+  .testi-carousel-wrap { width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; padding: 4px 0 0; }
   .testi-carousel {
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
@@ -289,7 +289,7 @@
   .testi-card .who { margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--navy-deep); font-style: normal; }
   @media (max-width: 480px) { .testi-card { flex-basis: 250px; width: 250px; } }
 
-  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; margin-top: 12px; text-align: center; }
+  footer { border-top: 1px solid var(--line); padding: 20px 0 40px; margin-top: 0; text-align: center; }
   footer p { font-size: 13.5px; color: var(--text-faint); }
 
   @media (max-width: 720px) {
