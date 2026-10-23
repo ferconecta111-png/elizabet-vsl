@@ -56,6 +56,9 @@
   }
   @media (prefers-reduced-motion: reduce) { .mancha { animation: none; } }
 
+  /* rasgo tecnico de trading, sutil, pegado al borde inferior del header */
+  .velas { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 70px; opacity: 0.22; z-index: 0; }
+
   .header-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
   .header-texto { flex: 1 1 380px; min-width: 0; }
   .header-foto { flex: 0 0 auto; }
@@ -102,7 +105,13 @@
   section.sub h3 {
     font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
     color: var(--gold-deep); margin-bottom: 12px; font-family: "Manrope", sans-serif;
+    display: flex; align-items: center; gap: 10px;
   }
+  .icono-clin {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 9px; background: var(--navy-tint); flex: none;
+  }
+  .icono-clin svg { width: 17px; height: 17px; stroke: var(--navy-deep); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   p { line-height: 1.7; font-size: 16px; color: var(--text); max-width: 64ch; }
 
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 30px; }
@@ -182,6 +191,21 @@
     <span class="mancha m2"></span>
     <span class="mancha m3"></span>
   </div>
+  <svg class="velas" viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true">
+    <polyline points="0,62 60,55 120,60 180,44 240,50 300,34 360,40 420,26 480,32 540,20 600,28 660,16 720,24 780,14 840,20 900,10" fill="none" stroke="#F4E3DA" stroke-width="1.4" opacity="0.5"/>
+    <g stroke="#D4A94F" stroke-width="2">
+      <line x1="50" y1="48" x2="50" y2="72"/><rect x="45" y="54" width="10" height="12" fill="#D4A94F"/>
+      <line x1="140" y1="50" x2="140" y2="70"/><rect x="135" y="56" width="10" height="9" fill="#F4E3DA"/>
+      <line x1="230" y1="38" x2="230" y2="62"/><rect x="225" y="44" width="10" height="13" fill="#D4A94F"/>
+      <line x1="320" y1="28" x2="320" y2="52"/><rect x="315" y="34" width="10" height="10" fill="#F4E3DA"/>
+      <line x1="410" y1="18" x2="410" y2="44"/><rect x="405" y="24" width="10" height="14" fill="#D4A94F"/>
+      <line x1="500" y1="14" x2="500" y2="38"/><rect x="495" y="20" width="10" height="11" fill="#F4E3DA"/>
+      <line x1="590" y1="10" x2="590" y2="34"/><rect x="585" y="16" width="10" height="12" fill="#D4A94F"/>
+      <line x1="680" y1="8" x2="680" y2="30"/><rect x="675" y="12" width="10" height="10" fill="#F4E3DA"/>
+      <line x1="770" y1="6" x2="770" y2="26"/><rect x="765" y="10" width="10" height="10" fill="#D4A94F"/>
+      <line x1="850" y1="2" x2="850" y2="22"/><rect x="845" y="6" width="10" height="11" fill="#F4E3DA"/>
+    </g>
+  </svg>
   <div class="wrap">
     <div class="header-inner">
       <div class="header-texto">
@@ -191,7 +215,7 @@
         <div class="firma">Preparado por <b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica</div>
       </div>
       <div class="header-foto">
-        <img src="elizabeth-foto-hero.webp" alt="Elizabet García Duque">
+        <img src="eli-retrato-propuesta.jpg" alt="Elizabet García Duque">
       </div>
     </div>
   </div>
@@ -213,12 +237,12 @@
       </div>
 
       <section class="sub">
-        <h3>Objetivo</h3>
+        <h3><span class="icono-clin"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>Objetivo</h3>
         <p>Comprender cómo los procesos cognitivos, emocionales y de aprendizaje pueden influir en las decisiones de trading, facilitando el reconocimiento de patrones personales que interfieren con la operativa y la identificación de estrategias para gestionarlos.</p>
       </section>
 
       <section class="sub">
-        <h3>Contenidos</h3>
+        <h3><span class="icono-clin"><svg viewBox="0 0 24 24"><line x1="5" y1="6" x2="19" y2="6"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="5" y1="18" x2="13" y2="18"/></svg></span>Contenidos</h3>
         <ul class="contenidos">
           <li>Cerebro, incertidumbre y toma de decisiones: qué sucede cuando operamos bajo presión.</li>
           <li>Respuesta al estrés, atención y regulación de la conducta.</li>
@@ -229,7 +253,7 @@
       </section>
 
       <section class="sub">
-        <h3>Enfoque metodológico</h3>
+        <h3><span class="icono-clin"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.3V16h6v-.2c0-.9.4-1.7 1-2.3A6 6 0 0 0 12 3Z"/></svg></span>Enfoque metodológico</h3>
         <div class="card">
           <p>Se desarrollará una experiencia participativa que combina psicoeducación, fundamentos de neurociencia y ejercicios de reflexión aplicados a situaciones habituales del trading.</p>
           <p>Mediante encuestas anónimas, análisis de situaciones y ejercicios de autoobservación, los participantes podrán identificar tendencias en su propia conducta sin necesidad de compartir públicamente experiencias personales o información financiera.</p>
@@ -239,7 +263,7 @@
       </section>
 
       <section class="sub">
-        <h3>Resultados esperados</h3>
+        <h3><span class="icono-clin"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>Resultados esperados</h3>
         <p>Al finalizar, los participantes contarán con una comprensión más clara de los mecanismos psicológicos que pueden influir en su operativa, habrán identificado al menos un patrón personal relevante y dispondrán de una estrategia inicial para abordarlo.</p>
       </section>
     </div>
