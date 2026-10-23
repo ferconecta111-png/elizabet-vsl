@@ -25,7 +25,6 @@
     --line: #e4e0d8;
     --rosa-metal: linear-gradient(120deg, #B06B78 0%, #EFD4D8 20%, #C98A96 42%, #F6E3E6 58%, #A9565F 78%, #E3B6BD 100%);
     --azul-metal: linear-gradient(120deg, #13232c 0%, #4C7E91 24%, #1E3440 46%, #7FA7B8 64%, #13232c 84%, #3A5A6E 100%);
-    --oro-metal: linear-gradient(120deg, #7A4F49 0%, #F3E1DE 20%, #C9A17A 42%, #FFF6EF 58%, #7A4F49 78%, #E3C39A 100%);
   }
   * { box-sizing: border-box; }
   body {
@@ -99,18 +98,17 @@
   .btn-metodologia {
     display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
     padding: 13px 28px; border-radius: 100px;
-    background: var(--oro-metal); background-size: 220% 220%;
-    color: #3a2418; font-weight: 800; font-size: 14.5px; letter-spacing: 0.01em;
-    text-decoration: none; text-shadow: 0 1px 1px rgba(255,255,255,0.35);
+    background: var(--navy-deep);
+    color: #fff; font-weight: 800; font-size: 14.5px; letter-spacing: 0.01em;
+    text-decoration: none;
     box-shadow: 0 10px 22px rgba(0,0,0,0.3);
-    animation: latido 2.4s ease-in-out infinite, sheen-oro 7s ease-in-out infinite;
+    animation: latido 2.4s ease-in-out infinite;
   }
   .btn-metodologia svg { width: 15px; height: 15px; flex: none; }
   @keyframes latido {
     0%, 100% { transform: scale(1); box-shadow: 0 10px 22px rgba(0,0,0,0.3); }
     50% { transform: scale(1.045); box-shadow: 0 13px 28px rgba(0,0,0,0.36); }
   }
-  @keyframes sheen-oro { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
   @media (prefers-reduced-motion: reduce) { .btn-metodologia { animation: none; } }
 
   @media (max-width: 760px) { .header-foto-grande { height: 210px; max-width: 58%; } }
@@ -377,7 +375,7 @@
       <p style="color:var(--text-faint); font-size:15.5px; margin-bottom:4px">Comprender mis patrones y transformar mis decisiones</p>
 
       <div class="meta-row">
-        <span class="pill">⏱ 90 minutos</span>
+        <span class="pill">⏱ 90 minutos aproximadamente</span>
         <span class="pill">💻 Virtual</span>
         <span class="pill">👥 10 participantes</span>
       </div>
