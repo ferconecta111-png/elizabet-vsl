@@ -25,6 +25,7 @@
     --line: #e4e0d8;
     --rosa-metal: linear-gradient(120deg, #B06B78 0%, #EFD4D8 20%, #C98A96 42%, #F6E3E6 58%, #A9565F 78%, #E3B6BD 100%);
     --azul-metal: linear-gradient(120deg, #13232c 0%, #4C7E91 24%, #1E3440 46%, #7FA7B8 64%, #13232c 84%, #3A5A6E 100%);
+    --oro-metal: linear-gradient(120deg, #7A4F49 0%, #F3E1DE 20%, #C9A17A 42%, #FFF6EF 58%, #7A4F49 78%, #E3C39A 100%);
   }
   * { box-sizing: border-box; }
   body {
@@ -72,7 +73,7 @@
 
   /* foto grande, sin circulo, recortada y fundida con la escena, compacta en todo el lado derecho */
   .header-foto-grande {
-    position: absolute; right: 2%; bottom: 10px; top: 48px; z-index: 1;
+    position: absolute; right: 2%; bottom: -34px; top: 48px; z-index: 1;
     height: auto; width: auto; max-width: 42%;
     object-fit: contain; object-position: bottom;
     opacity: 0.95;
@@ -94,6 +95,23 @@
   header.band p.sub { margin-top: 14px; font-size: 16.5px; color: var(--navy-soft); max-width: 48ch; line-height: 1.5; }
   .firma { margin-top: 18px; font-size: 14px; color: var(--navy-soft); display: flex; align-items: center; gap: 10px; }
   .firma b { color: #fff; font-weight: 700; }
+
+  .btn-metodologia {
+    display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
+    padding: 13px 28px; border-radius: 100px;
+    background: var(--oro-metal); background-size: 220% 220%;
+    color: #3a2418; font-weight: 800; font-size: 14.5px; letter-spacing: 0.01em;
+    text-decoration: none; text-shadow: 0 1px 1px rgba(255,255,255,0.35);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.3);
+    animation: latido 2.4s ease-in-out infinite, sheen-oro 7s ease-in-out infinite;
+  }
+  .btn-metodologia svg { width: 15px; height: 15px; flex: none; }
+  @keyframes latido {
+    0%, 100% { transform: scale(1); box-shadow: 0 10px 22px rgba(0,0,0,0.3); }
+    50% { transform: scale(1.045); box-shadow: 0 13px 28px rgba(0,0,0,0.36); }
+  }
+  @keyframes sheen-oro { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  @media (prefers-reduced-motion: reduce) { .btn-metodologia { animation: none; } }
 
   @media (max-width: 760px) { .header-foto-grande { height: 210px; max-width: 58%; } }
   @media (max-width: 620px) {
@@ -279,7 +297,10 @@
         <p class="eyebrow">Psicología clínica aplicada al trading</p>
         <h1>No es falta de disciplina: es cómo decide el cerebro bajo presión. Y eso sí se interviene.</h1>
         <p class="sub">Como psicóloga clínica especializada en toma de decisiones, veo el mismo patrón en cada comunidad de trading: se domina la estrategia y, aun así, se opera por impulso. Dos espacios en vivo, con base en neurociencia, para que tu comunidad identifique ese patrón y aprenda a intervenir antes de romper su plan.</p>
-        <div class="firma">Preparado por <b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica</div>
+        <a class="btn-metodologia" href="index.html#metodologia" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          Ver metodología
+        </a>
       </div>
     </div>
   </div>
