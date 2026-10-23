@@ -23,6 +23,8 @@
     --gold-tint: #f3e1de;
     --reactivo: #B4573F;
     --line: #e4e0d8;
+    --rosa-metal: linear-gradient(120deg, #B06B78 0%, #EFD4D8 20%, #C98A96 42%, #F6E3E6 58%, #A9565F 78%, #E3B6BD 100%);
+    --azul-metal: linear-gradient(120deg, #13232c 0%, #4C7E91 24%, #1E3440 46%, #7FA7B8 64%, #13232c 84%, #3A5A6E 100%);
   }
   * { box-sizing: border-box; }
   body {
@@ -36,12 +38,16 @@
 
   /* ===== Header ===== */
   header.band {
-    background: linear-gradient(165deg, var(--navy-ink), var(--navy-deep) 60%, var(--navy) 130%);
+    background: var(--azul-metal);
+    background-size: 220% 220%;
+    animation: sheen-azul 16s ease-in-out infinite;
     padding: 64px 0 0;
     color: #fdfaf3;
     position: relative;
     overflow: hidden;
   }
+  @keyframes sheen-azul { 0%, 100% { background-position: 0% 30%; } 50% { background-position: 100% 70%; } }
+  @media (prefers-reduced-motion: reduce) { header.band { animation: none; } }
   /* texturas con movimiento: manchas de luz que derivan despacio */
   .textura { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
   .mancha {
@@ -59,7 +65,7 @@
   @media (prefers-reduced-motion: reduce) { .mancha { animation: none; } }
 
   /* skyline al borde inferior del header: el "mercado" como ciudad */
-  .skyline { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 150px; z-index: 0; }
+  .skyline { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 210px; z-index: 0; }
   .skyline .ciudad-fondo { fill: var(--navy); opacity: 0.35; }
   .skyline .ciudad-frente { fill: var(--navy-ink); opacity: 0.85; }
   .skyline .ventana { fill: var(--gold-tint); opacity: 0.55; animation: parpadeo 5s ease-in-out infinite; }
@@ -68,14 +74,43 @@
   @keyframes parpadeo { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.75; } }
   @media (prefers-reduced-motion: reduce) { .skyline .ventana { animation: none; opacity: 0.45; } }
 
+  /* iconos de mercado: deriva organica (distinta curva cada uno), no rebote mecanico */
+  .icono-flot { transform-box: fill-box; transform-origin: center; animation: deriva-a 9s cubic-bezier(0.45,0,0.55,1) infinite; }
+  .iconos-trading > g:nth-of-type(2) .icono-flot { animation: deriva-b 11s cubic-bezier(0.45,0,0.55,1) infinite; animation-delay: -3s; }
+  .iconos-trading > g:nth-of-type(3) .icono-flot { animation: deriva-c 7.5s cubic-bezier(0.45,0,0.55,1) infinite; animation-delay: -1.5s; }
+  .iconos-trading > g:nth-of-type(4) .icono-flot { animation: deriva-a 10.5s cubic-bezier(0.45,0,0.55,1) infinite; animation-delay: -5s; }
+  .iconos-trading > g:nth-of-type(5) .icono-flot { animation: deriva-b 8.2s cubic-bezier(0.45,0,0.55,1) infinite; animation-delay: -2.2s; }
+  .iconos-trading > g:nth-of-type(6) .icono-flot { animation: deriva-c 9.8s cubic-bezier(0.45,0,0.55,1) infinite; animation-delay: -4.3s; }
+  .icono-flot .glow { animation: respirar 4.6s ease-in-out infinite; }
+  .iconos-trading > g:nth-of-type(2n) .glow { animation-duration: 5.6s; animation-delay: -1.8s; }
+  @keyframes deriva-a {
+    0%   { transform: translate(0,0) rotate(0deg) scale(1); }
+    30%  { transform: translate(5px,-12px) rotate(-3deg) scale(1.04); }
+    60%  { transform: translate(-6px,-6px) rotate(2deg) scale(0.98); }
+    100% { transform: translate(0,0) rotate(0deg) scale(1); }
+  }
+  @keyframes deriva-b {
+    0%   { transform: translate(0,0) rotate(0deg) scale(1); }
+    35%  { transform: translate(-7px,-10px) rotate(3deg) scale(1.05); }
+    70%  { transform: translate(4px,-4px) rotate(-2deg) scale(0.97); }
+    100% { transform: translate(0,0) rotate(0deg) scale(1); }
+  }
+  @keyframes deriva-c {
+    0%   { transform: translate(0,0) rotate(0deg) scale(1); }
+    50%  { transform: translate(3px,-14px) rotate(-4deg) scale(1.06); }
+    100% { transform: translate(0,0) rotate(0deg) scale(1); }
+  }
+  @keyframes respirar { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.6; } }
+  @media (prefers-reduced-motion: reduce) { .icono-flot, .icono-flot .glow { animation: none; } }
+
   /* rasgo tecnico de trading, mas grande, dibujandose sobre la ciudad */
-  .velas { position: absolute; left: 0; right: 0; bottom: 36px; width: 100%; height: 110px; opacity: 0.9; z-index: 0; }
+  .velas { position: absolute; left: 0; right: 0; bottom: 56px; width: 100%; height: 110px; opacity: 0.9; z-index: 0; }
   .velas .linea-trazo { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: trazar 2.6s ease-out 0.3s forwards; }
   @media (prefers-reduced-motion: reduce) { .velas .linea-trazo { stroke-dashoffset: 0; animation: none; } }
   @keyframes trazar { to { stroke-dashoffset: 0; } }
 
-  .header-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; margin-bottom: 150px; }
-  @media (max-width: 620px) { .header-inner { margin-bottom: 110px; } .skyline, .velas { transform: scale(1.3); transform-origin: bottom center; } }
+  .header-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; margin-bottom: 200px; }
+  @media (max-width: 620px) { .header-inner { margin-bottom: 150px; } .skyline, .velas { transform: scale(1.3); transform-origin: bottom center; } }
   .header-texto { flex: 1 1 380px; min-width: 0; }
   .header-foto { flex: 0 0 auto; }
   .header-foto img {
@@ -150,7 +185,7 @@
   .pendiente p { margin: 0 auto; max-width: 42ch; color: var(--gold-deep); font-weight: 600; }
 
   /* ===== Enfoque y alcance ===== */
-  .alcance { background: var(--navy-deep); color: #fdfaf3; border-radius: 24px; padding: 40px; margin-bottom: 64px; position: relative; overflow: hidden; }
+  .alcance { background: var(--azul-metal); background-size: 180% 180%; color: #fdfaf3; border-radius: 24px; padding: 40px; margin-bottom: 64px; position: relative; overflow: hidden; }
   .alcance .textura .mancha { opacity: 0.35; }
   .alcance > *:not(.textura) { position: relative; z-index: 1; }
   .alcance h2 { color: #fff; font-size: 24px; margin-bottom: 18px; }
@@ -171,13 +206,19 @@
   }
   .plan.destacado {
     background: linear-gradient(165deg, var(--gold-tint), var(--surface) 130%);
-    border: 2px solid var(--gold); position: relative;
+    border: 2px solid transparent;
+    background-image: linear-gradient(165deg, var(--gold-tint), var(--surface) 130%), var(--rosa-metal);
+    background-origin: border-box; background-clip: padding-box, border-box;
+    position: relative;
   }
   .plan .badge {
     position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.05em;
+    background: var(--rosa-metal); background-size: 200% 200%; animation: sheen-rosa 6s ease-in-out infinite;
+    color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 1px 2px rgba(0,0,0,0.25);
     text-transform: uppercase; padding: 6px 16px; border-radius: 100px; white-space: nowrap;
   }
+  @keyframes sheen-rosa { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+  @media (prefers-reduced-motion: reduce) { .plan .badge { animation: none; } }
   .plan h3 { font-size: 17px; color: var(--navy-deep); font-family: "Fraunces", serif; font-weight: 600; }
   .plan .precio { font-family: "Fraunces", serif; font-size: 40px; color: var(--gold-deep); font-weight: 600; font-variant-numeric: tabular-nums; margin: 4px 0; }
   .plan .desc { font-size: 14px; color: var(--text-faint); line-height: 1.5; flex: 1; }
@@ -202,7 +243,7 @@
   @keyframes dibujar { to { stroke-dashoffset: 0; } }
   @media (prefers-reduced-motion: reduce) { .linea-reactiva, .linea-regulada { stroke-dashoffset: 0; animation: none; } }
 
-  .cta { padding: 36px; border-radius: 24px; background: linear-gradient(160deg, var(--navy-deep), var(--navy)); color: #fff; text-align: center; }
+  .cta { padding: 36px; border-radius: 24px; background: var(--azul-metal); background-size: 180% 180%; color: #fff; text-align: center; }
   .cta h2 { color: #fff; margin-bottom: 12px; }
   .cta p { color: var(--navy-soft); margin: 0 auto 26px; }
 
@@ -218,14 +259,31 @@
   .plan .btn-pago {
     margin-top: 6px; width: 100%; background: var(--navy-tint); color: var(--navy-deep);
   }
-  .plan.destacado .btn-pago { background: var(--gold); color: #fff; }
+  .plan.destacado .btn-pago { background: var(--rosa-metal); background-size: 200% 200%; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
   .cta-botones { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
   .cta-botones .btn-pago { background: #fff; color: var(--navy-deep); }
-  .cta-botones .btn-pago.principal { background: var(--gold); color: #fff; }
+  .cta-botones .btn-pago.principal { background: var(--rosa-metal); background-size: 200% 200%; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+  .btn-pago:hover { background-position: 100% 50%; }
 
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* ===== Respaldo / testimonios ===== */
+  .respaldo { margin-bottom: 56px; }
+  .respaldo-tit { text-align: center; margin-bottom: 6px; }
+  .respaldo-tit h2 { font-size: 26px; color: var(--navy-deep); }
+  .respaldo-sub { text-align: center; color: var(--text-faint); font-size: 14.5px; margin: 0 auto 30px; max-width: 56ch; }
+  .respaldo-divisor { height: 3px; width: 64px; margin: 0 auto 30px; border-radius: 2px; background: linear-gradient(90deg, var(--rosa-metal), var(--azul-metal)); background-size: 200% 100%; animation: sheen-rosa 7s ease-in-out infinite; }
+  .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 26px; }
+  .testi-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; gap: 14px; }
+  .testi-card img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid var(--gold-tint); }
+  .testi-card .txt { font-size: 14px; line-height: 1.55; font-style: italic; color: var(--text); }
+  .testi-card .who { margin-top: 8px; font-size: 12.5px; font-weight: 700; color: var(--navy-deep); font-style: normal; }
+  .testi-videos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .testi-videos video { width: 100%; border-radius: 16px; display: block; background: #000; }
+  .testi-videos p.who { text-align: center; margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--navy-deep); }
+  @media (max-width: 620px) { .testi-grid, .testi-videos { grid-template-columns: 1fr; } }
 
   footer { border-top: 1px solid var(--line); padding: 28px 0 48px; margin-top: 12px; text-align: center; }
   footer p { font-size: 13.5px; color: var(--text-faint); }
@@ -244,27 +302,62 @@
     <span class="mancha m2"></span>
     <span class="mancha m3"></span>
   </div>
-  <svg class="skyline" viewBox="0 0 900 150" preserveAspectRatio="none" aria-hidden="true">
+  <svg class="skyline" viewBox="0 0 900 210" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <filter id="brillo-icono" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="7"/>
+      </filter>
+    </defs>
     <g class="ciudad-fondo">
-      <rect x="10" y="70" width="46" height="80"/><rect x="66" y="40" width="34" height="110"/>
-      <rect x="112" y="85" width="40" height="65"/><rect x="330" y="55" width="38" height="95"/>
-      <rect x="378" y="90" width="30" height="60"/><rect x="560" y="60" width="42" height="90"/>
-      <rect x="612" y="95" width="28" height="55"/><rect x="790" y="45" width="36" height="105"/>
-      <rect x="836" y="80" width="40" height="70"/>
+      <rect x="10" y="130" width="46" height="80"/><rect x="66" y="100" width="34" height="110"/>
+      <rect x="112" y="145" width="40" height="65"/><rect x="330" y="115" width="38" height="95"/>
+      <rect x="378" y="150" width="30" height="60"/><rect x="560" y="120" width="42" height="90"/>
+      <rect x="612" y="155" width="28" height="55"/><rect x="790" y="105" width="36" height="105"/>
+      <rect x="836" y="140" width="40" height="70"/>
     </g>
     <g class="ciudad-frente">
-      <rect x="150" y="95" width="48" height="55"/><rect x="204" y="60" width="36" height="90"/>
-      <rect x="246" y="100" width="30" height="50"/><rect x="420" y="75" width="44" height="75"/>
-      <rect x="470" y="105" width="32" height="45"/><rect x="640" y="50" width="40" height="100"/>
-      <rect x="686" y="88" width="34" height="62"/><rect x="726" y="108" width="26" height="42"/>
-      <rect x="880" y="92" width="20" height="58"/>
+      <rect x="150" y="155" width="48" height="55"/><rect x="204" y="120" width="36" height="90"/>
+      <rect x="246" y="160" width="30" height="50"/><rect x="420" y="135" width="44" height="75"/>
+      <rect x="470" y="165" width="32" height="45"/><rect x="640" y="110" width="40" height="100"/>
+      <rect x="686" y="148" width="34" height="62"/><rect x="726" y="168" width="26" height="42"/>
+      <rect x="880" y="152" width="20" height="58"/>
       <g class="ventana">
-        <rect x="158" y="105" width="6" height="8"/><rect x="172" y="105" width="6" height="8"/><rect x="158" y="120" width="6" height="8"/><rect x="172" y="120" width="6" height="8"/>
+        <rect x="158" y="165" width="6" height="8"/><rect x="172" y="165" width="6" height="8"/><rect x="158" y="180" width="6" height="8"/><rect x="172" y="180" width="6" height="8"/>
       </g>
-      <g class="ventana"><rect x="212" y="70" width="5" height="7"/><rect x="224" y="70" width="5" height="7"/><rect x="212" y="85" width="5" height="7"/><rect x="224" y="85" width="5" height="7"/><rect x="212" y="100" width="5" height="7"/><rect x="224" y="100" width="5" height="7"/></g>
-      <g class="ventana"><rect x="428" y="88" width="6" height="7"/><rect x="442" y="88" width="6" height="7"/><rect x="428" y="104" width="6" height="7"/><rect x="442" y="104" width="6" height="7"/></g>
-      <g class="ventana"><rect x="648" y="62" width="6" height="8"/><rect x="662" y="62" width="6" height="8"/><rect x="648" y="80" width="6" height="8"/><rect x="662" y="80" width="6" height="8"/><rect x="648" y="98" width="6" height="8"/><rect x="662" y="98" width="6" height="8"/></g>
-      <g class="ventana"><rect x="694" y="100" width="5" height="7"/><rect x="706" y="100" width="5" height="7"/><rect x="694" y="115" width="5" height="7"/><rect x="706" y="115" width="5" height="7"/></g>
+      <g class="ventana"><rect x="212" y="130" width="5" height="7"/><rect x="224" y="130" width="5" height="7"/><rect x="212" y="145" width="5" height="7"/><rect x="224" y="145" width="5" height="7"/><rect x="212" y="160" width="5" height="7"/><rect x="224" y="160" width="5" height="7"/></g>
+      <g class="ventana"><rect x="428" y="148" width="6" height="7"/><rect x="442" y="148" width="6" height="7"/><rect x="428" y="164" width="6" height="7"/><rect x="442" y="164" width="6" height="7"/></g>
+      <g class="ventana"><rect x="648" y="122" width="6" height="8"/><rect x="662" y="122" width="6" height="8"/><rect x="648" y="140" width="6" height="8"/><rect x="662" y="140" width="6" height="8"/><rect x="648" y="158" width="6" height="8"/><rect x="662" y="158" width="6" height="8"/></g>
+      <g class="ventana"><rect x="694" y="160" width="5" height="7"/><rect x="706" y="160" width="5" height="7"/><rect x="694" y="175" width="5" height="7"/><rect x="706" y="175" width="5" height="7"/></g>
+    </g>
+    <g class="iconos-trading">
+      <g transform="translate(110,42)"><g class="icono-flot">
+        <circle class="glow" r="22" fill="var(--gold)" opacity="0.3" filter="url(#brillo-icono)"/>
+        <circle r="16" fill="rgba(253,250,243,0.07)" stroke="var(--gold-tint)" stroke-width="1" opacity="0.6"/>
+        <text x="0" y="6" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="17" fill="var(--gold-tint)" opacity="0.9">&#8383;</text>
+      </g></g>
+      <g transform="translate(258,20)"><g class="icono-flot">
+        <text x="0" y="8" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="700" font-size="24" fill="var(--gold-tint)" opacity="0.5">%</text>
+      </g></g>
+      <g transform="translate(392,54)"><g class="icono-flot">
+        <circle class="glow" r="19" fill="var(--gold)" opacity="0.26" filter="url(#brillo-icono)"/>
+        <circle r="14" fill="rgba(253,250,243,0.07)" stroke="var(--gold-tint)" stroke-width="1" opacity="0.55"/>
+        <text x="0" y="5" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="15" fill="var(--gold-tint)" opacity="0.9">$</text>
+      </g></g>
+      <g transform="translate(528,28)"><g class="icono-flot">
+        <polyline points="-14,8 -4,-4 4,2 14,-10" fill="none" stroke="var(--gold-tint)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+        <path d="M6,-16 L14,-10 L7,-4" fill="none" stroke="var(--gold-tint)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+      </g></g>
+      <g transform="translate(668,48)"><g class="icono-flot">
+        <circle class="glow" r="20" fill="var(--gold)" opacity="0.27" filter="url(#brillo-icono)"/>
+        <circle r="15" fill="rgba(253,250,243,0.07)" stroke="var(--gold-tint)" stroke-width="1" opacity="0.58"/>
+        <text x="0" y="5" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="16" fill="var(--gold-tint)" opacity="0.9">&#8364;</text>
+      </g></g>
+      <g transform="translate(812,24)"><g class="icono-flot">
+        <line x1="-8" y1="-10" x2="-8" y2="12" stroke="var(--gold-tint)" stroke-width="2" opacity="0.5"/>
+        <rect x="-12" y="-4" width="8" height="12" fill="var(--gold-tint)" opacity="0.55"/>
+        <line x1="8" y1="-16" x2="8" y2="6" stroke="var(--gold-tint)" stroke-width="2" opacity="0.5"/>
+        <rect x="4" y="-10" width="8" height="10" fill="var(--gold)" opacity="0.6"/>
+      </g></g>
     </g>
   </svg>
   <svg class="velas" viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true">
@@ -285,9 +378,9 @@
   <div class="wrap">
     <div class="header-inner">
       <div class="header-texto">
-        <p class="eyebrow">Para mentores y comunidades de trading</p>
-        <h1>Tu comunidad sabe qué hacer. El problema es que, bajo presión, no lo hace.</h1>
-        <p class="sub">Esa brecha entre la estrategia y la conducta real es la que explica las pérdidas que ninguna clase técnica logra resolver. Dos espacios, en vivo, para que tu comunidad identifique sus propios patrones — y aprenda a intervenir antes de romper su plan.</p>
+        <p class="eyebrow">Psicología clínica aplicada al trading</p>
+        <h1>No es falta de disciplina: es cómo decide el cerebro bajo presión. Y eso sí se interviene.</h1>
+        <p class="sub">Como psicóloga clínica especializada en toma de decisiones, veo el mismo patrón en cada comunidad de trading: se domina la estrategia y, aun así, se opera por impulso. Dos espacios en vivo, con base en neurociencia y análisis funcional de la conducta, para que tu comunidad identifique ese patrón — y aprenda a intervenir antes de romper su plan.</p>
         <div class="firma">Preparado por <b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica</div>
       </div>
       <div class="header-foto">
@@ -482,6 +575,45 @@
         <a class="btn-pago" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20quiero%20reservar%20el%20Taller%201%20%E2%80%94%20Tu%20cerebro%20frente%20al%20mercado%20(USD%20500)" target="_blank" rel="noopener">Taller 1 — $500</a>
         <a class="btn-pago" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20quiero%20reservar%20el%20Taller%202%20%E2%80%94%20La%20brecha%20entre%20lo%20que%20s%C3%A9%20y%20lo%20que%20hago%20(USD%20500)" target="_blank" rel="noopener">Taller 2 — $500</a>
         <a class="btn-pago principal" href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20quiero%20tomar%20el%20paquete%20completo%20%E2%80%94%20Taller%201%20%2B%20Taller%202%20(USD%20800)" target="_blank" rel="noopener">Ambos talleres — $800</a>
+      </div>
+    </div>
+
+    <!-- ============ RESPALDO / TESTIMONIOS ============ -->
+    <div class="respaldo reveal">
+      <div class="respaldo-divisor"></div>
+      <div class="respaldo-tit">
+        <h2>Un trabajo ya validado por quienes lo han vivido</h2>
+      </div>
+      <p class="respaldo-sub">Testimonios reales de personas acompañadas por Elizabet en procesos clínicos — la misma base profesional que sostiene el diseño de estos talleres.</p>
+
+      <div class="testi-videos">
+        <div>
+          <video controls preload="metadata" poster="testi-vera-madrigal-poster.jpg" playsinline><source src="testimonio-video-1.mp4" type="video/mp4"></video>
+          <p class="who">Vera Madrigal · España</p>
+        </div>
+        <div>
+          <video controls preload="metadata" poster="testi-sayuri-poster.jpg" playsinline><source src="testimonio-video-2-sayuri.mp4" type="video/mp4"></video>
+          <p class="who">Sayuri · Japón</p>
+        </div>
+      </div>
+
+      <div class="testi-grid" style="margin-top:18px">
+        <div class="testi-card">
+          <img src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz">
+          <div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div>
+        </div>
+        <div class="testi-card">
+          <img src="testi-isabela-villa.jpg" alt="Isabela Villa">
+          <div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div>
+        </div>
+        <div class="testi-card">
+          <img src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga">
+          <div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div>
+        </div>
+        <div class="testi-card">
+          <img src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios">
+          <div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div>
+        </div>
       </div>
     </div>
 
