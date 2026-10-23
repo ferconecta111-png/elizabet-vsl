@@ -25,6 +25,7 @@
     --line: #e4e0d8;
     --rosa-metal: linear-gradient(120deg, #B06B78 0%, #EFD4D8 20%, #C98A96 42%, #F6E3E6 58%, #A9565F 78%, #E3B6BD 100%);
     --azul-metal: linear-gradient(120deg, #13232c 0%, #4C7E91 24%, #1E3440 46%, #7FA7B8 64%, #13232c 84%, #3A5A6E 100%);
+    --azul-metal-claro: linear-gradient(120deg, #3F6E82 0%, #8FB8C9 20%, #D7E9EF 40%, #8FB8C9 60%, #3F6E82 80%, #5C8A9B 100%);
   }
   * { box-sizing: border-box; }
   body {
@@ -99,11 +100,11 @@
   .btn-metodologia {
     display: inline-flex; align-items: center; gap: 9px;
     padding: 13px 28px; border-radius: 100px;
-    background: var(--navy-deep);
+    background: var(--azul-metal-claro); background-size: 220% 220%;
     color: #fff; font-weight: 800; font-size: 14.5px; letter-spacing: 0.01em;
-    text-decoration: none;
+    text-decoration: none; text-shadow: 0 1px 2px rgba(0,0,0,0.35);
     box-shadow: 0 10px 22px rgba(0,0,0,0.3);
-    animation: latido 2.4s ease-in-out infinite;
+    animation: latido 2.4s ease-in-out infinite, sheen-rosa 6s ease-in-out infinite;
   }
   .btn-metodologia svg { width: 15px; height: 15px; flex: none; }
   @keyframes latido {
