@@ -95,8 +95,9 @@
   .firma { margin-top: 18px; font-size: 14px; color: var(--navy-soft); display: flex; align-items: center; gap: 10px; }
   .firma b { color: #fff; font-weight: 700; }
 
+  .btn-header-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; }
   .btn-metodologia {
-    display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
+    display: inline-flex; align-items: center; gap: 9px;
     padding: 13px 28px; border-radius: 100px;
     background: var(--navy-deep);
     color: #fff; font-weight: 800; font-size: 14.5px; letter-spacing: 0.01em;
@@ -311,10 +312,16 @@
         <p class="eyebrow">Psicología clínica aplicada al trading</p>
         <h1>No es falta de disciplina: es cómo decide el cerebro bajo presión. Y eso sí se interviene.</h1>
         <p class="sub">Como psicóloga clínica especializada en toma de decisiones, veo el mismo patrón en cada comunidad corporativa: se domina la estrategia y, aun así, se opera por impulso. Dos espacios en vivo, con base en neurociencia, para que tu comunidad identifique ese patrón y aprenda a intervenir antes de romper su plan.</p>
-        <a class="btn-metodologia" href="index.html#metodologia" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          Ver metodología
-        </a>
+        <div class="btn-header-row">
+          <a class="btn-metodologia" href="#taller1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Ver taller
+          </a>
+          <a class="btn-metodologia" href="#mastermind">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Ver mastermind
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -325,7 +332,7 @@
   <main>
 
     <!-- ============ TALLER 1 ============ -->
-    <div class="taller-block reveal">
+    <div id="taller1" class="taller-block reveal">
       <p class="taller-num"><span class="n">1</span>Taller para el grupo de estudio</p>
       <h2 class="titulo">Tu cerebro frente al mercado</h2>
       <p style="color:var(--text-faint); font-size:15.5px; margin-bottom:4px">Comprender mis reacciones y mejorar mis decisiones</p>
@@ -369,7 +376,7 @@
     </div>
 
     <!-- ============ TALLER 2 ============ -->
-    <div class="taller-block reveal">
+    <div id="mastermind" class="taller-block reveal">
       <p class="taller-num"><span class="n">2</span>Taller para el grupo mastermind</p>
       <h2 class="titulo">La brecha entre lo que sé y lo que hago</h2>
       <p style="color:var(--text-faint); font-size:15.5px; margin-bottom:4px">Comprender mis patrones y transformar mis decisiones</p>
