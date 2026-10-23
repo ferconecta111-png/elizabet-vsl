@@ -34,14 +34,36 @@
 
   /* ===== Header ===== */
   header.band {
-    background:
-      radial-gradient(circle at 85% 0%, rgba(169,125,121,0.35), transparent 50%),
-      linear-gradient(160deg, var(--navy-deep), var(--navy) 85%);
+    background: linear-gradient(160deg, var(--navy-deep), var(--navy) 85%);
     padding: 64px 0 56px;
     color: #fdfaf3;
     position: relative;
     overflow: hidden;
   }
+  /* texturas con movimiento: manchas de luz que derivan despacio */
+  .textura { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .mancha {
+    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.55;
+    animation: derivar 22s ease-in-out infinite alternate;
+  }
+  .mancha.m1 { width: 420px; height: 420px; top: -140px; right: -80px; background: radial-gradient(circle, var(--gold) 0%, transparent 70%); animation-duration: 26s; }
+  .mancha.m2 { width: 320px; height: 320px; bottom: -160px; left: -60px; background: radial-gradient(circle, var(--gold-tint) 0%, transparent 70%); animation-duration: 19s; animation-delay: -6s; }
+  .mancha.m3 { width: 260px; height: 260px; top: 40%; right: 18%; background: radial-gradient(circle, #fff 0%, transparent 70%); opacity: 0.12; animation-duration: 15s; animation-delay: -3s; }
+  @keyframes derivar {
+    0%   { transform: translate(0,0) scale(1); }
+    50%  { transform: translate(-30px,25px) scale(1.12); }
+    100% { transform: translate(20px,-15px) scale(0.95); }
+  }
+  @media (prefers-reduced-motion: reduce) { .mancha { animation: none; } }
+
+  .header-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
+  .header-texto { flex: 1 1 380px; min-width: 0; }
+  .header-foto { flex: 0 0 auto; }
+  .header-foto img {
+    width: 168px; height: 168px; border-radius: 50%; object-fit: cover;
+    border: 4px solid var(--gold-tint); box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+  }
+
   .eyebrow {
     font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--gold-tint); display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
@@ -51,6 +73,11 @@
   header.band p.sub { margin-top: 18px; font-size: 18px; color: var(--navy-soft); max-width: 50ch; line-height: 1.5; }
   .firma { margin-top: 28px; font-size: 14.5px; color: var(--navy-soft); display: flex; align-items: center; gap: 10px; }
   .firma b { color: #fff; font-weight: 700; }
+
+  @media (max-width: 620px) {
+    .header-inner { flex-direction: column; text-align: center; }
+    .header-foto img { width: 128px; height: 128px; }
+  }
 
   main { padding: 56px 0 72px; }
   .taller-block { margin-bottom: 64px; }
@@ -98,7 +125,9 @@
   .pendiente p { margin: 0 auto; max-width: 42ch; color: var(--gold-deep); font-weight: 600; }
 
   /* ===== Enfoque y alcance ===== */
-  .alcance { background: var(--navy-deep); color: #fdfaf3; border-radius: 24px; padding: 40px; margin-bottom: 64px; }
+  .alcance { background: var(--navy-deep); color: #fdfaf3; border-radius: 24px; padding: 40px; margin-bottom: 64px; position: relative; overflow: hidden; }
+  .alcance .textura .mancha { opacity: 0.35; }
+  .alcance > *:not(.textura) { position: relative; z-index: 1; }
   .alcance h2 { color: #fff; font-size: 24px; margin-bottom: 18px; }
   .alcance p { color: var(--navy-soft); max-width: 68ch; }
   .alcance p + p { margin-top: 14px; }
@@ -148,11 +177,23 @@
 <body>
 
 <header class="band">
+  <div class="textura">
+    <span class="mancha m1"></span>
+    <span class="mancha m2"></span>
+    <span class="mancha m3"></span>
+  </div>
   <div class="wrap">
-    <p class="eyebrow">Propuesta profesional</p>
-    <h1>Talleres de psicología aplicada al trading</h1>
-    <p class="sub">Dos espacios complementarios para que tu comunidad entienda — y aprenda a manejar — lo que pasa por dentro cuando se opera.</p>
-    <div class="firma">Preparado por <b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica</div>
+    <div class="header-inner">
+      <div class="header-texto">
+        <p class="eyebrow">Propuesta profesional</p>
+        <h1>Talleres de psicología aplicada al trading</h1>
+        <p class="sub">Dos espacios complementarios para que tu comunidad entienda — y aprenda a manejar — lo que pasa por dentro cuando se opera.</p>
+        <div class="firma">Preparado por <b>Elizabet García Duque</b> — Psicóloga · Magíster en Psicología Clínica</div>
+      </div>
+      <div class="header-foto">
+        <img src="elizabeth-foto-hero.webp" alt="Elizabet García Duque">
+      </div>
+    </div>
   </div>
 </header>
 
@@ -206,7 +247,8 @@
     <!-- ============ TALLER 2 ============ -->
     <div class="taller-block">
       <p class="taller-num"><span class="n">2</span>Taller para el mastermind</p>
-      <h2 class="titulo">Análisis funcional y estrategias individualizadas</h2>
+      <h2 class="titulo">De la reacción a la estrategia</h2>
+      <p style="color:var(--text-faint); font-size:15.5px; margin-bottom:4px">Análisis funcional y plan individual para cada trader</p>
       <div class="meta-row">
         <span class="pill">🔎 Análisis funcional</span>
         <span class="pill">🎯 Estrategias individualizadas</span>
@@ -219,6 +261,10 @@
 
     <!-- ============ ENFOQUE Y ALCANCE ============ -->
     <div class="alcance">
+      <div class="textura">
+        <span class="mancha m1"></span>
+        <span class="mancha m2"></span>
+      </div>
       <h2>Enfoque y alcance profesional</h2>
       <p>Ambos talleres se fundamentan en la psicología y la neurociencia aplicadas a la toma de decisiones. Su propósito es favorecer el autoconocimiento, la comprensión de patrones conductuales y el desarrollo de estrategias de autorregulación en el contexto del trading.</p>
       <p>Los espacios son complementarios, pero responden a necesidades diferentes: el grupo de estudio se centra en la comprensión y el reconocimiento inicial de patrones, mientras que el mastermind profundiza en el análisis funcional y la construcción de estrategias individualizadas.</p>
