@@ -23,7 +23,6 @@
     --gold-tint: #f3e1de;
     --reactivo: #B4573F;
     --line: #e4e0d8;
-    --rosa-ink: #3a211d;
     --rosa-metal: linear-gradient(120deg, #B06B78 0%, #EFD4D8 20%, #C98A96 42%, #F6E3E6 58%, #A9565F 78%, #E3B6BD 100%);
     --azul-metal: linear-gradient(120deg, #13232c 0%, #4C7E91 24%, #1E3440 46%, #7FA7B8 64%, #13232c 84%, #3A5A6E 100%);
     --oro-metal: linear-gradient(120deg, #7A4F49 0%, #F3E1DE 20%, #C9A17A 42%, #FFF6EF 58%, #7A4F49 78%, #E3C39A 100%);
@@ -40,7 +39,7 @@
 
   /* ===== Header ===== */
   header.band {
-    background: linear-gradient(165deg, var(--rosa-ink), var(--gold-deep) 60%, var(--gold) 130%);
+    background: linear-gradient(155deg, var(--gold), var(--gold-deep) 130%);
     padding: 26px 0 0;
     color: #fdfaf3;
     position: relative;
@@ -74,7 +73,7 @@
 
   /* foto grande, sin circulo, recortada y fundida con la escena, compacta en todo el lado derecho */
   .header-foto-grande {
-    position: absolute; right: 2%; bottom: -34px; top: 48px; z-index: 1;
+    position: absolute; right: 2%; bottom: -60px; top: 48px; z-index: 1;
     height: auto; width: auto; max-width: 42%;
     object-fit: contain; object-position: bottom;
     opacity: 0.95;
@@ -84,7 +83,7 @@
     pointer-events: none;
   }
 
-  .header-inner { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; margin-bottom: 55px; }
+  .header-inner { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; margin-bottom: 40px; }
   .header-texto { flex: 1 1 380px; min-width: 0; max-width: 520px; }
 
   .eyebrow {
@@ -267,12 +266,28 @@
   .respaldo-tit h2 { font-size: 26px; color: var(--navy-deep); }
   .respaldo-sub { text-align: center; color: var(--text-faint); font-size: 14.5px; margin: 0 auto 30px; max-width: 56ch; }
   .respaldo-divisor { height: 3px; width: 64px; margin: 0 auto 30px; border-radius: 2px; background: linear-gradient(90deg, var(--rosa-metal), var(--azul-metal)); background-size: 200% 100%; animation: sheen-rosa 7s ease-in-out infinite; }
-  .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 26px; }
-  .testi-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; gap: 14px; }
-  .testi-card img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid var(--gold-tint); }
-  .testi-card .txt { font-size: 14px; line-height: 1.55; font-style: italic; color: var(--text); }
-  .testi-card .who { margin-top: 8px; font-size: 12.5px; font-weight: 700; color: var(--navy-deep); font-style: normal; }
-  @media (max-width: 620px) { .testi-grid { grid-template-columns: 1fr; } }
+  /* carrusel de testimonios: misma mecánica que el sitio principal de Elizabet */
+  .testi-carousel-wrap { width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; padding: 4px 0 26px; }
+  .testi-carousel {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .testi-track { display: flex; gap: 18px; width: max-content; padding: 0 20px; animation: testi-derecha 54s linear infinite; }
+  .testi-carousel:hover .testi-track { animation-play-state: paused; }
+  @keyframes testi-derecha { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
+  @media (prefers-reduced-motion: reduce) { .testi-track { animation: none; } }
+  .testi-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; display: flex; gap: 12px; flex: 0 0 290px; width: 290px; }
+  .testi-card img, .testi-card .ini {
+    width: 42px; height: 42px; border-radius: 50%; flex: none;
+  }
+  .testi-card img { object-fit: cover; border: 2px solid var(--gold-tint); }
+  .testi-card .ini {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--navy-tint); color: var(--navy-deep); font-weight: 800; font-size: 13px;
+  }
+  .testi-card .txt { font-size: 13.5px; line-height: 1.5; font-style: italic; color: var(--text); }
+  .testi-card .who { margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--navy-deep); font-style: normal; }
+  @media (max-width: 480px) { .testi-card { flex-basis: 250px; width: 250px; } }
 
   footer { border-top: 1px solid var(--line); padding: 28px 0 48px; margin-top: 12px; text-align: center; }
   footer p { font-size: 13.5px; color: var(--text-faint); }
@@ -504,22 +519,59 @@
       </div>
       <p class="respaldo-sub">Testimonios reales de personas acompañadas por Elizabet en procesos clínicos — la misma base profesional que sostiene el diseño de estos talleres.</p>
 
-      <div class="testi-grid">
-        <div class="testi-card">
-          <img src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz">
-          <div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div>
-        </div>
-        <div class="testi-card">
-          <img src="testi-isabela-villa.jpg" alt="Isabela Villa">
-          <div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div>
-        </div>
-        <div class="testi-card">
-          <img src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga">
-          <div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div>
-        </div>
-        <div class="testi-card">
-          <img src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios">
-          <div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div>
+      <div class="testi-carousel-wrap">
+        <div class="testi-carousel">
+          <div class="testi-track">
+            <div class="testi-card">
+              <img src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz">
+              <div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div>
+            </div>
+            <div class="testi-card">
+              <img src="testi-isabela-villa.jpg" alt="Isabela Villa">
+              <div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div>
+            </div>
+            <div class="testi-card">
+              <img src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga">
+              <div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div>
+            </div>
+            <div class="testi-card">
+              <img src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios">
+              <div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div>
+            </div>
+            <div class="testi-card">
+              <span class="ini">VV</span>
+              <div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div>
+            </div>
+            <div class="testi-card">
+              <span class="ini">AS</span>
+              <div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div>
+            </div>
+            <!-- duplicado para el loop infinito -->
+            <div class="testi-card" aria-hidden="true">
+              <img src="testi-francisca-jesus-diaz.jpg" alt="">
+              <div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div>
+            </div>
+            <div class="testi-card" aria-hidden="true">
+              <img src="testi-isabela-villa.jpg" alt="">
+              <div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div>
+            </div>
+            <div class="testi-card" aria-hidden="true">
+              <img src="testi-maricela-arteaga.jpg" alt="">
+              <div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div>
+            </div>
+            <div class="testi-card" aria-hidden="true">
+              <img src="testi-alexandra-barrios.jpg" alt="">
+              <div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div>
+            </div>
+            <div class="testi-card" aria-hidden="true">
+              <span class="ini">VV</span>
+              <div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div>
+            </div>
+            <div class="testi-card" aria-hidden="true">
+              <span class="ini">AS</span>
+              <div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
