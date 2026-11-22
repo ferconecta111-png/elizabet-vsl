@@ -446,7 +446,7 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
   .testi-fila { display: flex; gap: 18px; align-items: flex-start; margin-top: 12px; }
   .testi-fila .marquee { margin-top: 0; }
   .testi-video-fija { flex: none; }
-  @media (max-width: 720px) { .testi-fila { flex-direction: column; } .testi-video-fija { align-self: center; } }
+  @media (max-width: 1500px) { .testi-fila { flex-direction: column; align-items: stretch; } .testi-fila .marquee { width: 100%; } }
   .marquee-track { display: flex; gap: 18px; width: max-content; animation: marquee-right 46s linear infinite; }
   .marquee:hover .marquee-track { animation-play-state: paused; }
   @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
@@ -468,12 +468,26 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
   }
   .testi p.txt { font-size: 14.5px; font-style: italic; font-family: "Fraunces", Georgia, serif; margin: 0 0 10px; line-height: 1.5; }
   .testi p.who { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0; color: var(--gold); }
+  /* Testimonios en video: 3 fijos en escritorio; en celular, fila deslizable con snap (sin scroll horizontal de la pagina) */
+  .testi-video-grupo { display: flex; gap: 14px; margin: 0; padding: 0; list-style: none; }
   .testi-video { flex: 0 0 220px; width: 220px; flex-direction: column; align-items: stretch; gap: 10px; padding: 14px; }
-  @media (max-width: 480px) { .testi-video { flex-basis: 190px; width: 190px; } }
-  .testi-video video { width: 100%; aspect-ratio: 478/850; border-radius: 12px; object-fit: cover; background: #000; display: block; }
+  .testi-video video { width: 100%; aspect-ratio: 9/16; border-radius: 12px; object-fit: cover; background: #2c4850; display: block; }
+  .testi-video video:focus-visible { outline: 3px solid var(--gold-tint); outline-offset: 3px; }
+  .testi-video video::cue { font-family: "Manrope", sans-serif; font-size: 15px; line-height: 1.35; background: rgba(20, 30, 33, 0.78); }
   .testi-video p.who { text-align: center; color: #fbf7ee; }
-  .testi-video-grupo { display: flex; gap: 10px; }
-  @media (max-width: 480px) { .testi-video-grupo .testi-video { flex-basis: 140px; width: 140px; padding: 10px; } }
+  .testi-video p.who .dur { display: block; margin-top: 2px; font-weight: 600; letter-spacing: 0.04em; color: var(--gold-tint); opacity: 0.8; }
+  .testi-video-grupo:focus-visible { outline: 2px solid var(--gold-tint); outline-offset: 4px; border-radius: 16px; }
+  .testi-desliza { display: none; }
+  @media (max-width: 1500px) { .testi-video-grupo { justify-content: center; } }
+  @media (max-width: 760px) {
+    .testi-video-grupo {
+      justify-content: flex-start; overflow-x: auto; overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory; scroll-padding: 0 20px; margin: 0 -20px; padding: 4px 20px 12px;
+      scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.35) transparent;
+    }
+    .testi-video { flex: 0 0 min(64vw, 240px); width: min(64vw, 240px); padding: 10px; scroll-snap-align: start; }
+    .testi-desliza { display: block; margin: 4px 0 0; font-size: 12px; text-align: center; color: var(--gold-tint); opacity: 0.85; }
+  }
 
   /* CTA — degradado verde/dorado, boton alto contraste */
   .cta-block {
@@ -933,19 +947,37 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
       <h2 class="tit">Lo que ocurre cuando empiezas a mirarte diferente</h2>
     </div>
     <div class="wrap testi-fila">
-      <div class="testi-video-fija testi-video-grupo">
-        <div class="testi testi-video">
-          <video controls preload="metadata" poster="testi-vera-madrigal-poster.jpg" playsinline><source src="testimonio-video-1.mp4" type="video/mp4"></video>
-          <p class="who">Vera Madrigal · España</p>
-        </div>
-        <div class="testi testi-video">
-          <video controls preload="metadata" poster="testi-sayuri-poster.jpg" playsinline><source src="testimonio-video-2-sayuri.mp4" type="video/mp4"></video>
-          <p class="who">Sayuri · Japón</p>
-        </div>
-        <div class="testi testi-video">
-          <video controls preload="metadata" poster="testi-ivelina-poster.jpg" playsinline><source src="testimonio-video-3-ivelina.mp4" type="video/mp4"></video>
-          <p class="who">Ivelina Dobreva · Bulgaria</p>
-        </div>
+      <div class="testi-video-fija">
+        <ul class="testi-video-grupo" role="list" aria-label="Testimonios en video" tabindex="0">
+          <li class="testi testi-video">
+            <video controls playsinline preload="none" data-poster="testi-vera-poster.jpg" aria-label="Testimonio en video de Vera, 1 minuto 55 segundos, con subtítulos en español">
+              <source src="testimonio-vera.mp4" type="video/mp4">
+              <track kind="captions" src="testimonio-vera.vtt" srclang="es" label="Español" default>
+            </video>
+            <p class="who">Vera · España<span class="dur">1:55</span></p>
+          </li>
+          <li class="testi testi-video">
+            <video controls playsinline preload="none" data-poster="testi-sayuri-poster.jpg" aria-label="Testimonio en video de Sayuri, 1 minuto 40 segundos, con subtítulos en español">
+              <source src="testimonio-sayuri.mp4" type="video/mp4">
+              <track kind="captions" src="testimonio-sayuri.vtt" srclang="es" label="Español" default>
+            </video>
+            <p class="who">Sayuri · Japón<span class="dur">1:40</span></p>
+          </li>
+          <li class="testi testi-video">
+            <video controls playsinline preload="none" data-poster="testi-ivelina-poster.jpg" aria-label="Testimonio en video de Ivelina, 1 minuto 11 segundos, con subtítulos en español">
+              <source src="testimonio-ivelina.mp4" type="video/mp4">
+              <track kind="captions" src="testimonio-ivelina.vtt" srclang="es" label="Español" default>
+            </video>
+            <p class="who">Ivelina · Bulgaria<span class="dur">1:11</span></p>
+          </li>
+          <li class="testi testi-video">
+            <video controls playsinline preload="none" data-poster="testi-ofelia-poster.jpg" aria-label="Testimonio en video de Ofelia, 53 segundos, con subtítulos incluidos en el video">
+              <source src="testimonio-ofelia.mp4" type="video/mp4">
+            </video>
+            <p class="who">Ofelia · Egipto<span class="dur">0:53</span></p>
+          </li>
+        </ul>
+        <p class="testi-desliza" aria-hidden="true">Desliza para ver los 4 testimonios →</p>
       </div>
       <div class="marquee">
       <div class="marquee-track">
@@ -1173,6 +1205,33 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
       }
       ajustarMetodologia();
       window.addEventListener('resize', ajustarMetodologia);
+    })();
+  </script>
+
+  <script>
+    // Testimonios en video: posters diferidos (se cargan al acercarse a la seccion)
+    // y un solo video sonando a la vez en toda la pagina.
+    (function () {
+      var grupo = document.querySelector('.testi-video-grupo');
+      if (!grupo) return;
+      var vids = grupo.querySelectorAll('video[data-poster]');
+      function cargarPosters() {
+        vids.forEach(function (v) { if (!v.getAttribute('poster')) v.setAttribute('poster', v.getAttribute('data-poster')); });
+      }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entradas) {
+          if (entradas.some(function (e) { return e.isIntersecting; })) { cargarPosters(); io.disconnect(); }
+        }, { rootMargin: '600px 0px' });
+        io.observe(grupo);
+      } else {
+        cargarPosters();
+      }
+      var todos = document.querySelectorAll('video');
+      todos.forEach(function (v) {
+        v.addEventListener('play', function () {
+          todos.forEach(function (o) { if (o !== v && !o.paused) o.pause(); });
+        });
+      });
     })();
   </script>
 
