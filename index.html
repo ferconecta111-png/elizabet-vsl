@@ -31,12 +31,14 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
 <meta property="og:site_name" content="Elizabet García Duque — Psicóloga Clínica">
 <meta property="og:title" content="Elizabet García Duque — Psicóloga Clínica | Terapia Online en Español">
 <meta property="og:description" content="Psicóloga · Magíster en Psicología Clínica. Te acompaño a mirarte con más calma y a relacionarte distinto contigo, con los demás y con la vida.">
-<meta property="og:image" content="https://psicologaelizabetgarciad.com/elizabet-foto.jpg">
+<meta property="og:image" content="https://psicologaelizabetgarciad.com/eli-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://psicologaelizabetgarciad.com/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Elizabet García Duque — Psicóloga Clínica">
 <meta name="twitter:description" content="Terapia online en español. Ansiedad, duelo, crisis y cambios de vida.">
-<meta name="twitter:image" content="https://psicologaelizabetgarciad.com/elizabet-foto.jpg">
+<meta name="twitter:image" content="https://psicologaelizabetgarciad.com/eli-og.jpg">
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -51,7 +53,7 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
   "alternateName": "Psicóloga Clínica",
   "jobTitle": ["Psicóloga Clínica", "Terapeuta"],
   "description": "Psicóloga, Magíster en Psicología Clínica, Certificada en Crianza Respetuosa, Diplomada en Neurolingüística y Coaching, Arteterapia. Acompaña procesos de ansiedad, depresión, duelo, crisis personales y cambios de vida, por terapia online en español.",
-  "image": "https://psicologaelizabetgarciad.com/elizabet-foto.jpg",
+  "image": "https://psicologaelizabetgarciad.com/eli-og.jpg",
   "url": "https://psicologaelizabetgarciad.com/",
   "knowsAbout": ["Ansiedad", "Depresión", "Duelo", "Crisis personales", "Crianza respetuosa", "Arteterapia"],
   "worksFor": {
@@ -118,27 +120,47 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
     content: ""; position: absolute; top: -120px; right: -100px; width: 340px; height: 340px; border-radius: 50%;
     background: radial-gradient(circle, rgba(169,125,121,0.22), transparent 70%); pointer-events: none;
   }
+  /* HERO opción B — "anclada al borde": la figura se apoya en la línea inferior del hero y su borde
+     izquierdo (corte de la foto original) cae justo en el borde izquierdo de la pantalla. Sin desvanecidos. */
+  .hero { padding-bottom: 56px; }
   .hero-layout {
-    width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center;
-    grid-template-areas: "promesa foto" "detalle foto";
+    width: 100%; display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 20px 48px; align-items: center;
+    grid-template-areas: "foto promesa" "foto detalle";
   }
-  .hero-promesa { grid-area: promesa; }
-  .hero-detalle { grid-area: detalle; }
+  .hero-promesa { grid-area: promesa; align-self: end; }
+  .hero-detalle { grid-area: detalle; align-self: start; }
+  .hero-photo-wrap {
+    --bleed: calc(40px + max(0px, (100vw - 1400px) / 2));
+    grid-area: foto; align-self: end; justify-self: start; position: relative;
+    width: min(540px, calc(100% + var(--bleed))); margin-left: calc(-1 * var(--bleed)); margin-bottom: -56px;
+  }
+  /* sombra de contacto suave sobre la línea del hero */
+  .hero-photo-wrap::after {
+    content: ""; position: absolute; z-index: 0; left: 6%; right: -4%; bottom: -14px; height: 40px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(63,100,112,0.10), rgba(63,100,112,0) 70%);
+  }
+  .hero-photo-clip { position: relative; z-index: 1; overflow: hidden; aspect-ratio: 1200 / 1680;
+    /* base difuminada para que la foto no "choque" con la sección siguiente */
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 91%, rgba(0,0,0,0.6) 97%, rgba(0,0,0,0.25) 100%);
+            mask-image: linear-gradient(to bottom, #000 0%, #000 91%, rgba(0,0,0,0.6) 97%, rgba(0,0,0,0.25) 100%); }
+  .hero-photo-clip picture { display: contents; }
+  .hero-photo { display: block; width: 100%; height: auto; }
+  @media (max-width: 1100px) { .hero-layout { gap: 18px 32px; } }
+  /* tablet y celular: foto ARRIBA, pegada al borde izquierdo de la pantalla y apoyada sobre una línea fina
+     que separa la foto del texto (la base recortada de la foto coincide exactamente con esa línea) */
   @media (max-width: 860px) {
-    .hero-layout {
-      grid-template-columns: 1fr; gap: 6px;
-      grid-template-areas: "promesa" "foto" "detalle";
+    .hero-layout { grid-template-columns: 1fr; gap: 0; grid-template-areas: "foto" "promesa" "detalle"; }
+    .hero-photo-wrap { --bleed: 40px; width: min(380px, 56%); margin-bottom: 30px; }
+    .hero-photo-wrap::after {
+      left: 0; right: auto; bottom: -1px; width: 100vw; height: 1.5px; z-index: 2;
+      background: linear-gradient(90deg, rgba(169,125,121,0.55), rgba(169,125,121,0.25) 70%, rgba(169,125,121,0));
     }
-  }
-  .hero-photo-wrap { grid-area: foto; position: relative; display: flex; justify-content: center; align-self: end; padding-bottom: 0; }
-  @media (max-width: 860px) { .hero-photo-wrap { padding-bottom: 4px; } }
-  .hero-photo {
-    width: min(560px, 94vw); height: auto; object-fit: contain;
-    filter: drop-shadow(0 26px 40px rgba(63,100,112,0.28));
-    position: relative; z-index: 1; display: block;
+    .hero-promesa, .hero-detalle { text-align: center; }
+    .hero h1, .hero p.dek { margin-left: auto; margin-right: auto; }
   }
   @media (max-width: 640px) {
-    .hero-photo { width: min(310px, 76vw); }
+    .hero { padding-top: 18px !important; }
+    .hero-photo-wrap { --bleed: 20px; width: min(228px, 58vw); margin-bottom: 18px; }
   }
   .hero .eyebrow {
     display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700;
@@ -149,7 +171,8 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
   .hero h1 em { font-style: normal; color: var(--gold-title); }
   .hero p.dek { font-size: 18.5px; color: var(--text-faint); max-width: 56ch; margin-top: 22px; }
   @media (max-width: 640px) {
-    .hero .eyebrow { margin-bottom: 14px; }
+    .hero .eyebrow { margin-bottom: 10px; font-size: 10.5px; letter-spacing: 0.1em; }
+    .hero-precio { margin-top: 10px; font-size: 12.5px; }
     .hero h1 { font-size: clamp(22px, 6.2vw, 26px); line-height: 1.32; max-width: none; }
     .hero h1 .salto-desktop { display: none; }
     .hero p.dek { font-size: 16px; margin-top: 14px; }
@@ -227,10 +250,16 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
 
   /* SOBRE ELLA — sobre banda gold-tint */
   .bio-layout { display: flex; gap: 40px; align-items: flex-start; }
-  .bio-photo { flex: 0 0 200px; }
+  .bio-photo { flex: 0 0 300px; position: relative; align-self: stretch; display: flex; align-items: flex-end; justify-content: center; }
+  .bio-photo::before {
+    content: ""; position: absolute; left: 50%; top: 45%; width: 135%; aspect-ratio: 1; transform: translate(-50%,-50%);
+    border-radius: 50%; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(231,217,201,0.5), rgba(231,217,201,0.16) 60%, rgba(231,217,201,0));
+  }
+  .bio-photo picture { display: contents; }
   .bio-photo img {
-    width: 200px; height: 200px; border-radius: 50%; object-fit: cover; display: block;
-    border: 6px solid rgba(255,245,228,0.55); box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+    position: relative; display: block; width: 300px; height: auto; margin-bottom: -64px;
+    filter: drop-shadow(0 14px 24px rgba(60,30,25,0.22));
   }
   .bio-card {
     flex: 1; min-width: 0;
@@ -270,7 +299,10 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
   .bio-detalle summary:hover { color: var(--gold); }
   .bio-detalle p:first-of-type { margin-top: 14px; }
   @media (max-width: 720px) {
-    .bio-layout { flex-direction: column; align-items: center; text-align: center; }
+    .bio-layout { flex-direction: column; align-items: center; text-align: center; gap: 0; }
+    .bio-photo { flex-basis: auto; align-self: center; }
+    .bio-photo img { width: min(250px, 66vw); margin-bottom: -16px; }
+    .bio-card { position: relative; z-index: 1; }
     .bio-card { text-align: left; }
   }
   .creds { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 20px 0 0; }
@@ -495,21 +527,30 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
     background: linear-gradient(135deg, var(--navy), var(--navy-deep));
     border-radius: 26px; color: #fbf7ee;
   }
-  @media (max-width: 480px) { .cta-block { padding: 38px 20px; border-radius: 18px; } }
+  @media (max-width: 480px) { .cta-block { padding: 38px 20px; border-radius: 18px; } .cta-figura { margin-bottom: -38px !important; } }
   .cta-block h2 { font-size: 28px; margin-bottom: 12px; color: #fff; }
   @media (max-width: 480px) { .cta-block h2 { font-size: 22px; } }
   .cta-block p { color: #d8dfd0; font-size: 15.5px; max-width: 46ch; margin: 0 auto 30px; }
   .cta-flex { display: flex; align-items: center; gap: 40px; text-align: left; }
-  .cta-photo {
-    flex: 0 0 auto; width: 260px; height: 260px; object-fit: cover; border-radius: 50%;
-    border: 5px solid rgba(255,255,255,0.25); box-shadow: 0 18px 36px rgba(0,0,0,0.35);
+  .cta-block { overflow: hidden; }
+  .cta-figura { flex: 0 0 300px; position: relative; align-self: flex-end; margin-bottom: -60px; }
+  .cta-figura::before {
+    content: ""; position: absolute; left: 50%; top: 42%; width: 140%; aspect-ratio: 1; transform: translate(-50%,-50%);
+    border-radius: 50%; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(231,217,201,0.34), rgba(169,125,121,0.14) 55%, rgba(169,125,121,0));
   }
+  .cta-figura picture { display: contents; }
+  .cta-photo { position: relative; display: block; width: 300px; height: auto; filter: drop-shadow(0 16px 26px rgba(0,0,0,0.26));
+    /* base apoyada en el borde inferior del bloque; solo el último tramo se suaviza, nunca transparente */
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 91%, rgba(0,0,0,0.6) 97%, rgba(0,0,0,0.25) 100%);
+            mask-image: linear-gradient(to bottom, #000 0%, #000 91%, rgba(0,0,0,0.6) 97%, rgba(0,0,0,0.25) 100%); }
   .cta-content { flex: 1; min-width: 0; }
   .cta-content p { margin: 0 0 24px; max-width: none; }
   .cta-content .btn-wa { display: flex; width: fit-content; margin: 0 auto; justify-content: center; }
   @media (max-width: 760px) {
     .cta-flex { flex-direction: column; text-align: center; gap: 24px; }
-    .cta-photo { width: 190px; height: 190px; }
+    .cta-figura { flex-basis: auto; align-self: center; order: 2; margin: 4px 0 -60px; } /* en celular va al final, apoyada en el borde inferior */
+    .cta-photo { width: min(230px, 62vw); }
     .cta-content p { margin: 0 auto 24px; max-width: 46ch; }
   }
   .btn-wa {
@@ -529,7 +570,18 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
     border: 1px solid var(--border); box-shadow: 0 20px 40px -20px rgba(28,34,36,0.2);
     display: flex; flex-direction: column; align-items: center;
   }
-  .pkg-card.destacado { border: 2px solid var(--gold); position: relative; }
+  .pkg-card.destacado { border: 2px solid var(--gold); position: relative; box-shadow: 0 26px 50px -22px rgba(122,79,73,0.45); }
+  @media (min-width: 641px) { .pkg-card.destacado { transform: translateY(-6px); } }
+  @media (max-width: 640px) { .pkg-card.destacado { order: -1; margin-top: 10px; } } /* en celular el paquete va primero */
+  .pkg-card .ahorro { font-size: 13px; font-weight: 700; color: var(--navy-deep); background: var(--navy-tint); border-radius: 999px; padding: 6px 14px; margin: -8px 0 18px; }
+  .rescate-pago { max-width: 560px; margin: 14px auto 0; font-size: 12.5px; line-height: 1.5; color: var(--text-faint); text-align: center; }
+  .rescate-pago a { color: var(--gold-deep); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+  .rescate-pago.en-oscuro { color: #c9d2cf; }
+  .cta-block p.rescate-pago { font-size: 12.5px; margin: 14px auto 0; max-width: 560px; }
+  .rescate-pago.en-oscuro a { color: #fff; }
+  .hero-precio { margin: 14px 0 0; font-size: 13.5px; font-weight: 600; color: var(--navy-deep); letter-spacing: 0.01em; }
+  .hero-precio .np { white-space: nowrap; }
+  .hero-precio .sep { color: var(--gold); font-weight: 700; padding: 0 2px; }
   .pkg-card .badge {
     position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
     background: var(--gold); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
@@ -635,14 +687,23 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
   <header class="hero">
     <div class="wrap hero-layout">
       <div class="hero-promesa">
+        <p class="eyebrow">Terapia online en español · Desde donde estés</p>
         <h1><em>Te&nbsp;acompaño</em> a mirarte con más calma y a relacionarte distinto contigo, con los demás y con la vida.</h1>
       </div>
       <div class="hero-photo-wrap">
-        <img class="hero-photo" src="elizabeth-foto-hero.webp" alt="Elizabet García Duque">
+          <div class="hero-photo-clip">
+          <picture>
+            <source type="image/avif" srcset="fotos-nuevas/eli-hero-480.avif 480w, fotos-nuevas/eli-hero-720.avif 720w, fotos-nuevas/eli-hero-960.avif 960w, fotos-nuevas/eli-hero-1200.avif 1200w" sizes="(max-width: 640px) 58vw, (max-width: 860px) 380px, 540px">
+            <source type="image/webp" srcset="fotos-nuevas/eli-hero-480.webp 480w, fotos-nuevas/eli-hero-720.webp 720w, fotos-nuevas/eli-hero-960.webp 960w, fotos-nuevas/eli-hero-1200.webp 1200w" sizes="(max-width: 640px) 58vw, (max-width: 860px) 380px, 540px">
+            <img class="hero-photo" src="fotos-nuevas/eli-hero-720.png" width="1200" height="1869" alt="Elizabet García Duque, Magíster en Psicología Clínica, sonriendo junto a una pila de libros" loading="eager" fetchpriority="high" decoding="async">
+          </picture>
+          </div>
       </div>
+
       <div class="hero-detalle">
         <p class="dek">Psicología clínica para comprender tus patrones, regular tus emociones y construir nuevas formas de relacionarte contigo y con los demás.</p>
-        <a id="btn-hero-cta" class="btn-hero" style="margin-top: 28px;" href="#video">Quiero conocer el proceso</a>
+        <a id="btn-hero-cta" class="btn-hero" style="margin-top: 28px;" href="#ofertas">Ver horarios y precios</a>
+        <p class="hero-precio"><span class="np">Sesión individual USD 75</span> <b class="sep">·</b> <span class="np">Paquete de 3 sesiones USD 203</span></p>
       </div>
     </div>
   </header>
@@ -677,6 +738,64 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
     </div>
   </section>
 
+  <section class="band dark">
+    <div class="wrap">
+      <p class="eyebrow-sm"><span class="dash" style="background:var(--gold);"></span>Lo que dicen quienes ya vivieron el proceso</p>
+      <h2 class="tit">Lo que ocurre cuando empiezas a mirarte diferente</h2>
+    </div>
+    <div class="wrap testi-fila">
+      <div class="testi-video-fija">
+        <ul class="testi-video-grupo" role="list" aria-label="Testimonios en video" tabindex="0">
+          <li class="testi testi-video">
+            <video controls playsinline preload="none" data-poster="testi-vera-poster.jpg" aria-label="Testimonio en video de Vera, 1 minuto 55 segundos, con subtítulos en español">
+              <source src="testimonio-vera.mp4" type="video/mp4">
+              <track kind="captions" src="testimonio-vera.vtt" srclang="es" label="Español" default>
+            </video>
+            <p class="who">Vera · España<span class="dur">1:55</span></p>
+          </li>
+          <li class="testi testi-video">
+            <video controls playsinline preload="none" data-poster="testi-sayuri-poster.jpg" aria-label="Testimonio en video de Sayuri, 1 minuto 40 segundos, con subtítulos en español">
+              <source src="testimonio-sayuri.mp4" type="video/mp4">
+              <track kind="captions" src="testimonio-sayuri.vtt" srclang="es" label="Español" default>
+            </video>
+            <p class="who">Sayuri · Japón<span class="dur">1:40</span></p>
+          </li>
+          <li class="testi testi-video">
+            <video controls playsinline preload="none" data-poster="testi-ivelina-poster.jpg" aria-label="Testimonio en video de Ivelina, 1 minuto 11 segundos, con subtítulos en español">
+              <source src="testimonio-ivelina.mp4" type="video/mp4">
+              <track kind="captions" src="testimonio-ivelina.vtt" srclang="es" label="Español" default>
+            </video>
+            <p class="who">Ivelina · Bulgaria<span class="dur">1:11</span></p>
+          </li>
+          <li class="testi testi-video">
+            <video controls playsinline preload="none" data-poster="testi-ofelia-poster.jpg" aria-label="Testimonio en video de Ofelia, 53 segundos, con subtítulos incluidos en el video">
+              <source src="testimonio-ofelia.mp4" type="video/mp4">
+            </video>
+            <p class="who">Ofelia · Egipto<span class="dur">0:53</span></p>
+          </li>
+        </ul>
+        <p class="testi-desliza" aria-hidden="true">Desliza para ver los 4 testimonios →</p>
+      </div>
+      <div class="marquee">
+      <div class="marquee-track">
+        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz"><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
+        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-isabela-villa.jpg" alt="Isabela Villa"><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
+        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga"><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
+        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios"><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
+        <div class="testi"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
+        <div class="testi"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
+        <!-- duplicado para el loop infinito -->
+        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt=""><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
+        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-isabela-villa.jpg" alt=""><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
+        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-maricela-arteaga.jpg" alt=""><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
+        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-alexandra-barrios.jpg" alt=""><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
+        <div class="testi" aria-hidden="true"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
+        <div class="testi" aria-hidden="true"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
+      </div>
+      </div>
+    </div>
+  </section>
+
   <div class="pkg-single" id="ofertas">
     <div class="wrap">
       <div class="pkg-grid">
@@ -687,14 +806,16 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
           <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" data-producto-label="Sesión individual — $75 USD" target="_blank" rel="noopener">Agendar y pagar</a>
         </div>
         <div class="pkg-card destacado">
-          <span class="badge">Más recomendado</span>
+          <span class="badge">El más elegido</span>
           <h3>Paquete de 3 sesiones</h3>
           <p class="desc">El proceso completo, acompañándote de principio a fin.</p>
           <p class="precio">$203 USD</p>
+          <p class="ahorro">USD 67,67 por sesión · ahorras USD 22</p>
           <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" data-producto-label="Paquete de 3 sesiones — $203 USD" target="_blank" rel="noopener">Agendar y pagar</a>
         </div>
       </div>
       <p style="margin: 20px 0 0; font-size: 12px; color: var(--text-faint); opacity: 0.85; text-align: center;">Precios en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
+      <p class="rescate-pago">¿Tu tarjeta no pasó o no te deja pagar desde Instagram? Ábrelo en tu navegador o <a href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20intent%C3%A9%20pagar%20mi%20sesi%C3%B3n%20y%20la%20tarjeta%20no%20pas%C3%B3.%20%C2%BFMe%20env%C3%ADas%20otra%20forma%20de%20pago%3F" target="_blank" rel="noopener">escríbeme por WhatsApp</a> y te envío otra forma de pago.</p>
     </div>
     <!-- FALTA: política de cancelación de citas y duración del tiempo disponible tras la compra —
          Elizabeth pidió agregarla en condiciones del servicio, pero no dio el texto/valores exactos.
@@ -706,7 +827,13 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
       <p class="eyebrow-sm c-gold"><span class="dash" style="background:#fff5e4;"></span>Quién te acompaña</p>
       <h2 class="tit">Soy Elizabet García Duque</h2>
       <div class="bio-layout">
-        <div class="bio-photo"><img loading="lazy" src="elizabet-foto.jpg" alt="Elizabet García Duque, psicóloga clínica"></div>
+        <div class="bio-photo">
+          <picture>
+            <source type="image/avif" srcset="fotos-nuevas/eli-bio-recorte-360.avif 360w, fotos-nuevas/eli-bio-recorte-540.avif 540w, fotos-nuevas/eli-bio-recorte-720.avif 720w" sizes="(max-width: 720px) 250px, 300px">
+            <source type="image/webp" srcset="fotos-nuevas/eli-bio-recorte-360.webp 360w, fotos-nuevas/eli-bio-recorte-540.webp 540w, fotos-nuevas/eli-bio-recorte-720.webp 720w" sizes="(max-width: 720px) 250px, 300px">
+            <img class="" src="fotos-nuevas/eli-bio-recorte-540.png" width="720" height="928" alt="Elizabet García Duque, Magíster en Psicología Clínica" loading="lazy" decoding="async">
+          </picture>
+        </div>
         <div class="bio-card">
           <p style="font-size: 13px; line-height: 1.5;"><b>Psicóloga · Magíster en Psicología Clínica · Certificada en Crianza Respetuosa · Diplomada en Neurolingüística y Coaching · Arteterapia.</b></p>
           <div class="historia-movimientos">
@@ -941,63 +1068,7 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
     </div>
   </section>
 
-  <section class="band dark">
-    <div class="wrap">
-      <p class="eyebrow-sm"><span class="dash" style="background:var(--gold);"></span>Lo que dicen quienes ya vivieron el proceso</p>
-      <h2 class="tit">Lo que ocurre cuando empiezas a mirarte diferente</h2>
-    </div>
-    <div class="wrap testi-fila">
-      <div class="testi-video-fija">
-        <ul class="testi-video-grupo" role="list" aria-label="Testimonios en video" tabindex="0">
-          <li class="testi testi-video">
-            <video controls playsinline preload="none" data-poster="testi-vera-poster.jpg" aria-label="Testimonio en video de Vera, 1 minuto 55 segundos, con subtítulos en español">
-              <source src="testimonio-vera.mp4" type="video/mp4">
-              <track kind="captions" src="testimonio-vera.vtt" srclang="es" label="Español" default>
-            </video>
-            <p class="who">Vera · España<span class="dur">1:55</span></p>
-          </li>
-          <li class="testi testi-video">
-            <video controls playsinline preload="none" data-poster="testi-sayuri-poster.jpg" aria-label="Testimonio en video de Sayuri, 1 minuto 40 segundos, con subtítulos en español">
-              <source src="testimonio-sayuri.mp4" type="video/mp4">
-              <track kind="captions" src="testimonio-sayuri.vtt" srclang="es" label="Español" default>
-            </video>
-            <p class="who">Sayuri · Japón<span class="dur">1:40</span></p>
-          </li>
-          <li class="testi testi-video">
-            <video controls playsinline preload="none" data-poster="testi-ivelina-poster.jpg" aria-label="Testimonio en video de Ivelina, 1 minuto 11 segundos, con subtítulos en español">
-              <source src="testimonio-ivelina.mp4" type="video/mp4">
-              <track kind="captions" src="testimonio-ivelina.vtt" srclang="es" label="Español" default>
-            </video>
-            <p class="who">Ivelina · Bulgaria<span class="dur">1:11</span></p>
-          </li>
-          <li class="testi testi-video">
-            <video controls playsinline preload="none" data-poster="testi-ofelia-poster.jpg" aria-label="Testimonio en video de Ofelia, 53 segundos, con subtítulos incluidos en el video">
-              <source src="testimonio-ofelia.mp4" type="video/mp4">
-            </video>
-            <p class="who">Ofelia · Egipto<span class="dur">0:53</span></p>
-          </li>
-        </ul>
-        <p class="testi-desliza" aria-hidden="true">Desliza para ver los 4 testimonios →</p>
-      </div>
-      <div class="marquee">
-      <div class="marquee-track">
-        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt="Francisca Jesús Díaz"><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
-        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-isabela-villa.jpg" alt="Isabela Villa"><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
-        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-maricela-arteaga.jpg" alt="Maricela Arteaga"><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
-        <div class="testi"><img loading="lazy" class="testi-photo" src="testi-alexandra-barrios.jpg" alt="Alexandra Barrios"><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
-        <div class="testi"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
-        <div class="testi"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
-        <!-- duplicado para el loop infinito -->
-        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-francisca-jesus-diaz.jpg" alt=""><div><p class="txt">"Gracias a Elizabet! Para mí este acompañamiento ha supuesto poder arrojar luz a conflictos que arrastraba hace mucho tiempo, hacerme responsable de mi bienestar emocional y recuperar mi propio poder personal."</p><p class="who">Francisca Jesús Díaz · Chile</p></div></div>
-        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-isabela-villa.jpg" alt=""><div><p class="txt">"Con Elizabet la experiencia ha sido maravillosa, me ha guiado de una manera muy bonita para conocerme a mí misma, conectarme más con mi ser y mis verdaderos propósitos."</p><p class="who">Isabela Villa · Colombia</p></div></div>
-        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-maricela-arteaga.jpg" alt=""><div><p class="txt">"Estoy súper a gusto con Elizabet, sabe mucho de autoestima, amor propio y del pasado. Me está ayudando a conocerme más y curar mis heridas de la infancia."</p><p class="who">Maricela Arteaga · Bélgica</p></div></div>
-        <div class="testi" aria-hidden="true"><img loading="lazy" class="testi-photo" src="testi-alexandra-barrios.jpg" alt=""><div><p class="txt">"Desde mi primer encuentro con Elizabet, han surgido muchos cambios positivos en mi vida. Cada vez que la veo me escucha, me redirecciona y me motiva a mejorar."</p><p class="who">Alexandra Barrios · Estados Unidos</p></div></div>
-        <div class="testi" aria-hidden="true"><span class="testi-initials">VV</span><div><p class="txt">"Me ayudó a ordenar mis pensamientos y emociones y gracias a eso pude avanzar en varios aspectos de mi vida."</p><p class="who">Victoria Vélez · Perú</p></div></div>
-        <div class="testi" aria-hidden="true"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
-      </div>
-      </div>
-    </div>
-  </section>
+
 
   <div class="pkg-single pkg-single-dark">
     <p style="color: var(--gold-tint); font-size: 14px; margin: 0 0 16px;">¿Cómo puedo acompañarte? — Terapia individual: si quieres trabajar profundamente en tu historia, tus patrones, tus emociones y tus vínculos.</p>
@@ -1006,13 +1077,20 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
       <a class="btn-pkg" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" data-producto-label="Sesión individual — $75 USD" target="_blank" rel="noopener">Agenda tu sesión individual — $75 USD</a>
     </div>
     <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">Precios en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
+    <p class="rescate-pago en-oscuro">¿Tu tarjeta no pasó o no te deja pagar desde Instagram? Ábrelo en tu navegador o <a href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20intent%C3%A9%20pagar%20mi%20sesi%C3%B3n%20y%20la%20tarjeta%20no%20pas%C3%B3.%20%C2%BFMe%20env%C3%ADas%20otra%20forma%20de%20pago%3F" target="_blank" rel="noopener">escríbeme por WhatsApp</a> y te envío otra forma de pago.</p>
   </div>
 
   <section class="band cream">
     <div class="wrap">
       <div class="cta-block">
         <div class="cta-flex">
-          <img loading="lazy" class="cta-photo" src="eli-dienteleon.jpg" alt="Soltar para transformar">
+          <div class="cta-figura">
+          <picture>
+            <source type="image/avif" srcset="fotos-nuevas/eli-cta-exterior-360.avif 360w, fotos-nuevas/eli-cta-exterior-540.avif 540w, fotos-nuevas/eli-cta-exterior-720.avif 720w" sizes="(max-width: 760px) 230px, 300px">
+            <source type="image/webp" srcset="fotos-nuevas/eli-cta-exterior-360.webp 360w, fotos-nuevas/eli-cta-exterior-540.webp 540w, fotos-nuevas/eli-cta-exterior-720.webp 720w" sizes="(max-width: 760px) 230px, 300px">
+            <img class="cta-photo" src="fotos-nuevas/eli-cta-exterior-540.png" width="720" height="871" alt="Elizabet García Duque escribiendo en una libreta, sentada al aire libre" loading="lazy" decoding="async">
+          </picture>
+          </div>
           <div class="cta-content">
             <h2>¿Qué vas a hacer diferente con todo lo que ya sabes?</h2>
             <p>No tienes que hacerlo sola/o. Podemos empezar a trabajar en ello — escríbeme directo, te hago un par de preguntas para conocer tu situación, y desde ahí agendamos juntas tu primera sesión, a tu ritmo.</p>
@@ -1025,6 +1103,7 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
               <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_S262KTVW13" data-producto-bold="eli_individual" data-producto-label="Sesión individual — $75 USD" target="_blank" rel="noopener">Sesión individual — $75 USD</a>
               <a class="btn-pkg-outline" href="https://checkout.bold.co/payment/LNK_B5JLQPEKIU" data-producto-bold="eli_paquete_x3" data-producto-label="Paquete de 3 sesiones — $203 USD" target="_blank" rel="noopener">Paquete x3 sesiones — $203 USD</a>
             </div>
+            <p class="rescate-pago en-oscuro">¿Tu tarjeta no pasó o no te deja pagar desde Instagram? Ábrelo en tu navegador o <a href="https://wa.me/573004145891?text=Hola%20Elizabet%2C%20intent%C3%A9%20pagar%20mi%20sesi%C3%B3n%20y%20la%20tarjeta%20no%20pas%C3%B3.%20%C2%BFMe%20env%C3%ADas%20otra%20forma%20de%20pago%3F" target="_blank" rel="noopener">escríbeme por WhatsApp</a> y te envío otra forma de pago.</p>
             <p style="margin: 14px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85; text-align: center;">Precios en dólares (USD). Si tu tarjeta es de otro país o está en otra moneda, tu banco puede aplicar un cargo por conversión.</p>
                     <p style="margin: 22px 0 0; font-size: 12px; color: #b7c0bd; opacity: 0.85;">Volver a ti no significa volver a quien eras. Significa comenzar a encontrarte con quién eres y elegir desde ahí.</p>
           </div>
