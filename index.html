@@ -680,6 +680,44 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
     h2.tit { margin-bottom: 10px; }
     .eyebrow-sm { margin-bottom: 4px; }
   }
+
+  .desliza-hint { display: none; }
+  /* ===== AJUSTES CELULAR (no afectan escritorio) ===== */
+  @media (max-width: 640px) {
+    /* Hero: foto grande (88vw) pegada al borde izquierdo, base sobre la línea; recorte a media pila para que el botón quede cerca */
+    .hero-photo-wrap { width: 88vw !important; }
+    .hero-photo-clip { aspect-ratio: 1200 / 1250; }
+  }
+  @media (max-width: 760px) {
+    /* Carruseles (testimonios escritos y videos de YouTube): deslizables con snap, sin animación ni tarjetas cortadas */
+    .marquee {
+      overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+      -webkit-mask-image: none; mask-image: none; scrollbar-width: none;
+    }
+    .marquee::-webkit-scrollbar { display: none; }
+    .marquee-track { animation: none !important; transform: none !important; gap: 14px; }
+    .marquee-track > [aria-hidden="true"] { display: none !important; }
+    .wrap .marquee { margin: 0 -40px; padding: 4px 40px 10px; scroll-padding: 0 40px; width: auto !important; }
+    .band > .marquee { padding: 4px 40px 10px; scroll-padding: 0 40px; }
+    .marquee .testi { flex: 0 0 min(84vw, 380px); width: min(84vw, 380px); scroll-snap-align: start; }
+    .marquee .video-mini { flex: 0 0 min(84vw, 420px); width: min(84vw, 420px); scroll-snap-align: start; }
+    .desliza-hint { display: block; margin: 6px 0 0; font-size: 12px; text-align: center; opacity: 0.85; }
+    .band.dark .desliza-hint { color: var(--gold-tint); }
+    .band.tint-gold .desliza-hint { color: #fff5e4; }
+    /* "Cómo te puede acompañar": lista a todo el ancho, alineada con el texto */
+    .servicios { padding: 0; margin-left: 0; margin-right: 0; }
+  }
+  @media (max-width: 760px) {
+    .pkg-single-dark { padding-left: 20px; padding-right: 20px; }
+  }
+  @media (max-width: 380px) {
+    .hero .eyebrow { font-size: 9.5px; letter-spacing: 0.06em; gap: 6px; }
+    .hero .eyebrow::before { width: 14px; }
+  }
+  @media (max-width: 640px) {
+    .wrap .marquee { margin: 0 -20px; padding: 4px 20px 10px; scroll-padding: 0 20px; }
+    .band > .marquee { padding: 4px 20px 10px; scroll-padding: 0 20px; }
+  }
 </style>
 </head>
 <body>
@@ -693,8 +731,8 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
       <div class="hero-photo-wrap">
           <div class="hero-photo-clip">
           <picture>
-            <source type="image/avif" srcset="fotos-nuevas/eli-hero-480.avif 480w, fotos-nuevas/eli-hero-720.avif 720w, fotos-nuevas/eli-hero-960.avif 960w, fotos-nuevas/eli-hero-1200.avif 1200w" sizes="(max-width: 640px) 58vw, (max-width: 860px) 380px, 540px">
-            <source type="image/webp" srcset="fotos-nuevas/eli-hero-480.webp 480w, fotos-nuevas/eli-hero-720.webp 720w, fotos-nuevas/eli-hero-960.webp 960w, fotos-nuevas/eli-hero-1200.webp 1200w" sizes="(max-width: 640px) 58vw, (max-width: 860px) 380px, 540px">
+            <source type="image/avif" srcset="fotos-nuevas/eli-hero-480.avif 480w, fotos-nuevas/eli-hero-720.avif 720w, fotos-nuevas/eli-hero-960.avif 960w, fotos-nuevas/eli-hero-1200.avif 1200w" sizes="(max-width: 640px) 88vw, (max-width: 860px) 380px, 540px">
+            <source type="image/webp" srcset="fotos-nuevas/eli-hero-480.webp 480w, fotos-nuevas/eli-hero-720.webp 720w, fotos-nuevas/eli-hero-960.webp 960w, fotos-nuevas/eli-hero-1200.webp 1200w" sizes="(max-width: 640px) 88vw, (max-width: 860px) 380px, 540px">
             <img class="hero-photo" src="fotos-nuevas/eli-hero-720.png" width="1200" height="1869" alt="Elizabet García Duque, Magíster en Psicología Clínica, sonriendo junto a una pila de libros" loading="eager" fetchpriority="high" decoding="async">
           </picture>
           </div>
@@ -793,6 +831,7 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
         <div class="testi" aria-hidden="true"><span class="testi-initials">AS</span><div><p class="txt">"Con su cercanía y sabiduría me guio para orientar mi vida y calmar fuertes niveles de ansiedad."</p><p class="who">Andrea Santamaría · España</p></div></div>
       </div>
       </div>
+      <p class="desliza-hint" aria-hidden="true">Desliza para leer más testimonios →</p>
     </div>
   </section>
 
@@ -1032,6 +1071,7 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
         <div class="video-mini" aria-hidden="true" data-yt="LLsAs2fw3Mk" style="background-image:url('yt-cover-5.jpg')" onclick="reproducirYT(this)"><button class="yt-play" aria-label="Reproducir video"></button></div>
       </div>
     </div>
+    <p class="desliza-hint" aria-hidden="true">Desliza para ver los videos →</p>
   </section>
 
   <section class="band tint-green">
@@ -1088,7 +1128,7 @@ src="https://www.facebook.com/tr?id=3452029298301201&ev=PageView&noscript=1"
           <picture>
             <source type="image/avif" srcset="fotos-nuevas/eli-cta-exterior-360.avif 360w, fotos-nuevas/eli-cta-exterior-540.avif 540w, fotos-nuevas/eli-cta-exterior-720.avif 720w" sizes="(max-width: 760px) 230px, 300px">
             <source type="image/webp" srcset="fotos-nuevas/eli-cta-exterior-360.webp 360w, fotos-nuevas/eli-cta-exterior-540.webp 540w, fotos-nuevas/eli-cta-exterior-720.webp 720w" sizes="(max-width: 760px) 230px, 300px">
-            <img class="cta-photo" src="fotos-nuevas/eli-cta-exterior-540.png" width="720" height="871" alt="Elizabet García Duque escribiendo en una libreta, sentada al aire libre" loading="lazy" decoding="async">
+            <img class="cta-photo" src="fotos-nuevas/eli-cta-exterior-540.png" width="720" height="871" alt="Elizabet García Duque escribiendo en una libreta, sentada al aire libre" loading="eager" fetchpriority="low" decoding="async">
           </picture>
           </div>
           <div class="cta-content">
